@@ -4,7 +4,7 @@ import Header from '../../Components/Header'
 
 const HomeScreen = () => {
   return (
-   <div className='container'>
+   <div>
         {/* // Header Section .. */}
             <Header/>
         {/*  Carousel Section .. */}
