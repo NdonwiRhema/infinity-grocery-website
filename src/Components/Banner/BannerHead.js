@@ -1,28 +1,27 @@
 import React from 'react'
 import './BannerHead.css'
 import {FaEnvelopeOpenText,FaPhoneAlt, FaUserCircle} from 'react-icons/fa'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const BannerHead = () => {
   return (
     <div className='banner_container'>
-       <div className='container-fluid'>
-          <div className='row'>
-                <div className='col-sm-3'>
-                        <div className='banner_details'>
+       <Container fluid>
+        <Row>
+            <Col xs={3}>
+                 <div className='banner_details'>
                             <FaEnvelopeOpenText fontSize={12}/>
                             <h6> contact@infinity-grocery.com</h6>
-                        </div>
-                    </div>
-                    <div className='col-sm-3'>
-                        <div  className='banner_details'>
-                            <FaPhoneAlt fontSize={12}/>
-                            <h6> (+237) 650 186 979 | 678 739 238 </h6>
-                        </div>
-                    </div>
-                    <div className='col-sm-2'>
-
-                    </div>
-                    <div className='col-sm-4'>
+                </div>
+            </Col>
+            <Col xs={3}>
+                <div  className='banner_details'>
+                    <FaPhoneAlt fontSize={12}/>
+                    <h6> (+237) 650 186 979 | 678 739 238 </h6>
+                </div>
+            </Col>
+            <Col xs={2}></Col>
+            <Col xs={4}>
                         <div  className='banner_identity'>
                            <div className='Language_select'>
                                 <form>
@@ -44,10 +43,9 @@ const BannerHead = () => {
                                 </div>
                            </div>
                         </div>
-                    </div>
-                    
-          </div>
-       </div>
+            </Col>
+        </Row>
+       </Container>
     </div>
   )
 }

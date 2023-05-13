@@ -1,34 +1,49 @@
 import React from 'react'
 import './BannerNav.css'
+import logo from '../../assets/bottomlogo.png'
 import { FaShoppingCart } from 'react-icons/fa'
+import { Container,Navbar,Nav} from 'react-bootstrap'
 
 const BannerNav = () => {
   return (
     <div className='Navcontainer'>
         <div className='Nav_div'>
-                  <ul class="nav">
-                        <li class="nav-item">
-                            <a class="anchor-active nav-anchor" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-anchor " href="/">Cereals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-anchor " href="/">Proteins</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-anchor" href='/'>Fruits</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-anchor" href='/'>Breakfast</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-anchor" href='/'>Recipes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-anchor" href='/'>Shop</a>
-                        </li>
-                    </ul>  
+                <Navbar>
+                <Container>
+                    <Navbar.Brand href="#home">
+                        <img
+                        alt=""
+                        src={logo}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        />{' '}
+                    </Navbar.Brand>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                            <Nav.Link href="#home">
+                                <a className="anchor-active nav-anchor" href="/">Home</a>
+                            </Nav.Link>
+                            <Nav.Link href="#link">
+                                <a className=" nav-anchor" href='/'>Shop</a>
+                            </Nav.Link>
+                            <Nav.Link href="#link">
+                                <a className=" nav-anchor" href='/'>Recipes</a>
+                            </Nav.Link>
+                            <Nav.Link href="#link">
+                                <a className=" nav-anchor" href='/'>Breakfast</a>
+                            </Nav.Link>
+                            <Nav.Link href="#link">
+                                <a className=" nav-anchor" href='/'>Fruits</a>
+                            </Nav.Link>
+                            <Nav.Link href="#link">
+                                <a className=" nav-anchor" href='/'>Proteins</a>
+                            </Nav.Link>
+                          
+                        </Nav>
+                </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </div>
         <div className='cart_div'>
             <div className='cart_value'>

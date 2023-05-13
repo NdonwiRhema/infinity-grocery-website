@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../Components/Header'
+import Carousels from '../../Components/Carousels'
 
 
 const HomeScreen = () => {
@@ -8,7 +9,7 @@ const HomeScreen = () => {
         {/* // Header Section .. */}
             <Header/>
         {/*  Carousel Section .. */}
-
+            <Carousels/>
         {/*  Promotions Section.. */}
 
         {/*  Product Categories Section .. */}

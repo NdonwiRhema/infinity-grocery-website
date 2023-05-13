@@ -2,20 +2,23 @@ import React from 'react'
 import './BannerMid.css'
 import logo from '../../assets/Logo Full.png'
 import { FaFacebook, FaInstagram, FaTelegram, FaWhatsapp } from 'react-icons/fa'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const BannerMid = () => {
   return (
-    <div className='container'>
-       <div className='row'>
-            <div className='col-sm-2 logo_div'>
-                <div >
-                    <a href='/'>
-                        <img className='logo' src={logo} alt='Logo'/>
-                    </a>            
+    <Container>
+        <Row>
+            <Col xs={2}>
+                <div className='logo_div'>
+                    <div>
+                        <a href='/'>
+                            <img className='logo' src={logo} alt='Logo'/>
+                        </a>            
+                    </div>
                 </div>
-            </div>
-            <div className='col-sm-10'>
-                <div className='search_section'>
+            </Col>
+            <Col xs={10}>
+            <div className='search_section'>
                     <div className='search_bar'>
                         <div className='form_div'>
                             <form >
@@ -44,9 +47,9 @@ const BannerMid = () => {
                         <FaTelegram className='social_media_icons'/>
                     </div>
                 </div>
-            </div>
-       </div>
-    </div>
+            </Col>
+        </Row>
+    </Container>
   )
 }
 
