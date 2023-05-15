@@ -1,5 +1,26 @@
+:root{
+  --MainOrange:'#f39317';
+  --MainDark:'#1c2847'
+}
+
 .App {
   max-width: 100%;
   background-color:rgb(251, 252, 253);
   
+}
+.btn-bg{
+  background-color: #1c2847;
+  color: #fff;
+  border-radius: 25px;
+  border: 1px solid #f39317;
+  padding:8px;
+  width: 100%;
+}
+.btn-bg:hover{
+  background-color:#f39317;
+  color:#1c2847;
+  border-radius: 25px;
+  font-weight: 800;
+  font-size: 13px;
+  transition: 0.2s ease-in-out;
 }
