@@ -1,0 +1,11 @@
+.linker{
+    color: #fff;
+    margin-top: 20px;
+}
+.linker>a{
+    text-decoration: none;
+    color: #fff;
+}
+.linker>a:hover{
+     color: #f39317;
+}

@@ -1,0 +1,20 @@
+.item-holder{
+    width: 10%;
+    height:160px;
+   }
+/* .item-image{
+    width: 50%;
+    height:50%;
+    border-radius: 80%;
+    border: 2px solid #f39317;
+   } */
+.item-image>img{
+    width: 98px;
+    height:90px;
+    border-radius: 80%;
+    border: 1px solid #f39317;
+}
+.item-text{
+    width: 100%;
+    text-align: center;
+}

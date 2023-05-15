@@ -1,0 +1,30 @@
+.holder{
+    width: 100%;
+    height: 250px;
+    margin-bottom: 1%;
+}
+.bg-img{
+    width: 100%;
+    position:absolute;
+    height: auto;
+}
+.bg-img>img{
+    width: 100%;
+    height:250px;
+}
+.opacity{
+    background-color:#1c1c1c;
+    height: 250px;
+    max-width: 100%;
+    opacity: 0.9;
+}
+.content{
+    color: #fff;
+    position:relative;
+    bottom: 200px;
+    text-align: center;
+   }
+.items{
+    display: flex;
+    justify-content: space-around;
+}

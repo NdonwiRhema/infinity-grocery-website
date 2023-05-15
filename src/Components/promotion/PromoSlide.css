@@ -1,0 +1,30 @@
+.slide{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.btn-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+  }
+  .offer-btn{
+    width:48%;
+    }
+  .price-offer{
+    width:50%;
+    }
+ .price-offer>span{
+    font-size:12px;
+  }
+  .price{
+    font-weight: 900;
+    color:#f39317;
+  }
+  .offer{
+    font-weight: 200;
+    color:#1c2847;
+    text-decoration: line-through;
+    text-decoration-color: #f39317;
+
+  }
