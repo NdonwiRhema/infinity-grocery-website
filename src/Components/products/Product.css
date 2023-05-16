@@ -1,6 +1,5 @@
 .product-slide{
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 7px;
     margin-top: 15px;
 }
 .product-btn-section{
@@ -28,5 +27,28 @@
 }
 .product-description{
   font-size: 13px;
+  font-weight: 500;
+}
+.product-title{
+  font-size: 18px;
   font-weight: 600;
+}
+
+@media screen and (max-width:558px) {
+  .product-slide{
+    margin-left: 0;
+    margin-top: 15px;
+}
+ .product-offer-btn{
+    width:60%;
+    }
+  .product-price-offer{
+    width:38%;
+    }
+.product-title{
+  font-size: 14px;
+}
+.product-description{
+  font-size: 13px;
+ }
 }

@@ -11,7 +11,7 @@ const Product = () => {
     <Card>
       <Card.Img variant="top" src={PromoImg} />
       <Card.Body>
-        <Card.Title>Product Name</Card.Title>
+        <Card.Title><span className='product-title'>Product Name</span></Card.Title>
         <Card.Text >
          <span className='product-description'> Product descruiption Lorem Ipsum</span>
         </Card.Text>

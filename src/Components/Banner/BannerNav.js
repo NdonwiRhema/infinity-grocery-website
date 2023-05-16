@@ -20,7 +20,7 @@ const BannerNav = () => {
                                 <a className="anchor-active nav-anchor" href="/">Home</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/'>Shop</a>
+                                <a className=" nav-anchor" href='/shop'>Shop</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
                                 <a className=" nav-anchor" href='/'>Recipes</a>
