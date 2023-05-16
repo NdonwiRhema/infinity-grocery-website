@@ -1,6 +1,6 @@
 .banner_container{
     /* background-color: #f39317; */
-    height:30px;
+    min-height:30px;
     background-image:linear-gradient(to bottom right,#f39317,rgb(221, 189, 6));
    padding-top: 8px;
    color:#1d2847;

@@ -4,9 +4,9 @@
 }
 
 .App {
-  max-width: 100%;
+  width: 100%;
   background-color:rgb(251, 252, 253);
-  
+  margin:0;
 }
 .btn-bg{
   background-color: #1c2847;

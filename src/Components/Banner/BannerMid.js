@@ -1,14 +1,14 @@
 import React from 'react'
 import './BannerMid.css'
 import logo from '../../assets/Logo Full.png'
-import { FaFacebook, FaInstagram, FaTelegram, FaWhatsapp } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaSearch, FaTelegram, FaWhatsapp } from 'react-icons/fa'
 import { Col, Container, Row } from 'react-bootstrap'
 
 const BannerMid = () => {
   return (
     <Container>
         <Row>
-            <Col xs={2}>
+            <Col xs={12} sm={2}>
                 <div className='logo_div'>
                     <div>
                         <a href='/'>
@@ -17,7 +17,7 @@ const BannerMid = () => {
                     </div>
                 </div>
             </Col>
-            <Col xs={10}>
+            <Col xs={12} sm={10}>
             <div className='search_section'>
                     <div className='search_bar'>
                         <div className='form_div'>
@@ -34,7 +34,10 @@ const BannerMid = () => {
                                     </select>
                                 </div>
                                 <div className='submit_section'>
-                                   <button type='submit'>Search</button>
+                                   <button type='submit'>
+                                     <span className='search_icon'><FaSearch fontSize={11}/></span><span className='search_text'> Search</span>
+                                   </button>
+                 
                                 </div>
                             </form>
                         </div>

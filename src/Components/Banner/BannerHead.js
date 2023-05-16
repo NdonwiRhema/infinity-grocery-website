@@ -8,20 +8,20 @@ const BannerHead = () => {
     <div className='banner_container'>
        <Container fluid>
         <Row>
-            <Col xs={3}>
+            <Col xs={12} sm={3} md={3}>
                  <div className='banner_details'>
                             <FaEnvelopeOpenText fontSize={12}/>
                             <h6> contact@infinity-grocery.com</h6>
                 </div>
             </Col>
-            <Col xs={3}>
+            <Col xs={12} sm={3} md={3}>
                 <div  className='banner_details'>
                     <FaPhoneAlt fontSize={12}/>
                     <h6> (+237) 650 186 979 | 678 739 238 </h6>
                 </div>
             </Col>
-            <Col xs={2}></Col>
-            <Col xs={4}>
+            <Col xs={12} sm={1} md={1}></Col>
+            <Col xs={12} sm={5} md={5}>
                         <div  className='banner_identity'>
                            <div className='Language_select'>
                                 <form>

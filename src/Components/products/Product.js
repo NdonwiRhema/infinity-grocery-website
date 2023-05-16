@@ -7,12 +7,13 @@ const Product = () => {
 
   return (
   <div className='product-slide'>
-    <Card style={{ width: '18rem'}}>
+    {/* removed the style of width 18rem(style={{width:'18rem'}}) on the card component*/}
+    <Card>
       <Card.Img variant="top" src={PromoImg} />
       <Card.Body>
         <Card.Title>Product Name</Card.Title>
-        <Card.Text>
-          Product descruiption Lorem Ipsum
+        <Card.Text >
+         <span className='product-description'> Product descruiption Lorem Ipsum</span>
         </Card.Text>
         <div className='product-btn-section'>
           <div className='product-offer-btn'><button className='btn-bg'> Add Cart</button></div>

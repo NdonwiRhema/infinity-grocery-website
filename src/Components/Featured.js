@@ -9,22 +9,22 @@ const Featured = () => {
     <Container fluid>
         <Heading text={'Featured Products'}/>
         <Row>
-            <Col sm={3}>
+            <Col xs={12} sm={3} md={3}>
+                <Product/>
+            </Col>
+            <Col xs={12} sm={3} md={3}>
+                <Product/>
+            </Col>
+            <Col xs={12} sm={3} md={3}>
                 <Product/>
             </Col>
             <Col sm={3}>
                 <Product/>
             </Col>
-            <Col sm={3}>
+            <Col xs={12} sm={3} md={3}>
                 <Product/>
             </Col>
-            <Col sm={3}>
-                <Product/>
-            </Col>
-            <Col sm={3}>
-                <Product/>
-            </Col>
-            <Col sm={3}>
+            <Col xs={12} sm={3} md={3}>
                 <Product/>
             </Col>
         </Row>

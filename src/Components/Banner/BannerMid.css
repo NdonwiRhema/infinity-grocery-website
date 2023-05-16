@@ -69,6 +69,31 @@
     font-weight: bold;
     color: #1d2847;
 }
+.search_icon{
+    display: none;
+}
 .social_media_icons{
     margin-left: 8px;
+}
+@media screen and (max-width:558px) {
+    .logo{
+       display: none;
+    }
+    .social_icons>div>h6{
+        display: none;
+    }
+    .social_media_icons{
+    margin-left:1px;
+}
+.social_icons{
+    width:18%;
+    height:100%;
+    margin-left:1%
+}
+.search_icon{
+    display: block;
+}
+.search_text{
+    display: none;
+}
 }

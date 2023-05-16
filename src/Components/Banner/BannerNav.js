@@ -8,20 +8,15 @@ const BannerNav = () => {
   return (
     <div className='Navcontainer'>
         <div className='Nav_div'>
-                <Navbar>
-                <Container>
-                    <Navbar.Brand href="#home">
-                        <img
-                        alt=""
-                        src={logo}
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                        />{' '}
-                    </Navbar.Brand>
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#home">
+        <Navbar  expand="lg">
+            <Container>
+                <Navbar.Brand href="#home">
+                 <img alt="" src={logo} width="30"   height="30" className="d-inline-block align-top" />{' '}
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                           <Nav.Link href="#home">
                                 <a className="anchor-active nav-anchor" href="/">Home</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
@@ -40,10 +35,10 @@ const BannerNav = () => {
                                 <a className=" nav-anchor" href='/'>Proteins</a>
                             </Nav.Link>
                           
-                        </Nav>
+                </Nav>
                 </Navbar.Collapse>
-                </Container>
-            </Navbar>
+            </Container>
+        </Navbar>
         </div>
         <div className='cart_div'>
             <div className='cart_value'>
