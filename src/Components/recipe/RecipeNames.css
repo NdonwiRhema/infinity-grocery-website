@@ -1,0 +1,20 @@
+.recipe-names{
+    width: 100%;
+    text-align: center;
+    color:#1c2847;
+    font-weight: 500;
+    font-size: large;
+    border-bottom: 2px solid #f39317;
+    margin-bottom: 18px;
+    padding-top: 30px;
+}
+.names{
+    padding: 10px;
+    margin-top: 10px;
+}
+.names>h6{
+    color: #1c2847;
+}
+.names>h6:hover{
+    color: #f39317;
+}

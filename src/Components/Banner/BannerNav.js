@@ -23,7 +23,7 @@ const BannerNav = () => {
                                 <a className=" nav-anchor" href='/shop'>Shop</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/'>Recipes</a>
+                                <a className=" nav-anchor" href='/recipe'>Recipes</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
                                 <a className=" nav-anchor" href='/'>Breakfast</a>

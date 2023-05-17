@@ -10,6 +10,7 @@ const CarouselSlides  = () => {
           className="d-block w-100"
           src="https://img.freepik.com/free-vector/gradient-supermarket-facebook-post_23-2149387929.jpg?w=826&t=st=1683955964~exp=1683956564~hmac=89c54a19655c5257d9ad9371a76116f1b2bc28f50f04e53a3127b87d867ae78c"
           alt="First slide"
+          
         />
         <Carousel.Caption>
           <h3>First slide label</h3>

@@ -17,8 +17,8 @@ const Footer = () => {
                 </Col>
                 <Col xs={12} sm={3} md={3} lg={3}>
                     <FooterLink text={'Home'} link={'/'}/>
-                    <FooterLink text={'Recipes'} link={'/'}/>
-                    <FooterLink text={'Shopping'} link={'/'}/>
+                    <FooterLink text={'Recipes'} link={'/recipe'}/>
+                    <FooterLink text={'Shopping'} link={'/shop'}/>
                     <FooterLink text={'Promotions'} link={'/'}/>
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={6}>
