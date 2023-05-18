@@ -10,10 +10,10 @@ const Footer = () => {
         <Container fluid>
             <Row>
                 <Col xs={12} sm={3} md={3} lg={3}>
-                    <FooterLink text={'About Us'} link={'/About'}/>
-                    <FooterLink text={'Delivery Points'} link={'/About'}/>
-                    <FooterLink text={'Contact Us'} link={'/About'}/>
-                    <FooterLink text={'Social Media'} link={'/About'}/>
+                    <FooterLink text={'About Us'} link={'/about'}/>
+                    <FooterLink text={'Delivery Points'} link={'/about'}/>
+                    <FooterLink text={'Contact Us'} link={'/about'}/>
+                    <FooterLink text={'Social Media'} link={'/about'}/>
                 </Col>
                 <Col xs={12} sm={3} md={3} lg={3}>
                     <FooterLink text={'Home'} link={'/'}/>
