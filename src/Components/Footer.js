@@ -11,9 +11,9 @@ const Footer = () => {
             <Row>
                 <Col xs={12} sm={3} md={3} lg={3}>
                     <FooterLink text={'About Us'} link={'/about'}/>
-                    <FooterLink text={'Delivery Points'} link={'/about'}/>
-                    <FooterLink text={'Contact Us'} link={'/about'}/>
-                    <FooterLink text={'Social Media'} link={'/about'}/>
+                    <FooterLink text={'Delivery Points'} link={'/delivery'}/>
+                    <FooterLink text={'Contact Us'} link={'/'}/>
+                    <FooterLink text={'Social Media'} link={'/'}/>
                 </Col>
                 <Col xs={12} sm={3} md={3} lg={3}>
                     <FooterLink text={'Home'} link={'/'}/>

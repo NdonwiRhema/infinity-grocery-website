@@ -1,0 +1,43 @@
+.place-holder{
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+
+    
+}
+.place{
+    width: 100%;
+    height:auto;
+    border-bottom: 0.2px solid #333;
+    margin-top: 8px;
+    padding: 8px;
+}
+.place>p>{
+    font-size: 11px;
+}
+.place>p>span{
+    font-weight: 500;
+}
+
+.place:hover{
+    background-color: rgb(247, 245, 245);
+    border-right: 2px solid #f39317;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.place-active{
+    background-color: rgb(247, 245, 245);
+    border-right: 2px solid #f39317;
+    border-bottom: none;
+  
+}
+.place-holder::-webkit-scrollbar{
+    width:5px;
+}
+.place-holder::-webkit-scrollbar-thumb{
+    background-color: #f39317;
+}
+.place-holder::-webkit-scrollbar-track{
+    background-color: #fff;
+}
