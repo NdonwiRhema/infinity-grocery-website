@@ -26,13 +26,13 @@ const BannerNav = () => {
                                 <a className=" nav-anchor" href='/recipe'>Recipes</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/'>Breakfast</a>
+                                <a className=" nav-anchor" href='/breakfast'>Breakfast</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/'>Fruits</a>
+                                <a className=" nav-anchor" href='/fruit'>Fruits</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/'>Proteins</a>
+                                <a className=" nav-anchor" href='/protein'>Proteins</a>
                             </Nav.Link>
                           
                 </Nav>

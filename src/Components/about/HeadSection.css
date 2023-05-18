@@ -1,0 +1,46 @@
+.main-hold{
+    width: 100%;
+    margin-top: 15px;
+    
+}
+.top-text{
+    padding: 8px;
+    margin-bottom:8px;
+}
+.mid-section{
+    width: 100%;
+}
+.ceo-holder{
+    width: 100%;
+    
+}
+.ceo{
+    width: 50%;
+    height:auto;
+    margin-left: 25%;
+    border-radius: 80%;
+    /* border:2px solid #f39317 */
+}
+.about-ceo{
+    width: 100%;
+    text-align: center;
+}
+.about-ceo>h6{
+    font-style: italic;
+    font-weight: 400;
+}
+.ceo-content{
+    width: 100%;
+    background-color: rgb(230, 234, 238);
+    padding: 2rem;
+}
+.ceo-content>p{
+    text-align: center;
+}
+.ceo-content>h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 36px;
+}
+.end-content{
+    margin-left: 90%;
+}
