@@ -10,6 +10,7 @@ import RecipeScreen from './screens/RecipeScreen';
 import BreakfastScreen from './screens/BreakfastScreen';
 import AboutScreen from './screens/AboutScreen';
 import DeliveryScreen from './screens/DeliveryScreen';
+import CartScreen from './screens/CartScreen';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path = "/protein" element={<BreakfastScreen title={' Protein Purchase'}/>} />
           <Route exact path = "/about" element={<AboutScreen/>} />
           <Route exact path = "/delivery" element={<DeliveryScreen/>} />
+          <Route exact path = "/cart" element={<CartScreen/>} />
         </Routes>
       </Router>
     </div>

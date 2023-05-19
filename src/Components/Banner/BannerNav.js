@@ -45,8 +45,8 @@ const BannerNav = () => {
                 <FaShoppingCart fontSize={12}/>
                 <h6>XAF 0.00 (0 Item(s))</h6>
             </div>
-            <div className='cart heading'>
-                <h6>Cart Items</h6>
+            <div className='cart_heading'>
+                <h6><a href='/cart'>Cart Items</a></h6>
             </div>
         </div>
     </div>

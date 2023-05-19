@@ -31,10 +31,19 @@
     font-size: 13px;
     font-weight: bold;
 }
-.cart_heading>h6{
+.cart_heading>h6>a{
     text-align: center;
     font-weight: bold;
     width:100%;
+    text-decoration: none;
+     color:#1c2847;
+}
+.cart_heading>h6>a:hover{
+    text-align: center;
+    font-weight: bold;
+    width:100%;
+    text-decoration:underline;
+     color:#1c2847;
 }
 .nav-anchor{
     margin-left: 12px;
