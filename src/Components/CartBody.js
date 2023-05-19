@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import NoItem from './Cart/NoItem'
 import CartItem from './Cart/CartItem'
 import CartDetails from './Cart/CartDetails'
-
+import './CartBody.css'
 
 const CartBody = () => {
   return (
@@ -14,7 +14,7 @@ const CartBody = () => {
             <Row>
                 <Col xs={12} sm={9}>
                     {/* <NoItem text={' Your Cart is Still Empty...'}/> */}
-                    <div style={{overflowY:'scroll',height:300}}>
+                    <div className='cart-item-holder'>
                              <CartItem/>
                              <CartItem/>
                              <CartItem/>
