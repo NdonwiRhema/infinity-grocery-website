@@ -3,14 +3,15 @@ import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import CartBody from '../Components/CartBody'
 
+
 const CartScreen = () => {
-  return (
+    
+   return (
     <div>
         <Header/>
-            <CartBody/>
+            <CartBody />
         <Footer/>
-    
-    </div>
+   </div>
   )
 }
 

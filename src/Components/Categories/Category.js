@@ -12,7 +12,7 @@ const Categories = () => {
         <div className='opacity'><span></span></div>
         <div className='content'>
           <div className='heading'><h4> Product Categories</h4></div>
-          <div className='items'>
+          <div className='ca_items'>
               <Item/>
               <Item image={''} title={'Grains'}/>
               <Item  title={'Grains'}/>

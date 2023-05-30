@@ -17,13 +17,15 @@
     font-size:12px;
   }
   .product-price{
-    font-weight: 400;
+    font-weight: 600;
     color:#f39317;
+    font-size: 14px;
   }
 .product-price:hover{
     text-decoration: underline;
     font-size: 13px;
     transition:0.2s ease-in-out;
+    cursor: pointer;
 }
 .product-description{
   font-size: 13px;

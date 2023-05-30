@@ -25,11 +25,15 @@
     text-align: center;
    }
    
-.items{
+.ca_items{
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    overflow-x: scroll;
+    justify-content: space-evenly;
 }
-
+.ca_items::-webkit-scrollbar{
+    height: 2px;
+}
 @media screen and(max-width:558px) {
     .heading{
         margin-bottom: 18px;

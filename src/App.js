@@ -11,6 +11,7 @@ import BreakfastScreen from './screens/BreakfastScreen';
 import AboutScreen from './screens/AboutScreen';
 import DeliveryScreen from './screens/DeliveryScreen';
 import CartScreen from './screens/CartScreen';
+import SingleProductScreen from './screens/SingleProductScreen';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path = "/about" element={<AboutScreen/>} />
           <Route exact path = "/delivery" element={<DeliveryScreen/>} />
           <Route exact path = "/cart" element={<CartScreen/>} />
+          <Route exact path = "/product" element={<SingleProductScreen/>} />
         </Routes>
       </Router>
     </div>

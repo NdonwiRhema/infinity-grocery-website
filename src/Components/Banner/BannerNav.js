@@ -1,11 +1,14 @@
 import React from 'react'
+
 import './BannerNav.css'
 import logo from '../../assets/bottomlogo.png'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Container,Navbar,Nav} from 'react-bootstrap'
 
-const BannerNav = () => {
-  return (
+
+const BannerNav = ({activeTab}) => {
+  
+    return (
     <div className='Navcontainer'>
         <div className='Nav_div'>
         <Navbar  expand="lg">
@@ -17,24 +20,23 @@ const BannerNav = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                            <Nav.Link href="#home">
-                                <a className="anchor-active nav-anchor" href="/">Home</a>
+                                <a className={`${activeTab ==='home'?'anchor-active nav-anchor':' nav-anchor'}`} href="/" >Home</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/shop'>Shop</a>
+                                <a className={`${activeTab==='shop'?'anchor-active nav-anchor':' nav-anchor'}`} href='/shop' >Shop</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/recipe'>Recipes</a>
+                                <a className={`${activeTab==='recipes'?'anchor-active nav-anchor':' nav-anchor'}`} href='/recipe'>Recipes</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/breakfast'>Breakfast</a>
+                                <a className={`${activeTab==='breakfast'?'anchor-active nav-anchor':' nav-anchor'}`} href='/breakfast' >Breakfast</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/fruit'>Fruits</a>
+                                <a className={`${activeTab==='fruits'?'anchor-active nav-anchor':' nav-anchor'}`} href='/fruit'>Fruits</a>
                             </Nav.Link>
                             <Nav.Link href="#link">
-                                <a className=" nav-anchor" href='/protein'>Proteins</a>
+                                <a className={`${activeTab==='proteins'?'anchor-active nav-anchor':' nav-anchor'}`} href='/protein'>Proteins</a>
                             </Nav.Link>
-                          
                 </Nav>
                 </Navbar.Collapse>
             </Container>

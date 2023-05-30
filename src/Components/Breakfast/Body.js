@@ -45,7 +45,7 @@ for (let number = 1; number <= 5; number++) {
                 </Col>
             </Row>
       </Tab>
-      <Tab eventKey="derivatives" title="Derivatives">
+      <Tab eventKey="seasonal" title="Seasonal">
       <Row>
                 <Col xs={6} sm={4}>
                     <Product/>

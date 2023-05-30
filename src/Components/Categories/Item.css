@@ -1,7 +1,7 @@
 .item-holder{
     width: 10%;
-    height:160px;
-   }
+    text-align: center;
+     }
 /* .item-image{
     width: 50%;
     height:50%;
@@ -18,7 +18,10 @@
     width: 100%;
     text-align: center;
 }
-
+.item-text>h5{
+    width: 50%;
+    margin-left: 25%;
+}
 @media screen and (max-width:558px) {
     .item-image>img{
         width: 40px;
