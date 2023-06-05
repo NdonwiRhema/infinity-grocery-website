@@ -1,6 +1,6 @@
 import React from 'react'
 import Heading from '../Heading'
-// import ceo from '../../assets/mama.jpeg'
+import ceoImg from '../../assets/about.jpg'
 
 import './HeadSection.css'
 import { Col, Container, Row } from 'react-bootstrap'
@@ -24,7 +24,7 @@ const HeadSection = () => {
                 <Col xs={12} sm={3}>
                   <div className='ceo-holder'>
                     <img className='ceo'
-                     src='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' alt='CEO'/>
+                     src={ceoImg} alt='CEO'/>
                     <div className='about-ceo'>
                       <h5> CEO & Managing Director</h5>
                       <h6>Infinity Grocery</h6>

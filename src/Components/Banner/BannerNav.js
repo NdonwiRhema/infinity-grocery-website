@@ -4,10 +4,13 @@ import './BannerNav.css'
 import logo from '../../assets/bottomlogo.png'
 import { FaShoppingCart } from 'react-icons/fa'
 import { Container,Navbar,Nav} from 'react-bootstrap'
-
+ import { useSelector } from 'react-redux'
 
 const BannerNav = ({activeTab}) => {
-  
+    // const CartNums = JSON.parse(localStorage.getItem('cart'))
+    // const Nums = CartNums?CartNums.length:0
+    const Nums = useSelector((state)=>state.cart.totalItems)
+ 
     return (
     <div className='Navcontainer'>
         <div className='Nav_div'>
@@ -45,7 +48,7 @@ const BannerNav = ({activeTab}) => {
         <div className='cart_div'>
             <div className='cart_value'>
                 <FaShoppingCart fontSize={12}/>
-                <h6>XAF 0.00 (0 Item(s))</h6>
+                <h6>XAF 0.00 ({Nums} Item(s))</h6>
             </div>
             <div className='cart_heading'>
                 <h6><a href='/cart'>Cart Items</a></h6>

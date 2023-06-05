@@ -54,11 +54,14 @@ const Shop = () => {
         }
     }
     const NextPage = ()=>{
-       setPrev(Prev+10)
-       setStart(false)
-       Next<products.length?setNext(Next+10):setEnd(true)
-       Fullproducts = products.slice(Prev,Next)
-       console.log('Prev ; '+Prev+' Next: '+Next)
+        if(products.length>0){
+                setPrev(Prev+10)
+                setStart(false)
+                Next<products.length?setNext(Next+10):setEnd(true)
+                Fullproducts = products.slice(Prev,Next)
+                console.log('Prev ; '+Prev+' Next: '+Next)
+        }
+       
     }
     const PrevPage = ()=>{
        if(Prev > 10){

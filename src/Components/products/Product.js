@@ -8,7 +8,7 @@ import './Product.css'
 const Product = ({detail}) => { 
   const info = !detail?{
     product:'ProductName',
-    desc:'Short Descriotion',
+    description:'Short Descriotion',
     slug:'produxt',
     prodQty:1,
     uPrice:'300',
@@ -19,6 +19,7 @@ const Product = ({detail}) => {
     const ProdDesc = info.description.length >= 20 ?info.description.slice(0,20)+'...':info.description
     const ProdUnits = !info.units?'Kg':info.units
     const navigate = useNavigate()
+    const currentCart = [localStorage.getItem('cart')]
 
     // Redux states
     const dispatch = useDispatch()
@@ -33,11 +34,11 @@ const Product = ({detail}) => {
         quantity:1,
         price:item.price,
         subtotal:item.price}
-      localStorage.setItem('cart',JSON.stringify(TempProduct))
-      console.log(TempProduct)
-      console.log(localStorage.getItem('cart'))
-     dispatch(addToCart(TempProduct))
-      navigate('/cart')
+      if(currentCart.length === 0 && currentCart[0] !== null){
+         localStorage.setItem('cart',JSON.stringify(TempProduct))
+           }
+           dispatch(addToCart(TempProduct))
+   
     }
 
   return (

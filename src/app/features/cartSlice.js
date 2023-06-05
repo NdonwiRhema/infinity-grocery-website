@@ -2,68 +2,131 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const LocallyStoredData = ()=>{
-    const datum = JSON.parse(localStorage.getItem('cart'))
-    console.log(datum)
-    return datum
-    
+    const datum = localStorage.getItem('cart')
+   if(datum){
+     // const dataArr = []
+       const locData = localStorage.getItem('cart')
+       console.log(JSON.parse(locData))
+       // dataArr.push(locData)
+        return JSON.parse(locData)
+    }
+   else{
+    return []
+   }
 }
 
 const  storeData =(cartitems) =>{
     localStorage.setItem('cart',cartitems)
 }
+const CartTotal= () =>{
+        const currentCart = LocallyStoredData()
+        let cartTotalAmount = 0
+        if(currentCart.length !== 0){
+            currentCart.forEach(element=>{
+                cartTotalAmount += element.subtotal
+            })
+        }
+    
+    return cartTotalAmount
+}
+
+const Cartlength =  LocallyStoredData()
+
 const cartSlice= createSlice({
     name:'cart',
     initialState:{
-        data:[],
-        totalItems:0,
-        cartTotal:0,
+        data:LocallyStoredData(),
+        totalItems:Cartlength.length,
+        cartTotal:CartTotal(),
         deliveryCharge:0
     },
     reducers:{
-        addToCart(state, action){
-  console.log(state)            
-            const TempItem = state.data.find( item =>item.id === action.payload.data.id)
+        addToCart:(state, action)=>{
+            const TempItem = state.data.find(item =>item.id === action.payload.id)
+            state.data =LocallyStoredData()
+            state.totalItems ++
             if(TempItem){
-                const TempCart = state.data.forEach(element => {
-                    if(element.id === action.payload.data.id){
-                            const newQty = element.quantity + action.payload.data.quantity
-                            const newTotal = newQty*action.payload.data.price
-                            return{
-                                ...element,quantity:newQty,subTotal:newTotal
-                            }
-    
-                    }
-                    else{
-                        return element
-                    }
-                });
-                state.data = TempCart
-                storeData(state.data)
-                console.log(LocallyStoredData())
+                // find sth to do here...
+                   console.log("Already in Cart")
             }
             else{
                 state.data.push(action.payload)
-                storeData(state.data)
-                console.log(LocallyStoredData())
-            }
+               
+                const lenArr = state.data
+                const lenObj = JSON.stringify(lenArr)//[{...},{...}]
+                storeData(lenObj)
+               }
         },
-        getCartTotal(state){
-            const cartTotalAmount = state.data.reduce((cartTotal,currentItem)=>{
-               return cartTotal += currentItem.subTotal
-            })
-            return cartTotalAmount
-        },
-        getCartTotalItems(state){
-            const totalNum = state.data.length
-            return totalNum
-        },
-        removeItem(state,action){
-            const newCart = state.data.filter(action.payload.data.id !== state.data.id)
-            state.data = newCart
+   
+        EmptyCart:(state)=>{
+            state.data=[]
+            state.totalItems = 0
+            state.cartTotal=0
             storeData(state.data)
+        },
+       removeItem:(state,action)=>{
+            const newCart = state.data.filter((c_item)=>c_item.id !== action.payload.id)
+            state.data = newCart
+            state.totalItems--
+            const storeCart = JSON.stringify(newCart)
+            storeData(storeCart)
+            // new cart total 
+            let newCartTotal = 0
+            newCart.forEach(elm=>{
+                newCartTotal += elm.subtotal
+            })
+            state.cartTotal = newCartTotal
+    },
+    increment:(state,action)=>{
+        let tempCart=[]
+        state.data.forEach(element =>{
+            if(element.id === action.payload.id){
+                let newQty =  element.quantity+1
+                let newTotal = newQty*element.price
+            const tempElm = {...element,quantity:newQty,subtotal:newTotal}
+                tempCart.push(tempElm)
+            }
+            else{
+                tempCart.push(element)
+            }
+        })
+        state.data = tempCart
+        const storeCart = JSON.stringify(tempCart)
+        storeData(storeCart)
+         // new cart total 
+         let newCartTotal = 0
+         tempCart.forEach(elm=>{
+             newCartTotal += elm.subtotal
+         })
+         state.cartTotal = newCartTotal
+    },
+
+  decrement:(state,action)=>{
+        let tempCart=[]
+        state.data.forEach(element =>{
+         if(element.id === action.payload.id){
+            
+            let newQty = element.quantity>1 ? element.quantity-1:1
+            let newTotal = newQty*element.price
+           const tempElm = {...element,quantity:newQty,subtotal:newTotal}
+            tempCart.push(tempElm)
         }
+        else{
+            tempCart.push(element)
+        }
+       })
+        state.data = tempCart
+        const storeCart = JSON.stringify(tempCart)
+        storeData(storeCart)
+        // new cart total 
+        let newCartTotal = 0
+        tempCart.forEach(elm=>{
+            newCartTotal += elm.subtotal
+        })
+        state.cartTotal = newCartTotal
+     }
     }
 })
 
-export const {addToCart,getCartTotal,removeItem,getCartTotalItems} = cartSlice.actions
-export default cartSlice.reducer
+export const {addToCart,EmptyCart,increment,decrement,removeItem} = cartSlice.actions
+export default  cartSlice.reducer
