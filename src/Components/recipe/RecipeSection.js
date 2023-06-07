@@ -3,8 +3,11 @@ import React,{useState} from 'react'
 import './RecipeSection.css'
 import { Tab, Table, Tabs} from 'react-bootstrap'
 import { FaPlay } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 const RecipeSection = () => {
     const[key,setKey] = useState();
+    const array = useSelector((state)=>state.recipe.activeRecipe)
+    console.log(array)
   return (
     <div >
         <div className='recipe-header'>
@@ -20,7 +23,7 @@ const RecipeSection = () => {
             >
             <Tab eventKey="ingredients" title="Ingredients">
                 <Table striped hover>
-                <thead>
+                    <thead>
                        <tr>
                             <th>#</th>
                             <th>Item </th>

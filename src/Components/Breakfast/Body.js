@@ -1,22 +1,52 @@
 import React, { useState } from 'react'
-import { Col, Row, Tab, Tabs,Pagination} from 'react-bootstrap'
+import { Col, Row, Tab, Tabs} from 'react-bootstrap'
 import Heading from '../Heading'
 import Product from '../products/Product'
+import { FaArrowCircleRight,FaArrowCircleLeft } from 'react-icons/fa'
 
 import './Body.css'
 
 const Body = ({title}) => {
-    let active = 2;
-    let items = [];
-
-for (let number = 1; number <= 5; number++) {
-  items.push(
-    <Pagination.Item key={number} active={number === active}>
-      {number}
-    </Pagination.Item>,
-  );
-}
     const[key,setKey] = useState()
+    const[Next,setNext] = useState(10)
+    const[Prev,setPrev] = useState(0)
+    const[end,setEnd]=useState()
+    const[start,setStart]=useState(true)
+    const styles = {
+        paginationcont:{
+            marginTop:18,
+            innerWidth:50,
+            innerHeight:'100px',
+            display:'flex',
+            justifyContent:'space-between'
+        },
+        paginateBtn:{
+            innerWidth:'50%',
+            height:'100%',
+            borderRadius:'7px',
+            border:'none',
+            paddingLeft:18,
+            paddingRight:18,
+            backgroundColor:'#1c2847',
+            color:'#F39317'
+        },
+        paginateBtnInactive:{
+            innerWidth:'50%',
+            height:'100%',
+            borderRadius:'7px',
+            border:'none',
+            paddingLeft:18,
+            paddingRight:18,
+            backgroundColor:'#3b4872',
+            color:'gray'
+        }
+    }
+    const NextPage = ()=>{
+          
+    }
+    const PrevPage = ()=>{
+       
+    }
   return (
     <div className=''>
         <Heading text={title}/>
@@ -85,8 +115,9 @@ for (let number = 1; number <= 5; number++) {
       </Tab>
       
     </Tabs>
-    <div className='paging'>
-        <Pagination>{items}</Pagination>
+    <div style={styles.paginationcont}>
+         <button style={start?styles.paginateBtnInactive:styles.paginateBtn} onClick={PrevPage}><span><FaArrowCircleLeft/></span>  Prev</button>
+         <button style={end?styles.paginateBtnInactive:styles.paginateBtn} onClick={NextPage}>Next <span><FaArrowCircleRight/></span></button>
     </div>
      
 </div>

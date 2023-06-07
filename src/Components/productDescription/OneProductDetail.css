@@ -1,0 +1,22 @@
+.image-spread{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow-x: scroll;
+}
+.image-spread>img{
+    width: 35%;
+    margin-left: 3%;
+
+}
+.image-spread ::-webkit-scrollbar{
+    height: 5px;
+}
+.image-spread::-webkit-scrollbar-thumb{
+    background-color: #f39317;
+    border-radius: 12px;
+}
+.image-spread::-webkit-scrollbar-track{
+    background-color: #fff;
+}

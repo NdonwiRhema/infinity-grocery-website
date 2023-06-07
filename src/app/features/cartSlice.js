@@ -57,7 +57,15 @@ const cartSlice= createSlice({
                 storeData(lenObj)
                }
         },
-   
+        addMany:(state,action)=>{
+                const Contents = action.payload
+                Contents.forEach(element =>{
+                    state.data.push(element)
+                })
+                const lenArr = state.data
+                const lenObj = JSON.stringify(lenArr)//[{...},{...}]
+                storeData(lenObj)
+        },   
         EmptyCart:(state)=>{
             state.data=[]
             state.totalItems = 0
