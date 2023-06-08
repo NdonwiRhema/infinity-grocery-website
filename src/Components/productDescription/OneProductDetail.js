@@ -7,12 +7,14 @@ const ProductDetail = ({data}) => {
   const infoImages = data.images
   return (
     <div>
-      <div className='image-spread'>
-        {
-          infoImages.map((img,index)=>(
-            <img src={img} alt='images.0'/>
-          ))
-        }
+      <div >
+        <div className='image-spread'>
+          {
+            infoImages.map((img,index)=>(
+              <img src={img} alt='images.0' key={index}/>
+            ))
+          }
+        </div>
       </div>
       <div className='details'>
         <div>

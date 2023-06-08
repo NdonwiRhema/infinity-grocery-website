@@ -44,6 +44,7 @@ const cartSlice= createSlice({
         addToCart:(state, action)=>{
             const TempItem = state.data.find(item =>item.id === action.payload.id)
             state.data =LocallyStoredData()
+            console.log(state.data)
             state.totalItems ++
             if(TempItem){
                 // find sth to do here...

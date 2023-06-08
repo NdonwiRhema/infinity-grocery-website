@@ -25,7 +25,16 @@
     transition: 0.3s ease-in-out;
     cursor: pointer;
 }
+.placeSwitch{
+    border: none;
+    background-color: transparent;
 
+}
+.placeSwitch:hover{
+  color:#f39317;
+  cursor: pointer;
+
+}
 .place-active{
     background-color: rgb(247, 245, 245);
     border-right: 2px solid #f39317;

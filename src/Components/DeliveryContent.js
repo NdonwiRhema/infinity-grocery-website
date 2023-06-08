@@ -1,20 +1,21 @@
-import React from 'react'
+import React,{useState}from 'react'
 import DeliveryBanner from './delivery/deliveryBanner'
 import { Col, Container, Row } from 'react-bootstrap'
 import Map from './delivery/Map'
 import Places from './delivery/Places'
 
 const DeliveryContent = () => {
+    const [place,setPlace] = useState()
   return (
     <div>
         <DeliveryBanner/>
         <Container fluid>
             <Row>
                 <Col xs={12} sm={8}>
-                    <Map location={'Acacias'}/>
+                    <Map location={place}/>
                 </Col>
                 <Col xs={12} sm={4}>
-                    <Places/>
+                    <Places setPlace={setPlace}/>
                 </Col>
             </Row>
         </Container>
