@@ -16,7 +16,7 @@ const BannerNav = ({activeTab}) => {
         <div className='Nav_div'>
         <Navbar  expand="lg">
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                  <img alt="" src={logo} width="30"   height="30" className="d-inline-block align-top" />{' '}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

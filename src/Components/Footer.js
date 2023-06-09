@@ -19,7 +19,7 @@ const Footer = () => {
                     <FooterLink text={'Home'} link={'/'}/>
                     <FooterLink text={'Recipes'} link={'/recipe'}/>
                     <FooterLink text={'Shopping'} link={'/shop'}/>
-                    <FooterLink text={'Promotions'} link={'/'}/>
+                    <FooterLink text={'Promotions'} link={'/promotion'}/>
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={6}>
                     <div style={{width:'100%',}}>

@@ -1,10 +1,10 @@
 import React from 'react'
 import CarouselSlides from './CarouselSlider/CarouselSlides'
 
-const Carousels = () => {
+const Carousels = ({data}) => {
   return (
     <div>
-      <CarouselSlides/>
+      <CarouselSlides data={data}/>
     </div>
   )
 }

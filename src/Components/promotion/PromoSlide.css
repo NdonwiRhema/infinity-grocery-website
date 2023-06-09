@@ -11,6 +11,10 @@
   .offer-btn{
     width:48%;
     }
+    .offer-btn>a{
+      color: #fff;
+      text-decoration: none;
+    }
   .price-offer{
     width:50%;
     }

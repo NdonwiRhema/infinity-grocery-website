@@ -13,6 +13,8 @@ import AboutScreen from './screens/AboutScreen';
 import DeliveryScreen from './screens/DeliveryScreen';
 import CartScreen from './screens/CartScreen';
 import SingleProductScreen from './screens/SingleProductScreen';
+import PromotionScreen from './screens/PromotionScreen';
+import PromoDescriptionScreen from './screens/PromoDescriptionScreen';
 
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
             <Route exact path = "/delivery" element={<DeliveryScreen/>} />
             <Route exact path = "/cart" element={<CartScreen/>} />
             <Route exact path = "/product" element={<SingleProductScreen/>} />
+            <Route exact path = "/promotion" element={<PromotionScreen/>} />
+            <Route exact path = "/promoDescription" element={<PromoDescriptionScreen/>} />
           </Routes>
         </Router>
 

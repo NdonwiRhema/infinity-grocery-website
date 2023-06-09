@@ -12,7 +12,7 @@ const HomeScreen = () => {
    <div>
      
         {/*  Carousel Section .. */}
-            <Carousels/>
+            <Carousels data={false}/>
         {/*  Promotions Section.. */}
             <Promotions/>
         {/*  Product Categories Section .. */}

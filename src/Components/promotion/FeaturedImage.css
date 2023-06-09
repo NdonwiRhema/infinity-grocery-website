@@ -1,0 +1,36 @@
+.img-hold{
+    width: 100%;
+}
+.img-hold>img{
+    width: 100%;
+    height: auto;
+}
+.apply-details{
+    width: 100%;
+    margin-top: 5rem;
+}
+.apply-promo{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 3rem;
+}
+.apply-promo>h6>span{
+    color: gray;
+    font-size: 10px;
+    font-style: italic;
+
+}
+.apply-promo>button{
+    border: none;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.validity>p{
+    color: gray;
+    font-size: 10px;
+    font-style: italic;
+
+}
