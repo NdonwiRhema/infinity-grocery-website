@@ -1,0 +1,25 @@
+.SignUp-form{
+    margin-top: 10px;
+}
+.form-group{
+    margin-top: 10px;
+    margin-left: 5%;
+}
+.form-group>input{
+    width: 90%;
+}
+.submit-grp{
+    width: 80%;
+    margin-left: 7%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  
+}
+.error-message{
+    color: red;
+    font-size: 10px;
+    font-weight: 500;
+}
+.field-error{
+    border: 1px solid red;
+}

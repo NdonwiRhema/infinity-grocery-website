@@ -17,7 +17,7 @@ const HomeScreen = () => {
             <Promotions/>
         {/*  Product Categories Section .. */}
             <CategoryShow/>
-        {/*  Featured Products.. */}
+        {/*  Featured Products..*/} 
             <Featured/>
   
     </div>

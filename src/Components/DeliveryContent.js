@@ -8,16 +8,16 @@ const DeliveryContent = () => {
     const [place,setPlace] = useState()
   return (
     <div>
-        <DeliveryBanner/>
-        <Container fluid>
-            <Row>
-                <Col xs={12} sm={8}>
-                    <Map location={place}/>
-                </Col>
-                <Col xs={12} sm={4}>
-                    <Places setPlace={setPlace}/>
-                </Col>
-            </Row>
+       <DeliveryBanner/>
+       <Container fluid>
+          <Row>
+              <Col xs={12} sm={8}>
+                <Map location={place}/>
+              </Col>
+              <Col xs={12} sm={4}>
+                <Places setPlace={setPlace}/>
+              </Col>
+          </Row>
         </Container>
     </div>
   )

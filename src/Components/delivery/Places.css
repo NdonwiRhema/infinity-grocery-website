@@ -30,6 +30,11 @@
     background-color: transparent;
 
 }
+.placeSwitch>h5:hover{
+    color:#f39317;
+    cursor: pointer;
+
+}
 .placeSwitch:hover{
   color:#f39317;
   cursor: pointer;

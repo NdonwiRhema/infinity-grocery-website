@@ -5,6 +5,9 @@ export const recipeThunk = createAsyncThunk('recipe/fetchRecipe',()=>{
   return  axios.get('https://api.escuelajs.co/api/v1/categories/5/products').then(
         (response)=>response.data
     )
+//   return  axios.get('http://127.0.0.1:5001/infinity-grocery-784e0/us-central1/app/products/category/cat_000').then(
+//         (response)=>response.data
+//     )
 })
 const recipeSlice = createSlice({
     name:'recipe',

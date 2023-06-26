@@ -1,0 +1,11 @@
+.Promos-wrapper{
+    width: 100%;
+}
+.no-promos{
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    font-style: italic;
+    color: gray;
+    
+}

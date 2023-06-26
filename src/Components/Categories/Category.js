@@ -9,11 +9,10 @@ const Categories = () => {
         <div className='bg-img'> 
           <img className='img' src={bgImg} alt='none'/>      
         </div>
-        <div className='opacity'><span></span></div>
+        <div className='opacity'><span>...</span></div>
         <div className='content'>
           <div className='heading'><h4> Product Categories</h4></div>
           <div className='ca_items'>
-              <Item/>
               <Item image={''} title={'Grains'}/>
               <Item  title={'Grains'}/>
               <Item  title={'Meat'}/>
@@ -23,6 +22,7 @@ const Categories = () => {
               <Item title={'Grains'}/>
               <Item title={'Grains'}/>
               <Item title={'Grains'}/>
+              <Item/>
           </div>
         </div>
     </div>

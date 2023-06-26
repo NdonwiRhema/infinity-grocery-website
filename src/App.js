@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router , Routes, Route } from 'react-router-dom';
 
 
@@ -15,9 +15,31 @@ import CartScreen from './screens/CartScreen';
 import SingleProductScreen from './screens/SingleProductScreen';
 import PromotionScreen from './screens/PromotionScreen';
 import PromoDescriptionScreen from './screens/PromoDescriptionScreen';
+import AuthScreen from './screens/AuthScreen';
+import {useSelector, useDispatch} from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
+import Authentic from './firebase';
+import { Login, logOut } from './app/features/userSlice';
+import ProfileScreen from './screens/ProfileScreen';
 
 
 function App() {
+  const dispatch = useDispatch()
+  const USER = useSelector((state)=>state.user.data)
+
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(Authentic,(userAuth)=>{
+      if(userAuth){
+        const currentUser =  userAuth.auth.currentUser
+        const  {auth,proactiveRefresh,stsTokenManager,providerdata,reloadUserInfo, ...newUser} =currentUser
+        dispatch(Login({user:newUser}))
+      }
+      else{
+        dispatch(logOut())
+      }
+    })
+    return unsubscribe
+  },[dispatch])
   return (
     <div className="App">
       <Header/>
@@ -35,6 +57,10 @@ function App() {
             <Route exact path = "/product" element={<SingleProductScreen/>} />
             <Route exact path = "/promotion" element={<PromotionScreen/>} />
             <Route exact path = "/promoDescription" element={<PromoDescriptionScreen/>} />
+            <Route exact path = "/auth" element={<AuthScreen/>} />
+            
+{/* // Add the route for the profile Screen.. depending on the user */}
+          {USER && ( <Route exact path = "/profiles" element={<ProfileScreen/>} />)} 
           </Routes>
         </Router>
 

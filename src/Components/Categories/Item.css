@@ -28,10 +28,12 @@
         height:40px;
         border-radius: 80%;
         border: 0.2px solid #f39317;
+        margin-left: 12.5px;
     }
     .item-text{
         width: 100%;
         text-align: center;
+        margin-left: 12px;
     }
     .item-text>h5{
         font-size: x-small;

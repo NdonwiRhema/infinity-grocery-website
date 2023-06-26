@@ -37,7 +37,7 @@ const Places = ({setPlace}) => {
               </button>
            
             <p><span>Description : </span> En face Super Marche Preva </p>
-            <p><span>Contact /Numero de Telephone : </span> (+237) 650 186 979  </p>
+            <p><span>Contact / Numero de Telephone : </span> (+237) 650 186 979  </p>
         </div>
        
     </div>

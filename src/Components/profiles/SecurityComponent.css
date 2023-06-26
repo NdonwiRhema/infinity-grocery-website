@@ -1,0 +1,74 @@
+.security-wrapper{
+    width:80% ;
+    margin-left: 10%;
+}
+.security-wrapper>h4{
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 14px;
+}
+.password-form{
+    width:50%;
+    margin-left: 25%;
+    border-radius: 12px;
+    min-height: 120px;
+    
+}
+.password-form>form>.form-group{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.password-form>form>button{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.email{
+    width: 80%;
+    margin-left: 10%;
+    }
+.emailverification{
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-between;
+  
+}
+.TwoFA-enable{
+    width: 100%;
+    
+}
+.div-enable{
+    padding: 5px;
+    width:80%;
+    margin-left: 10%;
+    display: flex;
+    background-color: rgba(136, 135, 135, 0.2);
+    border-radius: 12px;
+    justify-content: space-around;
+    align-items: center;
+}
+@media screen and (max-width:558px) {
+    .password-form{
+        width: 90%;
+        margin-left: 5%;
+    }
+    .email{
+        width:100%
+
+    }
+    .emailverification{
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+      
+    }
+    .emailverification>h6{
+        font-size: 10px;
+    }
+    .div-enable{
+        background-color:transparent;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

@@ -27,11 +27,25 @@
 .login{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-right: 3px;
 }
-.login>h6{
+.login>h6>a{
     font-size: 12px;
+    margin-left: 2px;
+    text-decoration: none;
+    color: #1d2847;
+    font-weight: 700;
+}
+.login>img{
+    width: 25px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+.login>h6:hover{
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
 }
 .register{
     margin-left: 3px;
