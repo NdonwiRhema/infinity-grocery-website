@@ -30,7 +30,7 @@
     background-color: transparent;
 
 }
-.placeSwitch>h5:hover{
+.placeSwitch>a:hover{
     color:#f39317;
     cursor: pointer;
 
@@ -38,6 +38,7 @@
 .placeSwitch:hover{
   color:#f39317;
   cursor: pointer;
+ 
 
 }
 .place-active{
