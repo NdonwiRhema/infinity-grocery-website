@@ -1,16 +1,12 @@
 import React from 'react'
 import './ProfileHead.css'
 import profilImg from '../../assets/about.jpg'
-import { useSelector } from 'react-redux'
 import { FaCamera, FaEdit } from 'react-icons/fa'
 
 
-const ProfileHead = () => {
-
-    const User = useSelector((state)=>state.user.data)
-    console.log(User)
-
-  return (
+const ProfileHead = ({data,user}) => {
+    console.log(data,user)
+ return (
     <div className='profile-head-details'>
         <div className='banner-img'>
             <img 
@@ -36,9 +32,10 @@ const ProfileHead = () => {
                     </div>
                    </div>
                     <div className='pic-credentials'>
-                        <h4> Aunty Mary </h4>
-                        <h5>Email: {User.user.email}</h5>
-                        <h6>Telephone:{`${User.user.phoneNumber?User.user.phoneNumber:'<No Number>'}`}</h6>
+                        <h3> {user&&user.displayName?user.displayName:'No Username '}</h3>
+                        <h5>Email: {user&&user.email}</h5>
+                        <h6>Telephone: {data&&data.telephone}</h6>
+                        <h6 style={{fontWeight:'200',fontStyle:'italic'}}>Address: {data&&data.Address}</h6>
                     </div>
                 </div>
                 <div className='profile-edit'>

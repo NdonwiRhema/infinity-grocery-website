@@ -9,10 +9,13 @@ import Authentic from '../../firebase'
 
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Auth = () => {
 const [signUp,setSignUp] = useState(false)
+const ADMIN = useSelector((state)=>state.adminUser.data)
 const navigate = useNavigate()
+// must contain a capital letter a number and a lowercsase letter and a special charaacter and must be atleadt be 8 chars long.
 const Regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
 
 
@@ -22,8 +25,7 @@ function LoginSubmit(values){
 const email = values.email
 const password = values.password
   signInWithEmailAndPassword(Authentic,email,password).then((user)=>{
-    console.log(user.user.uid)
-    navigate('/')
+      ADMIN ?navigate('/admin'):navigate('/')
 }).catch((e)=>{
     if(  e.message ==='Firebase: Error (auth/user-not-found).'){
   alert("No such User Exists")
@@ -38,7 +40,7 @@ const loginValidationSchema = Yup.object().shape({
   email:Yup.string().email("You need to enter a Valid Email").required('Required'),
   password:Yup.string()
               .matches(Regex,{message:'Password must have 1 special character, 1uppercase,1lowerCase, minlength of 8'})
-                .min(8).required('Required'),
+              .min(8).required('Required'),
 
 
 })
@@ -97,8 +99,7 @@ const LoginForm = ()=>{
   )
 }
 
-
-  return (
+ return (
     <div>
         <div className='form'>
           <div className='form-title'>

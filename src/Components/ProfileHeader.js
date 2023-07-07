@@ -1,10 +1,10 @@
 import React from 'react'
 import ProfileHead from './profiles/ProfileHead'
 
-const ProfileHeader = () => {
+const ProfileHeader = ({data,user}) => {
   return (
     <div>
-        <ProfileHead/>
+        <ProfileHead data={data} user={user}/>
     </div>
   )
 }

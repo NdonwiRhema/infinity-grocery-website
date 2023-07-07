@@ -1,3 +1,7 @@
+.success-grp{
+    display: flex;
+    justify-content: space-between;
+}
 .security-wrapper{
     width:80% ;
     margin-left: 10%;

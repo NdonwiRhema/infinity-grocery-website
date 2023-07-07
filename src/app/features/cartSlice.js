@@ -4,10 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const LocallyStoredData = ()=>{
     const datum = localStorage.getItem('cart')
    if(datum){
-     // const dataArr = []
        const locData = localStorage.getItem('cart')
-       console.log(JSON.parse(locData))
-       // dataArr.push(locData)
         return JSON.parse(locData)
     }
    else{
@@ -52,9 +49,8 @@ const cartSlice= createSlice({
             }
             else{
                 state.data.push(action.payload)
-               
                 const lenArr = state.data
-                const lenObj = JSON.stringify(lenArr)//[{...},{...}]
+                const lenObj = JSON.stringify(lenArr)
                 storeData(lenObj)
                }
         },
@@ -64,7 +60,7 @@ const cartSlice= createSlice({
                     state.data.push(element)
                 })
                 const lenArr = state.data
-                const lenObj = JSON.stringify(lenArr)//[{...},{...}]
+                const lenObj = JSON.stringify(lenArr)
                 storeData(lenObj)
         },   
         EmptyCart:(state)=>{
