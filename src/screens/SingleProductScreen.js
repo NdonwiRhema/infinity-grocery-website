@@ -3,6 +3,9 @@ import { Container, Row ,Col} from 'react-bootstrap'
 import CartDetail from '../Components/productDescription/CartDetail'
 import { useLocation } from 'react-router-dom'
 import ProductDetail from '../Components/productDescription/OneProductDetail'
+import Heading from '../Components/Heading'
+import RelatedProducts from '../Components/productDescription/RelatedProducts'
+
 
 const SingleProductScreen = () => {
     const location = useLocation()
@@ -20,6 +23,10 @@ const SingleProductScreen = () => {
             <Col xs={12} sm={3}>
                 <CartDetail data={productInfo}/>
             </Col>
+        </Row>
+        <Row>
+          <Heading text={'Related Products'}/>
+          <RelatedProducts related={productInfo.category}/>
         </Row>
       </Container>
     </div>

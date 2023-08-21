@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import './Filters.css'
 import Slider from './Slider'
+import { useDispatch,useSelector } from 'react-redux'
+import { categoryThunk } from '../../app/features/categorySlice'
+import { pullLocalStorage } from '../utils/LocalStorageOperations'
 
-const Filters = () => {
+const Filters = ({filter,setFilter}) => {
+    const dispatch  = useDispatch()
+    const [clickState,setClickState] =useState(false)
+    const allProducts = pullLocalStorage("ALLProducts")
+   
+    useEffect(()=>{
+        dispatch(categoryThunk())
+    },[dispatch])
+    const categories = useSelector((state)=>state.category.data)
+    function editFilters(id){
+      !clickState? setFilter((prevState)=>[...prevState,id]):setFilter((prevState)=>prevState.filter((item)=>item!==id))
+    }
   return (
     <div className='filter-container'>
         <span className='filter-reset'>Reset Filters</span>
@@ -12,43 +26,23 @@ const Filters = () => {
                 <Col xs={6} sm={12}>
                   <div className='filter-category'>
                         <h5>Filter By Category</h5>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Vegetables</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Meat</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Pulses</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Spices</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Fruits</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Cereals</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Tubers</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Proteins</span>
-                        </div>
-                        <div className='filter-item'>
-                            <input type='checkbox' name='Vegetables' value={'Vegetables'}/><span>Diary</span>
-                        </div>
+                       
+                        {categories.length>0 && categories.map((category,index)=>(
+                          <div key={index} className='filter-item'>
+                             <input type='checkbox'
+                              name={category.name}
+                              value={category.id}
+                              onClick={()=>{
+                                    setClickState(!clickState)
+                                    editFilters(category.id)
+                              }}
+                              /><span>{category.name}</span>
+                         </div>
+                        ))}
                  </div>    
                 </Col>
                 <Col xs={6} sm={12}>
-                    <div className='filter-price'>
-                        <h4>Filter By Price</h4>
-                        <div className='price-slider'>
-                            <Slider min={0} max={5000}/>
-                        </div>
-                    </div>
-                    <div className='filter-size'>
+                  <div className='filter-size'>
                         <h4>Filter By Size</h4>
                         <div className='size-select'>
                             <div className='filter-item'>

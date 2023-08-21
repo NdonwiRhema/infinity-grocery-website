@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router , Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router , Routes, Route} from 'react-router-dom';
 
 
 import Header from './Components/Header'
@@ -21,21 +21,20 @@ import { onAuthStateChanged } from 'firebase/auth';
 import Authentic from './firebase';
 import { Login, logOut } from './app/features/userSlice';
 import ProfileScreen from './screens/ProfileScreen';
-import { adminLogin } from './app/features/userAdminSlice';
-import Dashboard from './screens/Admin/Dashboard';
+
 
 
 function App() {
   const dispatch = useDispatch()
   const USER = useSelector((state)=>state.user.data)
-  const ADMIN = useSelector((state)=>state.adminUser.data)
+ 
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(Authentic,(userAuth)=>{
       if(userAuth){
         const currentUser =  userAuth.auth.currentUser
         const  {auth,proactiveRefresh,stsTokenManager,providerdata,reloadUserInfo, ...newUser} =currentUser
         dispatch(Login({user:newUser}))
-        dispatch(adminLogin({user:newUser}))
+     
       }
       else{
         dispatch(logOut())
@@ -43,7 +42,6 @@ function App() {
     })
     return unsubscribe
   },[dispatch])
-  console.log(ADMIN)
   return (
     <div className="App">
       <Header/>
@@ -65,20 +63,13 @@ function App() {
             
             {/* // Add the route for the profile Screen.. depending on the user */}
           {USER && ( <Route exact path = "/profiles" element={<ProfileScreen/>} />)} 
+          
           </Routes>
         </Router>
 
-      <Footer/>
-      {/* // add the admin .. */}
-      {USER&&ADMIN  &&(
-        <div id='Admin'>
-          <Router>
-              <Routes>
-                <Route exact path='/admin' element={<Dashboard/>}/>
-              </Routes>
-          </Router>
-        </div>
-      )}
+      <Footer/> 
+       
+     
     </div>
   );
 }

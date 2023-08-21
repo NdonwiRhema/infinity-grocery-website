@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import'./Category.css'
 import Item from './Item'
+import { pullLocalStorage } from '../utils/LocalStorageOperations'
+import { useDispatch, useSelector } from 'react-redux'
+import { categoryThunk } from '../../app/features/categorySlice'
 
 const Categories = () => {
   const bgImg='https://img.freepik.com/free-vector/realistic-supermarket-social-media-cover-template_23-2149364804.jpg'
+  const allCategory = pullLocalStorage("AllCategory")
+  const Categories= useSelector((state)=>state.category.data)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    if(allCategory.length === 0){
+      dispatch(categoryThunk())
+    }
+  },[])
+ 
   return (
     <div className='holder'>
         <div className='bg-img'> 
@@ -13,16 +25,12 @@ const Categories = () => {
         <div className='content'>
           <div className='heading'><h4> Product Categories</h4></div>
           <div className='ca_items'>
-              <Item image={''} title={'Grains'}/>
-              <Item  title={'Grains'}/>
-              <Item  title={'Meat'}/>
-              <Item  title={'Tubers'}/>
-              <Item title={'Fish'}/>
-              <Item title={'Spices'}/>
-              <Item title={'Grains'}/>
-              <Item title={'Grains'}/>
-              <Item title={'Grains'}/>
-              <Item/>
+              {
+                Categories.length>0 && Categories.map((category,index)=>(
+                  <Item key={index}  title={category.name}/>
+                ))
+              }
+             
           </div>
         </div>
     </div>

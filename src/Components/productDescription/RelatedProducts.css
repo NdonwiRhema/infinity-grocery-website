@@ -1,0 +1,13 @@
+.related-products-container{
+    width: 100%;
+    
+}
+.related-product-holder{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow-x: auto;
+}
+.r-product{
+    margin-left: 1%;
+}

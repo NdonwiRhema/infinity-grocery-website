@@ -3,9 +3,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 
-const AdminThunk = createAsyncThunk('admin/get',(uid)=>{
+export const AdminThunk = createAsyncThunk('admin/get',(uid)=>{
     const docRef = doc(db,"Users",uid)
-    getDoc(docRef).then((docSnapShot)=>{
+   const Data =  getDoc(docRef).then((docSnapShot)=>{
         if(docSnapShot.exists()){
             const dbData = docSnapShot.data()
             if(dbData.isSuperAdmin || dbData.isAdmin){
@@ -13,6 +13,8 @@ const AdminThunk = createAsyncThunk('admin/get',(uid)=>{
             }
         }
     })
+    
+    return Data
 })
 const userAdminSlice = createSlice({
     name:'adminUser',
@@ -23,8 +25,7 @@ const userAdminSlice = createSlice({
     reducers:{
         adminLogin:(state,action)=>{
            // const test= action.payload.user
-          
-           
+                 
         },
         adminLogOut:(state)=>{
             state.data =null

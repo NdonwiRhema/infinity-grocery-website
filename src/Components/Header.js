@@ -3,8 +3,10 @@ import BannerHead from './Banner/BannerHead'
 import BannerMid from './Banner/BannerMid'
 import BannerNav from './Banner/BannerNav'
 
+
+
 const Header = () => {
-  const location = window.location.pathname
+ const location = window.location.pathname
  let activeTab
 
   switch(location){

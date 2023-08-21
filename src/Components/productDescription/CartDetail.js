@@ -2,14 +2,20 @@ import React,{useState} from 'react'
 import { FaAngleRight, FaCoins, FaMinus, FaPlus, FaStore, FaWeightHanging} from 'react-icons/fa'
 
 import './CartDetail.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../app/features/cartSlice'
+import { Badge } from 'react-bootstrap'
+import { selectUnits } from '../utils/GeneralOperations'
 
 const CartDetail = ({data}) => {
     const[Qty,setQty] = useState(1)
     const dispatch = useDispatch()
+    const categories = useSelector((state)=>state.category.data)
+    const Category = categories.filter((item)=>item.id===data.category)
+    const units = selectUnits(data.stock[0].units)
     const currentCart = [localStorage.getItem('cart')]
-
+    console.log(Category)
+    console.log(data)
     function AddtoCart(){
       const TempProduct = {
         id:data.id,
@@ -29,9 +35,9 @@ const CartDetail = ({data}) => {
   return (
     <div className='main-wrapper'>
       <div className='product-detail'>
-        <span>Category <FaAngleRight/> {data.category.name}</span>
+        <span>Category <FaAngleRight/> {Category[0].name}</span>
             <h4 >{data.title}</h4>
-            <h6><span>Short description : </span>Lorem Ipsum dolor sit amet consectatur it adepiscing</h6>
+            <h6><span>Short description : </span>{data.shortDesc}</h6>
       </div>
       <div className='price-detail'>
         <h5>{data.price} FCFA</h5>
@@ -40,10 +46,10 @@ const CartDetail = ({data}) => {
                 <span><FaCoins fontSize={12} color='#f39317'/> 12 Buys</span>
             </div>
             <div>
-                <span><FaStore fontSize={12} color='#f39317'/> In Stock</span>
+                <span><FaStore fontSize={12} color='#f39317'/> <Badge bg={data.stock[0].outStock?'danger':'success'}>{data.stock[0].outStock?'Out of Stock':'In Stock'}</Badge></span>
             </div>
             <div>
-                <span><FaWeightHanging fontSize={12} color='#f39317'/> Kilogram(s)/Bag(s)/Piece(s)</span>
+                <span><FaWeightHanging fontSize={12} color='#f39317'/> {units}</span>
             </div>
         </div>
         <div className='quantity'>

@@ -4,24 +4,24 @@ import Heading from '../Heading'
 import './OneProductDetail.css'
 
 const ProductDetail = ({data}) => {
-  const infoImages = data.images
+  const infoImages = data.picture
   return (
     <div>
       <div >
         <div className='image-spread'>
           {
             infoImages.map((img,index)=>(
-              <img src={img} alt='images.0' key={index}/>
+              <img src={img.img} alt={img.img} key={index}/>
             ))
           }
         </div>
       </div>
       <div className='details'>
         <div>
-          <Heading text={data.title}/>
+          <Heading text={data.name}/>
         </div>
         <div>
-          <p>{data.description}</p>
+          <p>{data.desc}</p>
         </div>
       </div>
     </div>

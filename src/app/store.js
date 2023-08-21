@@ -5,6 +5,7 @@ import cartReducer from './features/cartSlice'
 import recipeReducer from './features/recipeSlice'
 import userReducer from './features/userSlice'
 import userAdminReducer from './features/userAdminSlice';
+import categoryReducer from './features/categorySlice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     cart:cartReducer,
     recipe:recipeReducer,
     user:userReducer,
-    adminUser:userAdminReducer
+    adminUser:userAdminReducer,
+    category:categoryReducer
   },
 });
