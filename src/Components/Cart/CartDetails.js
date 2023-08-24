@@ -13,15 +13,17 @@ const CartDetails = () => {
         </div>
         <div className='detail-delivery'>
             <h4>Delivery Fee :<span> {deliveryCharge} </span> FCFA</h4>
-            <p>This is not applicable as home delivery is not yet available.<br/><span >** Home Delivery Coming Soon **</span></p>
+            <p>This is an approximative Delivery method.Please Note we will require your valid telephone Number<br/><span >** Pickup Point Delivery Coming Soon **</span></p>
         </div>
         <div className='detail-pickup'>
-            <h4>Pick Up Points :</h4>
+            {/* <h4>Location :</h4>
             <select>
-                <option> Acacias Point</option>
-                <option defaultValue={'Mendong Point'} defaultChecked> Mendong Point</option>
-                <option> Emana Point</option>
-            </select>
+                <option> Acacias </option>
+                <option> Rond Point Express </option>
+                <option> Jouvence </option>
+                <option defaultValue={'Mendong Point'} defaultChecked> Mendong </option>
+                <option> Damas</option>
+            </select> */}
         </div>
         <div className='detail-total'>
             <h5>Grand Total :  {cartTotal + deliveryCharge} FCFA</h5>

@@ -2,7 +2,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { updatePhoneNumber, updateProfile } from 'firebase/auth'
+import { updatePhoneNumber, updateProfile, upd} from 'firebase/auth'
 import Authentic,{db} from '../../firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import {FaAngleDown} from 'react-icons/fa'
@@ -52,6 +52,7 @@ const InfoComponent = () => {
                     displayName:username,
                 }).then(()=>{
                   }).catch((e)=>console.log(e))
+        
         updatePhoneNumber(currentUserInfo,{phoneNumber:telephone})
         const docRef = doc(db,"Users",currentUserInfo.uid)   
         try {

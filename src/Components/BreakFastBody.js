@@ -8,11 +8,11 @@ const BreakFastBody = ({title}) => {
     <div>
         <Container>
             <Row>
-                <Col xs={12} sm={2}>
-                    <Filters/>
+                <Col xs={12} sm={1}>
+                    {/* <Filters/> */}
                 </Col>
                 <Col xs={12} sm={1}></Col>
-                <Col xs={12} sm={9}>
+                <Col xs={12} sm={10}>
                     <Body title={title}/>
                 </Col>
             </Row>

@@ -10,6 +10,7 @@ const BannerNav = ({activeTab}) => {
     // const CartNums = JSON.parse(localStorage.getItem('cart'))
     // const Nums = CartNums?CartNums.length:0
     const Nums = useSelector((state)=>state.cart.totalItems)
+    const cartTotal = useSelector((state)=>state.cart.cartTotal)
  
     return (
     <div className='Navcontainer'>
@@ -48,7 +49,7 @@ const BannerNav = ({activeTab}) => {
         <div className='cart_div'>
             <div className='cart_value'>
                 <FaShoppingCart fontSize={12}/>
-                <h6>XAF 0.00 ({Nums} Item(s))</h6>
+                <h6>XAF {cartTotal} ({Nums} Item(s))</h6>
             </div>
             <div className='cart_heading'>
                 <h6><a href='/cart'>Cart Items</a></h6>

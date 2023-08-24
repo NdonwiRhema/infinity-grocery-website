@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loadLocalStorage, pullLocalStorage } from "../../Components/utils/LocalStorageOperations";
 import { pullAll } from "../../Components/utils/FirebaseOperations";
 
+
+
 export const categoryThunk = createAsyncThunk('category/fetchCategory',()=>{
     return pullAll("Category").then((response)=>response)
 })
@@ -9,7 +11,7 @@ export const categoryThunk = createAsyncThunk('category/fetchCategory',()=>{
 const categorySlice = createSlice({
     name:'category',
     initialState:{
-        data:[],
+        data:pullLocalStorage(),
         isLoading:false,
         error:''
     },

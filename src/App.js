@@ -21,6 +21,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import Authentic from './firebase';
 import { Login, logOut } from './app/features/userSlice';
 import ProfileScreen from './screens/ProfileScreen';
+import CheckOutScreen from './screens/CheckOutScreen';
 
 
 
@@ -50,12 +51,13 @@ function App() {
             <Route exact path = "/" element={<HomeScreen/>} />
             <Route exact path = "/shop" element={<ShopScreen/>} />
             <Route exact path = "/recipe" element={<RecipeScreen/>} />
-            <Route exact path = "/breakfast" element={<BreakfastScreen title={'BreakFast Purchase'}/>} />
-            <Route exact path = "/fruit" element={<BreakfastScreen title={'Fruit Purchase'}/>} />
-            <Route exact path = "/protein" element={<BreakfastScreen title={' Protein Purchase'}/>} />
+            <Route exact path = "/breakfast" element={<BreakfastScreen title={'Breakfast'}/>} />
+            <Route exact path = "/fruit" element={<BreakfastScreen title={'Fruits'}/>} />
+            <Route exact path = "/protein" element={<BreakfastScreen title={'Protein'}/>} />
             <Route exact path = "/about" element={<AboutScreen/>} />
             <Route exact path = "/delivery" element={<DeliveryScreen/>} />
             <Route exact path = "/cart" element={<CartScreen/>} />
+            <Route exact path = "/checkout" element={<CheckOutScreen/>} />
             <Route exact path = "/product" element={<SingleProductScreen/>} />
             <Route exact path = "/promotion" element={<PromotionScreen/>} />
             <Route exact path = "/promoDescription" element={<PromoDescriptionScreen/>} />

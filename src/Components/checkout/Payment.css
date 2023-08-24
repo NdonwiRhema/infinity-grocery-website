@@ -1,0 +1,126 @@
+.payment-container{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.order-summary{
+    width: 48%;
+    padding: 8px;
+   
+}
+.order-section>h5{
+    margin-bottom: 5%;
+    margin-top: 2%;
+    text-decoration: underline;
+}
+.order-list{
+    width: 100%;
+    border-bottom: 0.1px solid #cacaca;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.order-payment{
+    width: 48%;
+    padding: 8px;
+}
+.disclaimer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.disclaimer>p{
+    padding: 8px;
+    font-size: 13px;
+}
+.disclaimer>p>span{
+    font-weight: 800;
+
+}
+.inactivate{
+    background-color: #9b9797;
+    color: #333;
+    width:100%;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+
+}
+.pay-option-1{
+    width: 98%;
+    padding: 12px;
+    height: 150px;
+    background-color: #eeeded;
+    border-radius: 8px;
+    box-shadow: 2px,2px,2px,2px #333;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+ margin-bottom: 15%;
+ opacity: 0.5;
+}
+.pay-option{
+    width: 98%;
+    padding: 12px;
+    height: 150px;
+    background-color: #eeeded;
+    border-radius: 8px;
+    box-shadow: 2px,2px,2px,2px #333;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+margin-bottom: 5%;
+}
+.success-option{
+    width: 98%;
+    padding: 12px;
+    height: 150px;
+    background-color: rgba(115, 231, 131,0.7);
+    border-radius: 8px;
+    box-noshadow: 2px,2px,2px,2px #333;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+margin-bottom: 5%;
+}
+.failed-option{
+    width: 98%;
+    padding: 12px;
+    height: 150px;
+    background-color: rgba(245, 116, 99, 0.6);
+    border-radius: 8px;
+    box-shadow: 2px,2px,2px,2px #333;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+margin-bottom: 5%;
+}
+.warning-option{
+    width: 98%;
+    padding: 12px;
+    height: 150px;
+    background-color: rgba(247, 196, 86, 0.6);
+    border-radius: 8px;
+    box-shadow: 2px,2px,2px,2px #333;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+margin-bottom: 5%;
+}
+.radio{
+    width:20%;
+}
+.radio>.form-group>input{
+    background-color: #f39319;
+    
+}
+.radio-info{
+    width: 80%;
+}
+.radio-info>p{
+    font-size: 12px;
+    font-style: italic;
+}

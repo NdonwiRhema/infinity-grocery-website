@@ -1,14 +1,19 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import BannerHead from './Banner/BannerHead'
 import BannerMid from './Banner/BannerMid'
 import BannerNav from './Banner/BannerNav'
-
-
+import { pullLocalStorage } from './utils/LocalStorageOperations'
+import { useDispatch } from 'react-redux'
+import { categoryThunk, loadStateFromLocal } from '../app/features/categorySlice'
+import { productThunk } from '../app/features/productSlice'
 
 const Header = () => {
+ const allCategories = pullLocalStorage('AllCategory').length
+ const allProducts = pullLocalStorage('AllProducts').length
+
  const location = window.location.pathname
  let activeTab
-
+  const dispatch = useDispatch()
   switch(location){
     case'/':
       activeTab = 'home'
@@ -39,6 +44,14 @@ const Header = () => {
        break;
 
   }
+  useEffect(()=>{
+    if(allCategories === 0){
+      dispatch(categoryThunk())
+    }
+   if(allProducts ===0){
+    dispatch(productThunk())
+   }
+  },[dispatch])
   return (
     <div>
       <BannerHead/>

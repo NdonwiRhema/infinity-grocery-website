@@ -129,9 +129,13 @@ const cartSlice= createSlice({
             newCartTotal += elm.subtotal
         })
         state.cartTotal = newCartTotal
-     }
+     },
+  setdeliveryCharge:(state,action)=>{
+    state.deliveryCharge = action.payload[0].fee
+   
+     },
     }
 })
 
-export const {addToCart,EmptyCart,increment,decrement,removeItem} = cartSlice.actions
+export const {addToCart,EmptyCart,increment,decrement,removeItem,setdeliveryCharge} = cartSlice.actions
 export default  cartSlice.reducer

@@ -9,7 +9,7 @@ const CartItem = ({data}) => {
     const dispatch = useDispatch()
  
   //const PromoImg = 'https://media.cnn.com/api/v1/images/stellar/prod/120604032828-fresh-ripe-bananas.jpg?q=w_3590,h_2774,x_0,y_0,c_fill'
-  const CartItemImg = data.images[0]
+  const CartItemImg = data.images
   const AddingUnit = ()=>{
     return(
         <div className='adder-container'>
@@ -40,7 +40,7 @@ const CartItem = ({data}) => {
             <div className='item-text'>
                 <h4>{data.title}</h4>
                 <div className='units'>
-                    <h6>Quantity ( kgs)</h6>
+                    <h6>Quantity ({data.Units})</h6>
                     <AddingUnit/>
                 </div>
             </div>

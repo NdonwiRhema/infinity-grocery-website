@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row, Tab, Tabs} from 'react-bootstrap'
 import Heading from '../Heading'
 import Product from '../products/Product'
 import { FaArrowCircleRight,FaArrowCircleLeft } from 'react-icons/fa'
 
 import './Body.css'
+import { useSelector,useDispatch } from 'react-redux'
+import { pullLocalStorage } from '../utils/LocalStorageOperations'
+
 
 const Body = ({title}) => {
     const[key,setKey] = useState()
+    const categories=pullLocalStorage('AllCategory')
+    const products=pullLocalStorage('AllProducts')
+    const titleCategory = categories.filter((item)=>item.name === title)
+    let productArrays =products.filter((ITEM)=>ITEM.category === titleCategory[0].id)
     const[Next,setNext] = useState(10)
     const[Prev,setPrev] = useState(0)
     const[end,setEnd]=useState()
     const[start,setStart]=useState(true)
+
     const styles = {
         paginationcont:{
             marginTop:18,
@@ -50,71 +58,13 @@ const Body = ({title}) => {
   return (
     <div className=''>
         <Heading text={title}/>
-        <Tabs
-      id="controlled-tab-example"
-      activeKey={key}
-      onSelect={(k) => setKey(k)}
-      className="mb-3"
-    >
-      <Tab eventKey="diary" title="Diary">
-            <Row>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-            </Row>
-      </Tab>
-      <Tab eventKey="seasonal" title="Seasonal">
-      <Row>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-            </Row>
-      </Tab>
-      <Tab eventKey="tubers" title="Tubers">
-      <Row>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-                <Col xs={6} sm={4}>
-                    <Product/>
-                </Col>
-            </Row>
-      </Tab>
-      
-    </Tabs>
+        <Row>
+                          {productArrays.map((product,index)=>(
+                              <Col key={index} xs={6} sm={4}>
+                                  <Product detail={product}/>
+                              </Col>
+                         ))}
+       </Row>
     <div style={styles.paginationcont}>
          <button style={start?styles.paginateBtnInactive:styles.paginateBtn} onClick={PrevPage}><span><FaArrowCircleLeft/></span>  Prev</button>
          <button style={end?styles.paginateBtnInactive:styles.paginateBtn} onClick={NextPage}>Next <span><FaArrowCircleRight/></span></button>

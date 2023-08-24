@@ -75,6 +75,30 @@
 .social_media_icons{
     margin-left: 8px;
 }
+
+.search-dropDown{
+    width:100%;
+    height: auto;
+    background-color: rgba(206, 203, 203,0.6);
+}
+.search-dropDown>div{
+    width: 100%;
+    list-style-type: none;
+
+}
+.search-option{
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    padding:6px;
+    margin-bottom: 4px;
+}
+.search-dropDown>div:hover{
+    background-color: #f39317;
+    color: #1d1d1d;
+    width: 100%;
+}
+
 @media screen and (max-width:558px) {
     .logo{
        display: none;

@@ -5,10 +5,11 @@ import { useDispatch} from 'react-redux'
 import { addToCart } from '../../app/features/cartSlice'
 
 import './Product.css'
+import { selectUnits } from '../utils/GeneralOperations'
 const Product = ({detail}) => { 
     const navigate = useNavigate()
     const currentCart = [localStorage.getItem('cart')]
-   let unit = ''
+   let unit 
     // Redux states
     const dispatch = useDispatch()
   
@@ -23,13 +24,13 @@ const Product = ({detail}) => {
         price:item.price,
         discount:item.pricePromotion>0?item.price-item.pricePromotion:0,
         subtotal:item.price,
+        Units:selectUnits(item.stock[0].units),
         size:'M'
       }
       if(currentCart.length === 0){
          localStorage.setItem('cart',JSON.stringify(TempProduct))
            }
            dispatch(addToCart(TempProduct))
-   
     }
 
   return (

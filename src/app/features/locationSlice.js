@@ -3,45 +3,45 @@ import { pullAll } from "../../Components/utils/FirebaseOperations";
 import { loadLocalStorage } from "../../Components/utils/LocalStorageOperations";
 
 
-export const recipeThunk = createAsyncThunk('recipe/fetchRecipe',()=>{
-    return pullAll("Recipes").then((response)=>response)
+export const locationThunk = createAsyncThunk('recipe/fetchRecipe',()=>{
+    return pullAll("Locations").then((response)=>response)
 
 })
-const recipeSlice = createSlice({
+const locationSlice = createSlice({
     name:'recipe',
     initialState:{
         data:[],
         isLoading:false,
         error:'',
-        activeRecipe:''
+        activeLocation:''
     },
     reducers:{
-        setRecipe:(state,action)=>{
+        setlocation:(state,action)=>{
             state.data = action.payload
         },
         setLoading:(state)=>{
             state.isLoading = !state.isLoading
         },
-        setActiveRecipe:(state,action)=>{
-            state.activeRecipe = action.payload
+        setActiveLocation:(state,action)=>{
+            state.activeLocation = action.payload
         }
     },
     extraReducers:(builder)=>{
-        builder.addCase(recipeThunk.pending,(state)=>{
+        builder.addCase(locationThunk.pending,(state)=>{
             state.isLoading = true
         })
-        builder.addCase(recipeThunk.fulfilled,(state,action)=>{
+        builder.addCase(locationThunk.fulfilled,(state,action)=>{
             const response = action.payload       
             state.isLoading =false
             let tempArr =[]
             response.forEach(item =>{
-                const recipeData = item.data()
-                tempArr.push(recipeData)
+                const locationData = item.data()
+                tempArr.push(locationData)
                               })
            state.data = tempArr
-           loadLocalStorage(tempArr,"AllRecipes")
+           loadLocalStorage(tempArr,"AllLocations")
         })
-        builder.addCase(recipeThunk.rejected,(state,action)=>{
+        builder.addCase(locationThunk.rejected,(state,action)=>{
             state.error = action.error.message
             state.isLoading = false
             state.data = []
@@ -49,5 +49,5 @@ const recipeSlice = createSlice({
     }
 
 })
-export const{setRecipe,setLoading}=recipeSlice.actions
-export default recipeSlice.reducer
+export const{setlocation,setLoading,setActiveLocation}=locationSlice.actions
+export default locationSlice.reducer

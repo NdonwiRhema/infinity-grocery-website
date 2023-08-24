@@ -4,9 +4,9 @@ import { Col, Row } from 'react-bootstrap'
 import './RecipeNames.css'
 import { recipeThunk } from '../../app/features/recipeSlice'
 import { useDispatch, useSelector } from 'react-redux'
-const RecipeNames = () => {
+const RecipeNames = ({setRecipeObject}) => {
     const dispatch = useDispatch()
-    const [recipeName,setRecipeName]=useState('ndole')
+    const [recipeName,setRecipeName]=useState('')
 useEffect(()=>{
     dispatch(recipeThunk())
     
@@ -18,24 +18,16 @@ useEffect(()=>{
   return (
     <Row>
         <div className='recipe-names'> All Recipes</div>
-            <Col className={`names ${recipeName==='ndole'&&'activeNames'}`} xs={6} sm={12}>
-                <h6 onClick={()=>setRecipeName('ndole')}> Ndole Recipe </h6>
+        {Fullrecipe.length >0 && Fullrecipe.map((recipe,index)=>(
+            <Col key ={index} className={`names ${recipeName===recipe.name&&'activeNames'}`} xs={6} sm={12}>
+                <h6 onClick={()=>{
+                    setRecipeName(recipe.name)
+                    setRecipeObject({id:recipe.id,recipe:recipe})
+                    }}> {recipe.name} </h6>
             </Col>
-            <Col className={`names ${recipeName==='ekwang'&&'activeNames'}`} xs={6} sm={12}>
-                <h6 onClick={()=>setRecipeName('ekwang')}> Ekwang Recipe </h6>
-            </Col>
-            <Col className={`names ${recipeName==='eru'&&'activeNames'}`} xs={6} sm={12}>
-                <h6 onClick={()=>setRecipeName('eru')}> Eru Recipe </h6>
-            </Col>
-            <Col className={`names ${recipeName==='okok'&&'activeNames'}`} xs={6} sm={12}>
-                <h6 onClick={()=>setRecipeName('okok')}> Okok Recipe </h6>
-            </Col>
-            <Col className={`names ${recipeName==='mbongo'&&'activeNames'}`} xs={6} sm={12}>
-                <h6 onClick={()=>setRecipeName('mbongo')}> Mbongo Recipe </h6>
-            </Col>
-            <Col className={`names ${recipeName==='Achu'&&'activeNames'}`} xs={6} sm={12}>
-                <h6 onClick={()=>setRecipeName('Achu')}> Achu Recipe </h6>
-            </Col>
+        ))}
+            
+            
     </Row>
   )
 }
