@@ -6,8 +6,10 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useDispatch,useSelector } from 'react-redux'
 import { categoryThunk ,loadStateFromLocal} from '../../app/features/categorySlice'
 import { pullLocalStorage } from '../utils/LocalStorageOperations'
+import { setActive } from '../../app/features/productSlice'
 
-const BannerMid = () => {
+
+const BannerMid = () => { 
     const dispatch = useDispatch()
     const [typing,setTyping] = useState(false)
     const [input,setInput] = useState('')
@@ -42,15 +44,21 @@ function handleChange (e){
     setDropdownOptions(TempArr)
  
 }
-console.log(DropdownOptions)
+
+// choosing the matched product
 const chooseOption =(option)=>{
-   console.log("Inside..")
-//setDropItem((prevState)=>[...prevState,option])
- const inputField = document.getElementById('SearchField')
+const inputField = document.getElementById('SearchField')
    inputField.setAttribute('option-data',option.id)
+   console.log(option.id)
    Item.current.value = option.name
-   setTyping(false)
+  setTyping(false)
     
+}
+function findProduct(e){
+    e.preventDefault()
+    const idAttribute = document.getElementById('SearchField')
+    const id = idAttribute.getAttribute('option-data')
+    window.location.href =`/product?id=${id}`
 }
   return (
     <Container>
@@ -68,13 +76,14 @@ const chooseOption =(option)=>{
             <div className='search_section'>
                     <div className='search_bar'>
                         <div className='form_div'>
-                            <form >
+                            <form>
                                 <div className='search_field'>
                                     <input
                                      id='SearchField'
                                      placeholder='Search for any product ...'
                                      onChange={(e)=>handleChange(e)}
                                      ref={Item}
+                                     option-data=''
                                     />
                                 </div>
                                 <div className='categories_select'>
@@ -87,7 +96,7 @@ const chooseOption =(option)=>{
                                     </select>
                                 </div>
                                 <div className='submit_section'>
-                                   <button type='submit'>
+                                   <button type='submit' onClick={(e)=>findProduct(e)}>
                                      <span className='search_icon'><FaSearch fontSize={11}/></span><span className='search_text'> Search</span>
                                    </button>
                  

@@ -5,12 +5,25 @@ import { useLocation } from 'react-router-dom'
 import ProductDetail from '../Components/productDescription/OneProductDetail'
 import Heading from '../Components/Heading'
 import RelatedProducts from '../Components/productDescription/RelatedProducts'
+import { pullLocalStorage } from '../Components/utils/LocalStorageOperations'
 
 
 const SingleProductScreen = () => {
     const location = useLocation()
-    const productInfo  = JSON.parse(location.state)
-   
+    const prodData  =  pullLocalStorage("AllProducts")
+    const queryString = window.location.search ?window.location.search :''
+    let query_id
+    if(queryString !== ''){
+      const params = new URLSearchParams(queryString)
+      query_id = params.get('id')
+      console.log(query_id)
+    }
+    const productInfo  = JSON.parse(location.state)?
+                                                    JSON.parse(location.state)
+                                                 :
+                                                 query_id !=='' ?
+                                                 prodData.filter((item)=>item.id === query_id).pop():{}
+   console.log(productInfo)
   return (
     <div>
 

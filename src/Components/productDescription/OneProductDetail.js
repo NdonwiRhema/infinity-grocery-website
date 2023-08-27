@@ -5,6 +5,7 @@ import './OneProductDetail.css'
 
 const ProductDetail = ({data}) => {
   const infoImages = data.picture
+  console.log(data)
   return (
     <div>
       <div >

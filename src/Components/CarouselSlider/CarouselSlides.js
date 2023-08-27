@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap'
 import './CarouselSlides.css'
 
 const CarouselSlides  = ({data}) => {
-
+console.log(data)
 const slides = [
   {
   id:1,
@@ -24,21 +24,36 @@ const slides = [
   image:'https://img.freepik.com/free-vector/gradient-supermarket-facebook-post_23-2149387929.jpg?w=826&t=st=1683955964~exp=1683956564~hmac=89c54a19655c5257d9ad9371a76116f1b2bc28f50f04e53a3127b87d867ae78c',
 },
 ]
-  const PromoArray = !data?slides:data
+ 
   return (
     <Carousel>
       {
-        PromoArray.map((promo,index)=>(
+       data.length >0 ?data[0].picture.map((promo,index)=>(
        <Carousel.Item key={index}>
         <img
           className="d-block w-100"
-          src={promo.image}
+          src={promo.img}
           alt="promo slide"
           
         />
         <Carousel.Caption>
-          <h3>{promo.Caption}</h3>
-          <p>{promo.captionText}</p>
+          <h3>{}</h3>
+          <p>{}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      
+        )):
+        slides.map((promo,index)=>(
+          <Carousel.Item key={index}>
+        <img
+          className="d-block w-100"
+          src={promo.img}
+          alt="promo alt slide"
+          
+        />
+        <Carousel.Caption>
+          <h3>{}</h3>
+          <p>{}</p>
         </Carousel.Caption>
       </Carousel.Item>
       

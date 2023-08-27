@@ -11,6 +11,7 @@ const productSlice = createSlice({
     name:'product',
     initialState:{
         data:[],
+        active:{},
         isLoading:false,
         error:'' // for locale storage reasons 
          
@@ -19,7 +20,9 @@ const productSlice = createSlice({
         setProduct: (state,action)=>{
             state.data = action.payload
         },
-        
+        setActive:(state,action)=>{
+            state.active = action.payload
+        }
         // setAllFruitProducts: (state,action)=>{
         //     state.allFruitProducts = action.payload
         // }
@@ -48,5 +51,5 @@ const productSlice = createSlice({
 
 })
 
-export const {setProduct} = productSlice.actions
+export const {setProduct,setActive} = productSlice.actions
 export default productSlice.reducer

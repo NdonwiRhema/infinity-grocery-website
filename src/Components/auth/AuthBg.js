@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import './AuthBg.css'
 import Carousels from '../Carousels'
 import Auth from './Auth'
 import { Col, Container,Row } from 'react-bootstrap'
+import { pullLocalStorage,loadLocalStorage } from '../utils/LocalStorageOperations'
+import { useDispatch } from 'react-redux'
+import { pullWhere } from '../utils/FirebaseOperations'
 
 
 const AuthBg = () => {
+  const dispatch = useDispatch()
+  const uiData = pullLocalStorage("AllUi").length>0?pullLocalStorage("AllUi"):0
+  function LoadCarousels () {
+    pullWhere("Ui",'status','active','==').then(response=>{
+        let tempArr =[]
+        response.forEach(item =>{
+            const recipeData = item.data()
+            tempArr.push(recipeData)
+                          })
+        loadLocalStorage(tempArr,"AllUi")
+    })
+}
+    useEffect(()=>{
+      uiData ===0 &&  LoadCarousels()
+    },[])
   return (
  <div className='container-wrapper'>
     <div className='imgHolder'> 
@@ -23,7 +41,7 @@ const AuthBg = () => {
                         </Col>
                         <Col  sm={8} >
                            <div className='content-carousel'>
-                             <Carousels/>
+                             <Carousels data={uiData!==0 && uiData}/>
                            </div>
                         </Col>
                     </Row>

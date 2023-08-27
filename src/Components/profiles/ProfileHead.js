@@ -1,11 +1,45 @@
 import React from 'react'
 import './ProfileHead.css'
-import profilImg from '../../assets/about.jpg'
+import profilImg from '../../assets/profil.jpg'
 import { FaCamera, FaEdit } from 'react-icons/fa'
+import { FirebaseUpload, updateFirebase } from '../utils/FirebaseOperations'
+
+import { getDownloadURL } from 'firebase/storage'
+import Authentic from '../../firebase'
 
 
 const ProfileHead = ({data,user}) => {
     console.log(data,user)
+    
+function uploadImage(e){
+    console.log(e.target.files[0])
+    const imgs = {
+        files:e.target.files[0],
+        ID:e.target.files[0].name
+    }
+     FirebaseUpload(imgs).then(result=>{
+       
+        if(result.bytesTransferred===result.totalBytes){
+            console.log('Image Upload Sucess')
+            getDownloadURL(result.ref).then((url)=>{
+            //    const linker ={
+            //        img:url
+            //    }
+            console.log(url)
+             // update the profile and update the user collection
+             try {
+                updateFirebase("Users",user.uid,{profile_pic:url}).then(res=>{
+                    console.log(res)
+                })
+             } catch (error) {
+                console.log(error)
+             }
+            }) 
+
+        }
+
+     })
+}
  return (
     <div className='profile-head-details'>
         <div className='banner-img'>
@@ -22,12 +56,12 @@ const ProfileHead = ({data,user}) => {
                 <div className='pic-details'>
                    <div id='profile-pic-wrapper'> 
                     <div id='profile_pic'>
-                        <img src={profilImg} alt='profile'/>
+                        <img src={data&&data.profile_pic?data.profile_pic:profilImg} alt='profile'/>
                     </div>
                     <div id='form_pic'>
                         <form>
                             <label for='picture'><FaCamera fontSize={25} color='f39317' stroke='1px'/></label>
-                            <input id='picture' type='file' style={{display:'none'}}/>
+                            <input id='picture' type='file' style={{display:'none'}} onChange={(e)=>uploadImage(e)}/>
                         </form>
                     </div>
                    </div>

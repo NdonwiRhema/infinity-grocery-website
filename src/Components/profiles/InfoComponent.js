@@ -7,6 +7,7 @@ import Authentic,{db} from '../../firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import {FaAngleDown} from 'react-icons/fa'
 import './InfoComponent.css'
+import { pullAll } from '../utils/FirebaseOperations'
 
 
 const phoneLen = 9
@@ -18,7 +19,8 @@ const InfoSchema = Yup.object().shape({
     .matches(Regex,{message:'Incorrect Phone Number check Again.'})
     .max(phoneLen).required('required'),
     address:Yup.string().required('required'),
-    preferredLocation:Yup.string()
+    preferredLocation:Yup.string('required'),
+    addedLocation:Yup.string().max(30).required('Cannot be blank')
 })
 
 
@@ -27,15 +29,28 @@ const InfoComponent = () => {
   const[countryCode,setCountryCode] = useState('cm')
   const[drop,setDrop]=useState(false)
  const [dbData,setDbData]= useState([])
+ const[locations,setLocations]=useState([])
+ const[sublocations,setsubLocations]=useState(
+    {
+        all:[],
+        LocationId:''
+    }
+ )
+
 
  useEffect(()=>{
         const docRef = doc(db,"Users",User.uid)
+       try {
         getDoc(docRef).then((docSnapshot)=>{
             if(docSnapshot.exists()){
                 const db_data = docSnapshot.data()
                 setDbData(db_data)
             }
+        getLocations()
         })
+       } catch (error) {
+        console.warn(error)
+       }
      },[])
   
   const tempName = User.email.split('@')
@@ -46,12 +61,17 @@ const InfoComponent = () => {
         const username =values.username
         const telephone = values.telephone
         const preferredLocation = values.preferredLocation
+        const addedLocation = values.addedLocation
         const address = values.address
   
-        updateProfile(currentUserInfo,{
-                    displayName:username,
-                }).then(()=>{
-                  }).catch((e)=>console.log(e))
+        try {
+            updateProfile(currentUserInfo,{
+                displayName:username,
+            }).then(()=>{
+              })
+        } catch (error) {
+            console.warn(error)
+        }
         
         updatePhoneNumber(currentUserInfo,{phoneNumber:telephone})
         const docRef = doc(db,"Users",currentUserInfo.uid)   
@@ -60,7 +80,7 @@ const InfoComponent = () => {
                 username:username,
                 telephone:telephone,
                 location:preferredLocation,
-                Address:address,
+                Address:address+preferredLocation+addedLocation,
                 country:countryCode,
                 lastModified:Date.now().toLocaleString()
                })
@@ -71,6 +91,18 @@ const InfoComponent = () => {
         }
                                                                             
 }
+function getLocations(){
+    pullAll("Locations").then(response=>{
+        let tempArr =[]
+          response.forEach(item =>{
+              const categoryData = item.data()
+              tempArr.push(categoryData)
+              setLocations((prevState)=>[...prevState,categoryData])
+               })
+           
+     })
+ }
+
 console.log(dbData)
    return (
     <div id='info'>
@@ -81,6 +113,7 @@ console.log(dbData)
             telephone :!User.phoneNumber?dbData.telephone:User.phoneNumber,
             preferredLocation :dbData?dbData.location:'',
             address :dbData?dbData.Address:'',
+            addedLocation:''
         }
          }
          validationSchema={InfoSchema}
@@ -124,14 +157,17 @@ console.log(dbData)
                             { drop&&(
                                 <div className='emoji-dropdown'>
                                     <ul>
-                                        <li onClick={()=>setCountryCode('cm')}> 
+                                        <li onClick={()=>{
+                                            setCountryCode('cm')
+                                            setDrop(false)
+                                        }}> 
                                             <img src='https://flagcdn.com/16x12/cm.png' alt='contry-flag'/>
                                         <span> (+237 ) Cameroon</span> 
                                         </li>
-                                        <li onClick={()=>setCountryCode('za')}> 
+                                        {/* <li onClick={()=>setCountryCode('za')}> 
                                             <img src='https://flagcdn.com/16x12/za.png' alt='contry-flag'/>
                                             <span> (+ ) South Africa</span> 
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                                 )
@@ -150,33 +186,51 @@ console.log(dbData)
                         </div>
                     </div>
                     <div className='form-group'>
-                        <label>Address</label>
+                        <label>Address-(My Quarter)</label>
                         <span className='error-message'>{errors.address}</span>
-                        <input
-                        name='address'
-                        className='form-control' 
-                        placeholder='Enter Your Address Line'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.address}
-                        />
+                            <select
+                                name='address'
+                                className='form-control' 
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.address}
+                            >
+                                <option></option>
+                                {locations&&locations.length>0?locations.map((location,index)=>(
+                                     <option key={index} selected={ dbData.location===location.name&&'selected'} value={location.quarter} onClick={()=>setsubLocations({all:location.subLocations,LocationId:location.id})}>{location.quarter}</option>
+                                )):(
+                                    <></>
+                                )}
+                               
+                            </select>
                     </div>
                     <div className='form-group'>
-                        <label>Preferred Pick Point</label>
+                        <label>SubLocation</label>
                         <select name='preferredLocation'
                             onChange={handleChange}
                             onBlur={handleBlur}
                             className='form-control'
                         >
-                            <option value='Acacias' selected={ dbData.location==='Acacias'&&'selected'}>Acacias</option>
-                            <option value='Mendong'>Mendong</option>
-                            <option value='Emmana'>Emmana</option>
-                            <option value='Simbok'>Simbok</option>
-                            <option value='Biyem-Assi'>Biyem-Assi</option>
-                            <option value='Essos'>Essos</option>
+                            {sublocations.all&&sublocations.all.length>0?sublocations.all.map((subs,index)=>(
+                               <option key={index} value='subs'>{subs}</option>
+                            )):(
+                                <></>
+                            )}
                         </select>
-                        
-                    </div>               
+                    </div>  
+                    <div className='form-group'>
+                        <label>Added Description :</label>
+                        <input
+                            name='addedLocation'
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className='form-control'
+                            placeholder='e.g Opposite hopital Biyemassi (En face pharmacie Etienne)'
+                        />
+                     <span className='error-message'>{errors.addedLocation}</span>
+   
+                    </div>  
+
                 <div className='form-group'>
                     <button type='submit' className='btn-bg'>Update Profile</button>
                 </div>            

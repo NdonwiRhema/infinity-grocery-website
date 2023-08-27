@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { FaAngleRight, FaCoins, FaMinus, FaPlus, FaStore, FaWeightHanging} from 'react-icons/fa'
 
 import './CartDetail.css'
@@ -6,16 +6,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../app/features/cartSlice'
 import { Badge } from 'react-bootstrap'
 import { selectUnits } from '../utils/GeneralOperations'
+import { pullLocalStorage } from '../utils/LocalStorageOperations'
+
 
 const CartDetail = ({data}) => {
     const[Qty,setQty] = useState(1)
     const dispatch = useDispatch()
     const categories = useSelector((state)=>state.category.data)
-    const Category = categories.filter((item)=>item.id===data.category)
+    const Category = categories.length>0 ? categories.filter((item)=>item.id===data.category):pullLocalStorage("AllCategory").filter((item)=>item.id===data.category)
     const units = selectUnits(data.stock[0].units)
     const currentCart = [localStorage.getItem('cart')]
-    console.log(Category)
-    console.log(data)
+   
     function AddtoCart(){
       const TempProduct = {
         id:data.id,

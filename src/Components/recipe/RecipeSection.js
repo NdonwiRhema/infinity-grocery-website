@@ -13,7 +13,8 @@ const RecipeSection = ({recipeObject}) => {
     const[key,setKey] = useState();
     const dispatch = useDispatch()
     
-    const products = pullLocalStorage('AllProducts')
+    // const products = pullLocalStorage('AllProducts')
+    const products = useSelector((state)=>state.product.data)
     let video
     console.log(products)
   if (recipeObject.recipe.video){
@@ -33,17 +34,17 @@ const RecipeSection = ({recipeObject}) => {
         ingredients.forEach(element => {
             console.log(element)
             const corresponding= products.filter((item)=>item.id === element.id)
+           console.log(corresponding)
             const fullproduct = {
                 product : corresponding,
                 Quantity: element.Quantity,
                 Comment:element.Comment,
                 units:element.units
             }
-
-            productIngredient.push(fullproduct)
-                });
+                corresponding.length>0 ? productIngredient.push(fullproduct):console.log("Empty")
+            });
                 console.log(productIngredient)
-        productIngredient.forEach(item =>{
+            productIngredient.forEach(item =>{
             // constitute the temp product for all elements
             const TempProduct = {
                             id:item.product[0].id,
@@ -57,8 +58,7 @@ const RecipeSection = ({recipeObject}) => {
                             price:item.product[0].price,
                             subtotal:item.product[0].price*item.Quantity,
                             discount:item.product[0].pricePromotion>0?item.product[0].price-item.product[0].pricePromotion:0,
-                           
-                        }
+                     }
            let newCartArr =[...cartArray,TempProduct]
            cartArray = newCartArr
         })

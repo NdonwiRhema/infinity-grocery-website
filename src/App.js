@@ -45,8 +45,9 @@ function App() {
   },[dispatch])
   return (
     <div className="App">
-      <Header/>
+       <Header/>
         <Router>
+         
           <Routes>
             <Route exact path = "/" element={<HomeScreen/>} />
             <Route exact path = "/shop" element={<ShopScreen/>} />
@@ -67,9 +68,10 @@ function App() {
           {USER && ( <Route exact path = "/profiles" element={<ProfileScreen/>} />)} 
           
           </Routes>
+       
         </Router>
+        <Footer/>
 
-      <Footer/> 
        
      
     </div>
