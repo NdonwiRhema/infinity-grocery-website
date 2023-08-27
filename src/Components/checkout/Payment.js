@@ -41,13 +41,15 @@ const Payment = ({check}) => {
         currency:'FCFA',
         deliveryFee:deliveryCharge,
         lastModified:createLastModified(),
-        created_at:createLastModified()
+        created_at:createLastModified(),
+        content:cartInfo
+
     }
     console.log(Order)
     // Loading Firestore..
 push("Orders",Order,docId).then((res)=>{
         console.log(res)
-        // send the sms with EasysendSms
+        // send the sms with ClickSend
         const to = '237'+persona.contact
         const msg = persona.owner+'Thanks for placing an order on Infinity Grocery.Your order ID is '+docId
 

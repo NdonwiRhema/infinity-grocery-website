@@ -11,13 +11,18 @@ const ProfileScreen = () => {
   const currentUser = Authentic.currentUser
 useEffect(()=>{
   const docRef = doc(db,"Users",currentUser.uid)
+ try {
   getDoc(docRef).then((docSnapshot)=>{
-      if(docSnapshot.exists()){
-          const db_user = docSnapshot.data()
-          setDbData(db_user)
-      }
-  })
+    if(docSnapshot.exists()){
+        const db_user = docSnapshot.data()
+        setDbData(db_user)
+    }
+})
+ } catch (error) {
+  console.warn(error)
+ }
 },[])
+console.log()
   return (
     <div>
       <ProfileHeader data ={dbData} user={currentUser}/>
