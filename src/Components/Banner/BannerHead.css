@@ -41,6 +41,7 @@
     width: 25px;
     height: 25px;
     margin-bottom: 10px;
+    border-radius: 25px;
 }
 .login>h6:hover{
     font-size: 12px;

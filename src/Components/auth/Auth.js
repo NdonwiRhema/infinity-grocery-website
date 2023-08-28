@@ -38,9 +38,7 @@ const password = values.password
 
 const loginValidationSchema = Yup.object().shape({
   email:Yup.string().email("You need to enter a Valid Email").required('Required'),
-  password:Yup.string()
-              .matches(Regex,{message:'Password must have 1 special character, 1uppercase,1lowerCase, minlength of 8'})
-              .min(8).required('Required'),
+  password:Yup.string().required('Required'),
   })
 // // Login component
 const LoginForm = ()=>{
@@ -63,7 +61,7 @@ const LoginForm = ()=>{
                         value={values.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder='Username or email' 
+                        placeholder='Email' 
                         className='form-control'
                         style={{border:errors.email? "1px solid red":'none'}} 
                         type='email' required/>
@@ -84,9 +82,9 @@ const LoginForm = ()=>{
                     </div>
                  </div>
               <div className='submit-grp'>
-                <button  type='submit' 
-                // `${!complete?'btn-bg':'btn-Inactive'}`
-                className={'btn-bg'}>Sign In</button>
+                <button
+                  type='submit' 
+                  className={'btn-bg'}>Sign In</button>
               </div>
               
             </form>
@@ -108,7 +106,7 @@ const LoginForm = ()=>{
           ):(
             <SignUpForm/>
             )}
-          <p>{signUp?"Don't Have an Account ? ":'Already have an Account ?'}
+          <p>{!signUp?"Don't Have an Account ? ":'Already have an Account ?'}
                 <span onClick={()=>setSignUp(!signUp)}>{!signUp?'Sign Up Now':'Sign In Now'}</span>
                 <br/>
           </p>

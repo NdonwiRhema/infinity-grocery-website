@@ -14,7 +14,7 @@ function Register (values){
     const password = values.password
        const newUser = {
         userId : regUser?regUser.uid:'',
-        username: '',
+        username: values.username,
         email: email,
         password: password,
         telephone:values.telephone,
@@ -33,9 +33,9 @@ function Register (values){
     console.log(user)
     setRegUser(user.user)
     try {
-        setDoc(doc(db,"Users",user.user.uid),newUser).then(()=>alert("All Done. Welcoe to the Big Family !"))
+        setDoc(doc(db,"Users",user.user.uid),newUser).then(()=>alert("All Done. Welcome to the Big Family !"))
     } catch (error) {
-        alert("Oops we seem to have a problem. :"+error)
+        alert("Oops we seem to have a problem. :"+error.message)
     }
     
   }).catch((error)=>{
@@ -49,9 +49,11 @@ function Register (values){
 }
 
     const Regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    const phoneRegex =  /^([5-6]\d{8})$/ // regex for a cameroonian number
     const signUpValidationSchema = yup.object().shape({
         email:yup.string().email("You need to enter a Valid Email").required('Required'),
-        telephone:yup.number('invalid phone Number').min(10).required('Required'),
+        username:yup.string().required('Required'),
+        telephone:yup.string('phone Number must be a valid Cameroonian Number').matches(phoneRegex,{message:'The Phone Number must be a valid Cameroonian Number'}).required('Required'),
         password:yup.string()
                     .matches(Regex,{message:'Password must have 1 special character, 1uppercase,1lowerCase, minlength of 8'})
                     .min(8).required('Required'),
@@ -65,6 +67,7 @@ function Register (values){
         <Formik
             initialValues={{
                 email:' ',
+                username:'',
                 password:'',
                 telephone:'',
                 confirmPassword:''
@@ -78,11 +81,24 @@ function Register (values){
                             <div className='form-group'>
                                 <input
                                 style={{border:errors.message?'1px solid solid':'none'}} 
+                                name='username'
+                                value={values.username}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder='Username'
+                                className= 'form-control'  
+                                type='text'
+                                required/>
+                                <span className='error-message'>{errors.username}</span>
+                            </div>
+                            <div className='form-group'>
+                                <input
+                                style={{border:errors.message?'1px solid solid':'none'}} 
                                 name='email'
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                placeholder='Username or email'
+                                placeholder='Email'
                                 className= 'form-control'  
                                 type='email'
                                 required/>

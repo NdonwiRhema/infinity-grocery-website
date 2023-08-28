@@ -3,7 +3,7 @@ import { pullAll } from "../../Components/utils/FirebaseOperations";
 import { loadLocalStorage } from "../../Components/utils/LocalStorageOperations";
 
 
-export const locationThunk = createAsyncThunk('recipe/fetchRecipe',()=>{
+export const locationThunk = createAsyncThunk('Locations/fetchlocation',()=>{
     return pullAll("Locations").then((response)=>response)
 
 })
@@ -38,7 +38,16 @@ const locationSlice = createSlice({
                 const locationData = item.data()
                 tempArr.push(locationData)
                               })
-           state.data = tempArr
+           state.data = tempArr.sort((a,b)=>{
+            let x= a.quarter.toLowerCase()
+            let y= b.quarter.toLowerCase()
+           if(x>y){
+            return 1
+           }
+        else{
+            return -1
+        }
+        })
            loadLocalStorage(tempArr,"AllLocations")
         })
         builder.addCase(locationThunk.rejected,(state,action)=>{

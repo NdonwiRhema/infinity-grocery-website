@@ -13,6 +13,8 @@ const ProfileHead = ({data,user}) => {
     
 function uploadImage(e){
     console.log(e.target.files[0])
+    let img = document.getElementById('profil_img')
+    img.setAttribute('src',URL.createObjectURL(e.target.files[0]))
     const imgs = {
         files:e.target.files[0],
         ID:e.target.files[0].name
@@ -29,7 +31,7 @@ function uploadImage(e){
              // update the profile and update the user collection
              try {
                 updateFirebase("Users",user.uid,{profile_pic:url}).then(res=>{
-                    console.log(res)
+                    
                 })
              } catch (error) {
                 console.log(error)
@@ -56,7 +58,7 @@ function uploadImage(e){
                 <div className='pic-details'>
                    <div id='profile-pic-wrapper'> 
                     <div id='profile_pic'>
-                        <img src={data&&data.profile_pic?data.profile_pic:profilImg} alt='profile'/>
+                        <img id='profil_img' src={data&&data.profile_pic?data.profile_pic:profilImg} alt='profile'/>
                     </div>
                     <div id='form_pic'>
                         <form>
@@ -66,7 +68,7 @@ function uploadImage(e){
                     </div>
                    </div>
                     <div className='pic-credentials'>
-                        <h3> {user&&user.displayName?user.displayName:'No Username '}</h3>
+                        <h3> {data?data.telephone:'No Username '}</h3>
                         <h5>Email: {user&&user.email}</h5>
                         <h6>Telephone: {data&&data.telephone}</h6>
                         <h6 style={{fontWeight:'200',fontStyle:'italic'}}>Address: {data&&data.Address}</h6>

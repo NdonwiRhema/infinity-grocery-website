@@ -6,7 +6,6 @@ import { FaPlay } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../app/features/cartSlice';
 import { loadLocalStorage, pullLocalStorage } from '../utils/LocalStorageOperations';
-import { loadCategory } from '../../app/features/categorySlice';
 
 
 const RecipeSection = ({recipeObject}) => {
@@ -71,7 +70,7 @@ const RecipeSection = ({recipeObject}) => {
              dispatch(addToCart(element))
              console.log("done :"+ element)
            })
-              
+             window.scrollTo(0,0) 
     }
   return (
     <div >

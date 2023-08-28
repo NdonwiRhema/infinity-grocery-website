@@ -16,6 +16,7 @@ const CartBody = () => {
     const navigate = useNavigate()
    const dispatch =useDispatch()
     const cartSelect = useSelector((state)=>state.cart)
+    const cartTotal = useSelector((state)=>state.cart.cartTotal)
     let Cart = cartSelect.data
 function toCheckOut (){
     navigate('/checkout',{state:JSON.stringify(Cart)})
@@ -43,7 +44,7 @@ function toCheckOut (){
                 </Col>
                 <Col xs={12} sm={3}>
                     <CartDetails/>
-                    <button  className='btn-bg' onClick={()=>toCheckOut()}> Check Out </button>
+                    <button  className={`${cartTotal>0?'btn-bg ':'btn-Inactivate'}`} onClick={()=>cartTotal>0&&toCheckOut()}> Check Out </button>
                 </Col>
             </Row>
         </Container>

@@ -31,6 +31,7 @@ const Product = ({detail}) => {
          localStorage.setItem('cart',JSON.stringify(TempProduct))
            }
            dispatch(addToCart(TempProduct))
+          window.scrollTo(0,0)
     }
 
   return (

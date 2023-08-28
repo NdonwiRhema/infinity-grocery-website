@@ -8,8 +8,6 @@ import Featured from '../../Components/Featured'
 import {  pullWhere } from '../../Components/utils/FirebaseOperations'
 import { loadLocalStorage, pullLocalStorage } from '../../Components/utils/LocalStorageOperations'
 
-
-
 const HomeScreen = () => {
 function LoadCarousels () {
     pullWhere("Ui",'status','active','==').then(response=>{

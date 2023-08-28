@@ -5,18 +5,23 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { signOut } from 'firebase/auth'
 import Authentic from '../../firebase'
+import { loadLocalStorage, pullLocalStorage } from '../utils/LocalStorageOperations'
 
 const BannerHead = () => {
     const UserSelect= useSelector((state)=>state.user.data)
     let User
     let username
-   
+   const lang = pullLocalStorage('language')
+  
     if(UserSelect){
      User = UserSelect.user
    
     const displayName = User && User.displayName
     username = displayName?displayName:User.email.split('@')
-    
+    console.log(username)
+  }
+  function languageSelect(e){
+    loadLocalStorage(e.target.value,'language')
   }
   return (
     <div className='banner_container'>
@@ -34,14 +39,14 @@ const BannerHead = () => {
                     <h6> (+237) 650 186 979 | 678 739 238 </h6>
                 </div>
             </Col>
-            <Col xs={12} sm={1} md={1}></Col>
+
             <Col xs={12} sm={5} md={5}>
                         <div  className='banner_identity'>
                            <div className='Language_select'>
                                 <form>
-                                    <select>
-                                        <option>English</option>
-                                        <option>French</option>
+                                    <select onChange={(e)=>languageSelect(e)}>
+                                        <option value={'en'}>English</option>
+                                        <option value={'fr'}>French</option>
                                     </select>
                                 </form>
                            </div>

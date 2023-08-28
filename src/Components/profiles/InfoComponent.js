@@ -2,7 +2,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { updatePhoneNumber, updateProfile, upd} from 'firebase/auth'
+import { updatePhoneNumber, updateProfile,} from 'firebase/auth'
 import Authentic,{db} from '../../firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import {FaAngleDown} from 'react-icons/fa'
@@ -25,9 +25,9 @@ const InfoSchema = Yup.object().shape({
 
 
 const InfoComponent = () => {
-  const User = Authentic.currentUser
-  const[countryCode,setCountryCode] = useState('cm')
-  const[drop,setDrop]=useState(false)
+const User = Authentic.currentUser
+const[countryCode,setCountryCode] = useState('cm')
+const[drop,setDrop]=useState(false)
  const [dbData,setDbData]= useState([])
  const[locations,setLocations]=useState([])
  const[sublocations,setsubLocations]=useState(
@@ -63,29 +63,18 @@ const InfoComponent = () => {
         const preferredLocation = values.preferredLocation
         const addedLocation = values.addedLocation
         const address = values.address
-  
-        try {
-            updateProfile(currentUserInfo,{
-                displayName:username,
-            }).then(()=>{
-              })
-        } catch (error) {
-            console.warn(error)
-        }
-        
-        updatePhoneNumber(currentUserInfo,{phoneNumber:telephone})
-        const docRef = doc(db,"Users",currentUserInfo.uid)   
-        try {
+     try {
+            const docRef = doc(db,"Users",currentUserInfo.uid)   
             updateDoc(docRef,{
                 username:username,
                 telephone:telephone,
                 location:preferredLocation,
-                Address:address+preferredLocation+addedLocation,
+                Address:address+' - '+preferredLocation+' - '+addedLocation,
                 country:countryCode,
                 lastModified:Date.now().toLocaleString()
                })
-            alert('User Profile Successfully Updated')
-           
+            // alert('User Profile Successfully Updated')
+           window.location.reload()
         } catch (error) {
             console.log(error)
         }
@@ -97,12 +86,26 @@ function getLocations(){
           response.forEach(item =>{
               const categoryData = item.data()
               tempArr.push(categoryData)
-              setLocations((prevState)=>[...prevState,categoryData])
-               })
-           
+            //   setLocations((prevState)=>[...prevState,categoryData])
+                })
+            setLocations(()=>tempArr.sort((a,b)=>{
+            let x= a.quarter.toLowerCase()
+            let y= b.quarter.toLowerCase()
+           if(x>y){
+            return 1
+           }
+        else{
+            return -1
+        }
+        }))
      })
- }
-
+}
+function changeLocation(e){
+    const quarter = e.target.value
+   const quarterData = quarter && quarter !==''? locations.filter((item)=>item.quarter === quarter).pop():[]
+   setsubLocations({all:quarterData.subLocations&&quarterData.subLocations.sort(),LocationId:quarterData.id})
+  
+}
 console.log(dbData)
    return (
     <div id='info'>
@@ -112,7 +115,7 @@ console.log(dbData)
             email :User.email,
             telephone :!User.phoneNumber?dbData.telephone:User.phoneNumber,
             preferredLocation :dbData?dbData.location:'',
-            address :dbData?dbData.Address:'',
+            address :'',
             addedLocation:''
         }
          }
@@ -130,7 +133,7 @@ console.log(dbData)
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.username}
-                            />
+                        />
                     </div>
                     <div className='form-group'>
                         <label>Email</label>
@@ -191,13 +194,22 @@ console.log(dbData)
                             <select
                                 name='address'
                                 className='form-control' 
-                                onChange={handleChange}
+                                onChange={(e)=>{
+                                         changeLocation(e)
+                                         handleChange(e)
+                                        }}
                                 onBlur={handleBlur}
                                 value={values.address}
                             >
                                 <option></option>
                                 {locations&&locations.length>0?locations.map((location,index)=>(
-                                     <option key={index} selected={ dbData.location===location.name&&'selected'} value={location.quarter} onClick={()=>setsubLocations({all:location.subLocations,LocationId:location.id})}>{location.quarter}</option>
+                                    <option
+                                      key={index}
+                                      id={location.id}
+                                      value={location.quarter}
+                                       >
+                                        {location.quarter}
+                                    </option>
                                 )):(
                                     <></>
                                 )}
@@ -211,8 +223,9 @@ console.log(dbData)
                             onBlur={handleBlur}
                             className='form-control'
                         >
+                            <option></option>
                             {sublocations.all&&sublocations.all.length>0?sublocations.all.map((subs,index)=>(
-                               <option key={index} value='subs'>{subs}</option>
+                               <option key={index} value={subs}>{subs}</option>
                             )):(
                                 <></>
                             )}
@@ -227,7 +240,7 @@ console.log(dbData)
                             className='form-control'
                             placeholder='e.g Opposite hopital Biyemassi (En face pharmacie Etienne)'
                         />
-                     <span className='error-message'>{errors.addedLocation}</span>
+                       <span className='error-message'>{errors.addedLocation}</span>
    
                     </div>  
 
