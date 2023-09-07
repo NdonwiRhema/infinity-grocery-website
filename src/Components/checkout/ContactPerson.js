@@ -1,55 +1,47 @@
-import React,{useEffect, useRef, useState} from 'react'
+import React,{ useRef, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { locationThunk, setActiveLocation } from '../../app/features/locationSlice'
+import {setActiveLocation } from '../../app/features/locationSlice'
 import Heading from '../Heading'
 import { setdeliveryCharge } from '../../app/features/cartSlice'
-import { pull } from '../utils/FirebaseOperations'
+// import { pull } from '../utils/FirebaseOperations'
+import { useStore } from 'react-redux'
 
-const ContactPerson = ({setCheck}) => {
+const ContactPerson = ({setCheck,authUser}) => {
    const dispatch = useDispatch()
-   const [authUser,setAuthUser] = useState()
+   const [ActiveSubLocations,setActiveSubLocations] = useState([])
    const locationRef = useRef(null)
    const contactRef = useRef(null)
    const phoneRef = useRef(null)
    const townRef = useRef(null)
    const subLocationRef = useRef(null)
    const descRef = useRef(null)
-  
-
+  const freshState = useStore()
+  console.log(ActiveSubLocations)
   const data = useSelector((state)=>state.locations.data)
-  const activelocation = useSelector((state)=>state.locations.activeLocation)
-  const USER = useSelector((state)=>state.user.data)
-  if(USER){
-    pull("Users",USER.user.uid).then((user)=>{
-      setAuthUser(user)
-    })
-  }
-  const handleChange = (e)=>{
+
+
+const handleChange = (e)=>{
     const all =  e.target.value.split('+')
-    console.log(all)
-     const subs = all[1].split(',')
-      dispatch(setActiveLocation(subs))
-    const quarterData = data.filter((item)=> item.quarter === all[0])
-   console.log(quarterData)
-    dispatch(setdeliveryCharge(quarterData))
- }
+    const subs = all[1].split(',')
+     dispatch(setActiveLocation(subs))
+     const quarterData = data.filter((item)=> item.quarter === all[0])
+     dispatch(setdeliveryCharge(quarterData))
+    setActiveSubLocations(freshState.getState().locations.activeLocation)
+  }
 const handleSubmit = (e)=>{
     e.preventDefault()
-    const addrs = !USER&&locationRef.current.value.split('+')
-    const fullAddress = USER?authUser.Address:addrs[0]+'-'+subLocationRef.current.value+'-'+descRef.current.value
+    const addrs = !authUser&&locationRef.current.value.split('+')
+    const fullAddress = authUser?authUser.Address:addrs[0]+'-'+subLocationRef.current.value+'-'+descRef.current.value
     const contactData ={
            owner:contactRef.current.value,
            contact:phoneRef.current.value,
            ownerAddress:fullAddress,
-           ownerTown:!USER?townRef.current.value:'Yaounde',
+           ownerTown:!authUser?townRef.current.value:'Yaounde',
     }
     setCheck({complete:true,
                 contactData:contactData
             })
 }
-useEffect(()=>{
-    dispatch(locationThunk())
-},[dispatch])
 
   return (
     <div>
@@ -60,9 +52,9 @@ useEffect(()=>{
             <label>Contact Person</label>
             <input ref={contactRef}
              className='form-control'
-              placeholder={`${USER && authUser.username ?authUser.username:'e.g. Jane Johnson '}`}
-              value={USER && authUser.username} 
-              disabled={USER&&true}
+              placeholder={`${authUser.username ?authUser.username:'e.g. Jane Johnson '}`}
+              value={authUser.username && authUser.username} 
+              disabled={authUser.username&&true}
               required/>
         </div>
         <div className='form-group'>
@@ -72,19 +64,19 @@ useEffect(()=>{
             type='tel'
             pattern='([5-6]\d{8})'
             className='form-control'
-            placeholder={`${USER && authUser.telephone ?authUser.telephone:'valid Cameroonian Number e.g 650186979'}`}
-            value={USER && authUser.telephone} 
-            disabled={USER&&true}
+            placeholder={`${authUser.telephone ?authUser.telephone:'valid Cameroonian Number e.g 650186979'}`}
+            value={authUser.telephone && authUser.telephone} 
+            disabled={authUser.telephone&&true}
             required/>
         </div>
         <div className='form-group'>
-            <label>Town</label>
-            {USER?(
+            <label>{authUser.Address?'My Address':'Town'}</label>
+            {authUser?(
               <input
               className='form-control'
-              placeholder={`${USER && authUser.Address ?authUser.Address:'valid Cameroonian Number e.g 650186979'}`}
-              value={USER && authUser.Address} 
-              disabled={USER&&true}
+              placeholder={`${ authUser.Address ?authUser.Address:'valid Cameroonian Number e.g 650186979'}`}
+              value={authUser.Address && authUser.Address} 
+              disabled={authUser.Address&&true}
               required
               />
             ):(
@@ -100,7 +92,7 @@ useEffect(()=>{
         </div>
         <div className='form-group'>
             <label>Location(Quartier)</label>
-           {!USER?(<select required
+           {!authUser.username?(<select required
             id='Quarter'
             ref={locationRef} 
             className='form-control'
@@ -114,21 +106,21 @@ useEffect(()=>{
           </select>):(
             <input
               className='form-control'
-              placeholder={`${USER && authUser.Address ?authUser.Address:'valid Cameroonian Number e.g 650186979'}`}
-              value={USER && authUser.Address} 
-              disabled={USER&&true}
+              placeholder={`${authUser.Address ?authUser.Address:'valid Cameroonian Number e.g 650186979'}`}
+              value={authUser.Address && authUser.Address} 
+              disabled={authUser.Address&&true}
               required
               />
           )}
         </div>
         <div className='form-group'>
-           {!USER&&(
+           {!authUser.username&&(
             <>
              <label>SubLocation</label>
               <select required className='form-control' ref={subLocationRef}>
                 <option></option>
                 {
-                  activelocation.length>0 ? activelocation.sort().map((location,index)=> (
+                  ActiveSubLocations.length>0 ? ActiveSubLocations.map((location,index)=> (
                          <option
                           value={location}
                           key={index}>{location}</option>
@@ -139,7 +131,7 @@ useEffect(()=>{
            )}
         </div>
         <div className='form-group'>
-          {!USER&&(
+          {!authUser.username&&(
             <>
               <label>Additional Description</label>
               <textarea required ref={descRef} className='form-control'></textarea>

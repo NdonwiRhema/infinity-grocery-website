@@ -19,9 +19,9 @@ function LoadCarousels () {
         loadLocalStorage(tempArr,"AllUi")
     })
 }
-    useEffect(()=>{
-        LoadCarousels()
-    },[])
+useEffect(()=>{
+   LoadCarousels()
+},[])
     const data = pullLocalStorage("AllUi")
   return (
    <div>

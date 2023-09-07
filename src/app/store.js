@@ -7,6 +7,7 @@ import locationReducer from './features/locationSlice'
 import userReducer from './features/userSlice'
 import userAdminReducer from './features/userAdminSlice';
 import categoryReducer from './features/categorySlice'
+import languageReducer from './features/languageSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     adminUser:userAdminReducer,
     category:categoryReducer,
     locations:locationReducer,
+    language:languageReducer,
   },
 });

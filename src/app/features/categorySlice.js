@@ -1,11 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loadLocalStorage, pullLocalStorage } from "../../Components/utils/LocalStorageOperations";
-import { pullAll } from "../../Components/utils/FirebaseOperations";
+import { pullWhere } from "../../Components/utils/FirebaseOperations";
 
-
-
-export const categoryThunk = createAsyncThunk('category/fetchCategory',()=>{
-    return pullAll("Category").then((response)=>response)
+export const categoryThunk = createAsyncThunk('category/fetchCategory',(language)=>{
+    return pullWhere("Category","lang",language,'==').then((response)=>response)
 })
 
 const categorySlice = createSlice({

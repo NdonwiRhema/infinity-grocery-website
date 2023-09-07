@@ -1,14 +1,32 @@
 export const  French ={
     header:[{
             login:'Se Connecter',
-            logut:'Deconnexion',
-            account:'Pas de compte'
+            logOut:'Deconnexion',
+            language:'Langue',
+            account:'Pas de compte ?',
+            home:'Acceuil',
+            shop:'Boutique',
+            breakfast:'Petit-déjeuner',
+            fruits:'Fruits',
+            recipes:'Recettes',
+            proteins:'Protéines',
+            cart:'Mon Panier',
+            social:'Parlez-nous directement'
 
     }],
     footer:[{
+        about:'A Propos',
+        delivery:'Points de Livraison',
+        contact:'contactez Nous',
+        social:'Reseau Sociaux',
+        home:'Accueil',
+        recipes:'Mes Recettes',
+        shopping:'Boutique',
+        promotions:'Promo'
         
     }],
     about:[{
+            about: `A propos`,
             aboutText:`INFINITY GROCERY. Ce qui a commencé petit, avec l'idée solitaire d'un magasin offrant une remise et l'idée de base de déménager plus pour moins cher, est devenu au cours des 20 dernières années une véritable partie de la vie de la plupart des foyers.
                 Depuis sa création en 2001, l'objectif a été d'assurer une expérience d'achat confortable et abordable au consommateur domestique grâce à la diversification et à la multiplication de produits alternatifs/de remplacement à des prix impressionnants.
                 Faire une apparition sur le Web sous le nom d'infinity-grocery.com n'est qu'une autre tentative d'étendre notre touche unique à votre expérience quotidienne d'achat de produits d'épicerie.
@@ -22,6 +40,35 @@ export const  French ={
             Répondre à vos besoins est notre joie. Nous avons hâte que vous commandiez.
             A tres bientot ...`,
         }],
-
+    home:[{
+        featured:'Produits populaires',
+        categories:'Produits Par Categorie',
+        none:'aucun produit',
+        
+    }],
+    shop:[{
+        match:'Correspondant..',
+        filter:'Filtre Par Categorie',
+        filterSize:'Filtre Par Taille',
+        resetFilters:'',
+        large:'Large',
+        medium:'moyen',
+        small:'petit'
+    }],
+    recipe:{
+        all:'Recettes',
+        videotext:'Preferez Regarder sur YouTube',
+        btnText: 'Ajouter au Panier',
+        begin: 'Commencons'
+    },
+    breakfast:{
+        Breakfast:'Petit-déjeuner',
+        Fruits:'Fruits',
+        Protein:'Protéines'
+    },
+    delivery:{
+       title: 'Points de Livraison',
+       
+    }
 
 }

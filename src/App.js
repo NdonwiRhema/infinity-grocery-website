@@ -22,14 +22,15 @@ import Authentic from './firebase';
 import { Login, logOut } from './app/features/userSlice';
 import ProfileScreen from './screens/ProfileScreen';
 import CheckOutScreen from './screens/CheckOutScreen';
+import { French } from './Components/utils/FrenchTranslation';
 
 
 
 function App() {
   const dispatch = useDispatch()
   const USER = useSelector((state)=>state.user.data)
- 
-  useEffect(()=>{
+  const language = useSelector((state)=>state.language.data)
+useEffect(()=>{
     const unsubscribe = onAuthStateChanged(Authentic,(userAuth)=>{
       if(userAuth){
         const currentUser =  userAuth.auth.currentUser
@@ -52,9 +53,9 @@ function App() {
             <Route exact path = "/" element={<HomeScreen/>} />
             <Route exact path = "/shop" element={<ShopScreen/>} />
             <Route exact path = "/recipe" element={<RecipeScreen/>} />
-            <Route exact path = "/breakfast" element={<BreakfastScreen title={'Breakfast'}/>} />
-            <Route exact path = "/fruit" element={<BreakfastScreen title={'Fruits'}/>} />
-            <Route exact path = "/protein" element={<BreakfastScreen title={'Protein'}/>} />
+            <Route exact path = "/breakfast" element={<BreakfastScreen title={language==='en'?'Breakfast':French.breakfast.Breakfast}/>} />
+            <Route exact path = "/fruit" element={<BreakfastScreen title={language==='en'?'Fruits':French.breakfast.Fruits}/>} />
+            <Route exact path = "/protein" element={<BreakfastScreen title={language==='en'?'Protein':French.breakfast.Protein}/>} />
             <Route exact path = "/about" element={<AboutScreen/>} />
             <Route exact path = "/delivery" element={<DeliveryScreen/>} />
             <Route exact path = "/cart" element={<CartScreen/>} />

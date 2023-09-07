@@ -1,29 +1,19 @@
 import React,{useState} from 'react'
 import Heading from '../Heading'
 import './Places.css'
+import { useSelector } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 
 const Places = ({setPlace}) => {
-  const [active,setActive]=useState('mendong')
+  const [active,setActive]=useState('')
+  const language = useSelector((state)=>state.language.data)
   const handleActive = (place)=>{
     setActive(place)
-    switch (place) {
-      case 'mendong':
-          setPlace('mendong')
-        break;
-    
-      case 'acacias':
-          setPlace('acacias')
-        break;
-    
-      default:
-        setPlace('mendong')
-        break;
-    }
-    
+    setPlace()
   }
   return (
     <div className='place-holder'>
-        <Heading text={'All Pick Up Points'}/>
+        <Heading text={language==='en'?'Delivery Locations':French.delivery.title}/>
         <div className={`place ${active==='mendong'?'place-active':''}`}>
            <button onClick={()=>handleActive('mendong')} className='placeSwitch'>
               <h5>Mendong Marche</h5>

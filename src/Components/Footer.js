@@ -2,24 +2,26 @@ import React from 'react'
 import { Col, Row,Container } from 'react-bootstrap'
 import FooterLink from './footerlinks/FooterLink'
 import FooterLogo from '../assets/logotxt.png'
+import { useSelector } from 'react-redux'
+import { French } from './utils/FrenchTranslation'
 
 const Footer = () => {
-    
+    const language = useSelector((state)=>state.language.data)
   return (
     <div style={{backgroundColor:'#1c2847',width:'100%',minHeight:'200px',borderTop:'2px solid #f39317',marginTop:25,padding:25}}>
         <Container fluid>
             <Row>
                 <Col xs={12} sm={3} md={3} lg={3}>
-                    <FooterLink text={'About Us'} link={'/about'}/>
-                    <FooterLink text={'Delivery Points'} link={'/delivery'}/>
-                    <FooterLink text={'Contact Us'} link={'/'}/>
-                    <FooterLink text={'Social Media'} link={'/'}/>
+                    <FooterLink text={language === 'en' ?'About Us':French.footer[0].about} link={'/about'}/>
+                    <FooterLink text={language === 'en' ?'Delivery Points':French.footer[0].delivery} link={'/delivery'}/>
+                    <FooterLink text={language === 'en' ?'Contact Us':French.footer[0].contact} link={'/'}/>
+                    <FooterLink text={language === 'en' ?'Social Media':French.footer[0].social} link={'/'}/>
                 </Col>
                 <Col xs={12} sm={3} md={3} lg={3}>
-                    <FooterLink text={'Home'} link={'/'}/>
-                    <FooterLink text={'Recipes'} link={'/recipe'}/>
-                    <FooterLink text={'Shopping'} link={'/shop'}/>
-                    <FooterLink text={'Promotions'} link={'/promotion'}/>
+                    <FooterLink text={language === 'en' ?'Home':French.footer[0].home} link={'/'}/>
+                    <FooterLink text={language === 'en' ?'Recipes':French.footer[0].recipes} link={'/recipe'}/>
+                    <FooterLink text={language === 'en' ?'Shopping':French.footer[0].shopping} link={'/shop'}/>
+                    <FooterLink text={language === 'en' ?'Promotions':French.footer[0].promotions} link={'/promotion'}/>
                 </Col>
                 <Col xs={12} sm={6} md={6} lg={6}>
                     <div style={{width:'100%',}}>

@@ -1,14 +1,32 @@
-import React from 'react'
+import React ,{useEffect} from 'react'
 import './CheckoutDetail.css'
 import Heading from '../Heading'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-const CheckoutDetails = () => {
+import { setdeliveryCharge } from '../../app/features/cartSlice'
+const CheckoutDetails = ({authUser}) => {
+    const dispatch = useDispatch()
     const location = useLocation()
     const cartInfo  = JSON.parse(location.state)
     const deliveryCharge = useSelector((state)=>state.cart.deliveryCharge)
+    const locations = useSelector((state)=>state.locations.data)
     const cartTotal = useSelector((state)=>state.cart.cartTotal)
-  
+   let grandtotal = parseInt(cartTotal)+parseInt(deliveryCharge)
+
+function userDeliveryFee(){
+    const addressZone = authUser.location ?authUser.location:authUser.Address.split('-')
+    const locationData =authUser.location ?
+                                          locations.filter((item)=>item.quarter === addressZone)
+                                         : locations.filter((item)=>item.quarter === addressZone[0])
+    dispatch(setdeliveryCharge(locationData))
+
+}   
+
+useEffect(()=>{
+    if(authUser){
+        authUser.location && userDeliveryFee()
+    }
+  },[])
     return (
     <div className='checkout-container'>
         <Heading text={'Your Order'}/>
@@ -25,7 +43,7 @@ const CheckoutDetails = () => {
                 </div>
                 <div className='checkout-summary-subtotal'>
                     <h3>Grand Total</h3>
-                    <h4>{cartTotal+deliveryCharge}</h4>
+                    <h4>{grandtotal}</h4>
                 </div>
           </div>
         </div>

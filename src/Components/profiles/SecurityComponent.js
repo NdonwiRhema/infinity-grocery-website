@@ -116,9 +116,9 @@ const SecurityComponent = () => {
     }
     function verifyEmail(){
         console.log("verifying sending")
-        sendEmailVerification(user).then(()=>{
+        sendEmailVerification(user).then((data)=>{
             setStatus('verification sent')
-          
+          console.log(data +'  '+"Email is supposed to be sent")
         });
     }
   return (
@@ -194,7 +194,7 @@ const SecurityComponent = () => {
                 {!user.emailVerified&&(
                     <div className='emailverification'>
                         <h6>Your email ({user.email} ) is {user.emailVerified?'Verified':'not verified Yet'}</h6>
-                        <Button variant={`${!status==='verification sent'&&'success'}`} style={{display:!status==='verification sent'?'none':'block'}} onClick={!status==='verification sent'&&verifyEmail()}> 
+                        <Button variant={`${!status==='verification sent'&&'success'}`} style={{display:!status==='verification sent'?'none':'block'}} onClick={()=>{status!=='verification sent'&&verifyEmail()}}> 
                         {status==='verification sent'?'':'Verify Now'}
                         </Button>
                     </div>

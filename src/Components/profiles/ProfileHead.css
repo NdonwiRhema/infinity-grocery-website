@@ -58,15 +58,16 @@
     border: 2px solid #f39317;
 }
 
-.profile-edit>a{
+.profile-edit>div{
     background-color: #1c2847;
     color: #f39317;
     text-decoration: none;
     text-align: center;
     padding: 10px;
     border-radius: 10px;
+    width:50%;
 }
-.profile-edit>a:hover{
+.profile-edit>div:hover{
     background-color: #f39317;
     color: #1c2847;
    transition: ease-in-out 0.3s;

@@ -8,7 +8,7 @@ export const locationThunk = createAsyncThunk('Locations/fetchlocation',()=>{
 
 })
 const locationSlice = createSlice({
-    name:'recipe',
+    name:'locations',
     initialState:{
         data:[],
         isLoading:false,
@@ -23,7 +23,7 @@ const locationSlice = createSlice({
             state.isLoading = !state.isLoading
         },
         setActiveLocation:(state,action)=>{
-            state.activeLocation = action.payload
+            state.activeLocation = action.payload.sort()
         }
     },
     extraReducers:(builder)=>{

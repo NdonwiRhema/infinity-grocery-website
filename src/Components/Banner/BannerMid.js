@@ -6,7 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useDispatch,useSelector } from 'react-redux'
 import { categoryThunk ,loadStateFromLocal} from '../../app/features/categorySlice'
 import { pullLocalStorage } from '../utils/LocalStorageOperations'
-import { setActive } from '../../app/features/productSlice'
+import { French } from '../utils/FrenchTranslation'
 
 
 const BannerMid = () => { 
@@ -16,13 +16,14 @@ const BannerMid = () => {
     const [DropdownOptions,setDropdownOptions] = useState([])
     const Item = useRef(null)
     const localcats = pullLocalStorage("AllCategory").length
-    useEffect(()=>{
-       localcats===0 ?dispatch(categoryThunk()): dispatch(loadStateFromLocal())
-    },[dispatch])
   
     const categories = useSelector((state)=>state.category.data)
     const productData= useSelector((state)=>state.product.data)
+    const language= useSelector((state)=>state.language.data)
 //    let DropdownOptions =[]
+useEffect(()=>{
+    localcats===0 ?dispatch(categoryThunk(language)): dispatch(loadStateFromLocal())
+ },[dispatch,language])
 
 function handleChange (e){
     e.preventDefault()
@@ -121,7 +122,7 @@ function findProduct(e){
                                 
                     </div>
                     <div className='social_icons'>
-                        <div><h6> Talk to Us Directly </h6></div>
+                        <div><h6> {language=== 'en'?'Talk to Us Directly':French.header[0].social }</h6></div>
                         <FaFacebook className='social_media_icons'/>
                         <FaInstagram className='social_media_icons'/>
                         <FaWhatsapp className='social_media_icons'/>

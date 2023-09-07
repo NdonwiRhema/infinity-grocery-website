@@ -5,15 +5,13 @@ import { FaCamera, FaEdit } from 'react-icons/fa'
 import { FirebaseUpload, updateFirebase } from '../utils/FirebaseOperations'
 
 import { getDownloadURL } from 'firebase/storage'
-import Authentic from '../../firebase'
 
 
-const ProfileHead = ({data,user}) => {
-    console.log(data,user)
-    
+
+const ProfileHead = ({data,user,setRefresh}) => {
+   
 function uploadImage(e){
-    console.log(e.target.files[0])
-    let img = document.getElementById('profil_img')
+     let img = document.getElementById('profil_img')
     img.setAttribute('src',URL.createObjectURL(e.target.files[0]))
     const imgs = {
         files:e.target.files[0],
@@ -27,7 +25,7 @@ function uploadImage(e){
             //    const linker ={
             //        img:url
             //    }
-            console.log(url)
+            //console.log(url)
              // update the profile and update the user collection
              try {
                 updateFirebase("Users",user.uid,{profile_pic:url}).then(res=>{
@@ -75,7 +73,7 @@ function uploadImage(e){
                     </div>
                 </div>
                 <div className='profile-edit'>
-                    <a href='/profiles/edit'><FaEdit/>  <span className='edit-text'>Edit Profile</span></a>
+                    <div  onClick={setRefresh(true)}><FaEdit/>  <span className='edit-text'>Refresh Profile</span></div>
                 </div>
             </div>
         </div>

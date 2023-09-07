@@ -7,6 +7,7 @@ import { doc,getDoc } from 'firebase/firestore'
 
 const ProfileScreen = () => {
   const [menu,setMenu] = useState('info')
+  const [refresh,setRefresh] = useState(false)
   const [dbData,setDbData] = useState()
   const currentUser = Authentic.currentUser
 useEffect(()=>{
@@ -21,13 +22,13 @@ useEffect(()=>{
  } catch (error) {
   console.warn(error)
  }
-},[])
+},[refresh])
 console.log()
   return (
     <div>
-      <ProfileHeader data ={dbData} user={currentUser}/>
+      <ProfileHeader data ={dbData} user={currentUser}  setRefresh={setRefresh}/>
       <ProfileNav setMenu={setMenu}/>
-      <ProfileBody menu={menu}/>
+      <ProfileBody menu={menu} setRefresh={setRefresh}/>
     </div>
   )
 }

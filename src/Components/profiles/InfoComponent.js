@@ -24,7 +24,7 @@ const InfoSchema = Yup.object().shape({
 })
 
 
-const InfoComponent = () => {
+const InfoComponent = (setRefresh) => {
 const User = Authentic.currentUser
 const[countryCode,setCountryCode] = useState('cm')
 const[drop,setDrop]=useState(false)
@@ -68,12 +68,13 @@ const[drop,setDrop]=useState(false)
             updateDoc(docRef,{
                 username:username,
                 telephone:telephone,
-                location:preferredLocation,
+                location:address,
                 Address:address+' - '+preferredLocation+' - '+addedLocation,
                 country:countryCode,
                 lastModified:Date.now().toLocaleString()
                })
-            // alert('User Profile Successfully Updated')
+           alert('User Profile Successfully Updated')
+           setRefresh(true)
            window.location.reload()
         } catch (error) {
             console.log(error)
@@ -143,8 +144,8 @@ console.log(dbData)
                             className='form-control'
                             placeholder={User.email}
                             onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
+                            onBlur={handleBlur}
+                            value={values.email}
                             />
                     </div>
                     <div className='form-group'>

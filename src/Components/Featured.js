@@ -5,12 +5,14 @@ import Heading from './Heading'
 import { pullLocalStorage } from './utils/LocalStorageOperations'
 import { useDispatch, useSelector } from 'react-redux'
 import { productThunk, setProduct } from '../app/features/productSlice'
+import { French } from './utils/FrenchTranslation'
 
 const Featured = () => {
    const dataExists = pullLocalStorage("AllProducts")
    const dispatch=useDispatch()
    const MainProducts = useSelector((state)=>state.product.data)
-   console.log(MainProducts)
+   const language = useSelector((state)=>state.language.data)
+   
    let Featured =[]
     if(MainProducts.length >10){
         for (let index =MainProducts.length ; index >0 ; index--) {
@@ -36,14 +38,14 @@ const Featured = () => {
   return (
     
     <Container fluid>
-        <Heading text={'Featured Products'}/>
+        <Heading text={language ==='en'?'Featured Products':French.home[0].featured}/>
         <Row>
-            {Featured.length >0 ?Featured.map((feature,index)=>(
+            {Featured.length >0 ?Featured.slice(0,8).map((feature,index)=>(
              <Col key={index} xs={12} sm={3} md={3}>
                   <Product detail={feature}/>
              </Col>
             )):(
-                <p>No products Here...</p>
+                <p>{language ==='en'?'No products Here...':French.home[0].none}</p>
             )}
            
            

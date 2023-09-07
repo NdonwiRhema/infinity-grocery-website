@@ -6,6 +6,7 @@ import { FaPlay } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../app/features/cartSlice';
 import { loadLocalStorage, pullLocalStorage } from '../utils/LocalStorageOperations';
+import { French } from '../utils/FrenchTranslation';
 
 
 const RecipeSection = ({recipeObject}) => {
@@ -14,6 +15,7 @@ const RecipeSection = ({recipeObject}) => {
     
     // const products = pullLocalStorage('AllProducts')
     const products = useSelector((state)=>state.product.data)
+    const language = useSelector((state)=>state.language.data)
     let video
     console.log(products)
   if (recipeObject.recipe.video){
@@ -107,7 +109,7 @@ const RecipeSection = ({recipeObject}) => {
                    </tbody>
                 </Table>
 
-                <button className='btn-bg' onClick={()=>AddalltoCart(recipeObject.recipe.ingredients)}> Add All Items to Cart</button>
+                <button className='btn-bg' onClick={()=>AddalltoCart(recipeObject.recipe.ingredients)}>{language==='en'?' Add All Items to Cart':French.recipe.btnText}</button>
             </Tab>
             <Tab eventKey="process" title="Process">
                 <div className='recipe-process'>
@@ -117,12 +119,12 @@ const RecipeSection = ({recipeObject}) => {
                  </div>
                  <div className='link-yt'>
                     <span>
-                        If you Prefer to watch this On Youtube along side others
+                       {language==='en'?'If you Prefer to watch this On Youtube along side others':French.recipe.videotext}
                     </span>
-                    <br/><br/> <a href={`https://youtu.be/${video}`}> <FaPlay fontSize={11}/> Watch Now</a>
+                    <br/><br/> <a href={`https://youtu.be/${video}`}> <FaPlay fontSize={11}/>{language === 'en'?'Watch Now':'Regarder'} </a>
                  </div>
                  <div className='recipe-body-text'>
-                    <h5>Let's Begin</h5>
+                    <h5>{language==='en'?"Let's Begin":French.recipe.begin}</h5>
                     <div id='recipeProcedure'>
                       
                     </div>

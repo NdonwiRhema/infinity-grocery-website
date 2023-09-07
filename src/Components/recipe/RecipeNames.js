@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap'
 import './RecipeNames.css'
 import { recipeThunk } from '../../app/features/recipeSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 const RecipeNames = ({setRecipeObject}) => {
     const dispatch = useDispatch()
     const [recipeName,setRecipeName]=useState('')
@@ -13,11 +14,13 @@ useEffect(()=>{
 },[recipeName,dispatch])
    // redux states
     const recipeSelector = useSelector((state)=>state.recipe.data)
+    const language = useSelector((state)=>state.language.data)
+
     let Fullrecipe= recipeSelector? recipeSelector.slice(0,10):[]
     console.log(Fullrecipe)
   return (
     <Row>
-        <div className='recipe-names'> All Recipes</div>
+        <div className='recipe-names'>{language==='en'?'All Recipes':French.recipe.all} </div>
         {Fullrecipe.length >0 && Fullrecipe.map((recipe,index)=>(
             <Col key ={index} className={`names ${recipeName===recipe.name&&'activeNames'}`} xs={6} sm={12}>
                 <h6 onClick={()=>{

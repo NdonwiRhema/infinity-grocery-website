@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Row, Tab, Tabs} from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Col, Row} from 'react-bootstrap'
 import Heading from '../Heading'
 import Product from '../products/Product'
 import { FaArrowCircleRight,FaArrowCircleLeft } from 'react-icons/fa'
@@ -14,7 +14,7 @@ const Body = ({title}) => {
     const categories=pullLocalStorage('AllCategory')
     const products=pullLocalStorage('AllProducts')
     const titleCategory = categories.filter((item)=>item.name === title)
-    let productArrays =products.filter((ITEM)=>ITEM.category === titleCategory[0].id)
+    let productArrays =products.filter((ITEM)=>ITEM.category === titleCategory.id)
     const[Next,setNext] = useState(10)
     const[Prev,setPrev] = useState(0)
     const[end,setEnd]=useState()

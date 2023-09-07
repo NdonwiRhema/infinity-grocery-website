@@ -5,12 +5,12 @@ import PromosComponent from './PromosComponent'
 import './ProfileBody.css'
 
 
-const ProfileBody = ({menu}) => {
+const ProfileBody = ({menu,setRefresh}) => {
 
   
   return (
     <div>
-        {menu === 'info'&&(<InfoComponent/>)}
+        {menu === 'info'&&(<InfoComponent setRefresh={setRefresh}/>)}
         {menu === 'security'&&(<SecurityComponent/>)}
         {menu === 'promos'&&(<PromosComponent/>)}
         

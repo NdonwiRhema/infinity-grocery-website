@@ -4,24 +4,33 @@ import ceoImg from '../../assets/about.jpg'
 
 import './HeadSection.css'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 const HeadSection = () => {
+  const language = useSelector((state)=>state.language.data)
   return (
     <div className='main-hold'>
-        <Heading text={'About Us'}/>
+        <Heading text={language==='en'?'About Us':French.about[0].about}/>
         <div className='top-text'>
+           {language === 'en'?(
             <p>
-          <span style={{fontWeight:'bold',fontSize:16}}> INFINITY GROCERY </span>.What began little, with a solitary idea of a store that provides a rebate and
-            the basic thought of moving more for less,has become in the course of the last 20 years
-            a real part in the lives of most homes.<br/>
-            From its inception back in 2001, the objective has been to ensure a comfortable and affordable shopping experience to the 
-            household consumer through diversification and multiplication of alternative/Substitute products at impressive prices.<br/>
-            Making an appearance on the web as infinity-grocery.com is just another attempt to extend our unique touch to your 
-            everyday groceries shopping experience.<br/>
-            With over 500 different Grocery products and alternatives, and most popular brands on the shelves, everyone is definitely likely to 
-            find the perfect balance between  gastronomic priorities and financial ability.<br/>
-            Appropriate from Seasonal Fruits and Vegetables, Rice (Imported and Local productions),
-             Spices and Seasonings to Packaged items, Beverages, Personal consideration items, Meats – we have it all.
+             <span style={{fontWeight:'bold',fontSize:16}}> INFINITY GROCERY </span>.What began little, with a solitary idea of a store that provides a rebate and
+               the basic thought of moving more for less,has become in the course of the last 20 years
+               a real part in the lives of most homes.<br/>
+               From its inception back in 2001, the objective has been to ensure a comfortable and affordable shopping experience to the 
+               household consumer through diversification and multiplication of alternative/Substitute products at impressive prices.<br/>
+               Making an appearance on the web as infinity-grocery.com is just another attempt to extend our unique touch to your 
+               everyday groceries shopping experience.<br/>
+               With over 500 different Grocery products and alternatives, and most popular brands on the shelves, everyone is definitely likely to 
+               find the perfect balance between  gastronomic priorities and financial ability.<br/>
+               Appropriate from Seasonal Fruits and Vegetables, Rice (Imported and Local productions),
+               Spices and Seasonings to Packaged items, Beverages, Personal consideration items, Meats – we have it all.
             </p>
+           ):(
+            <p>
+              {French.about[0].aboutText}
+           </p>
+           )}
         </div>
         <div className='mid-section'>
             <Container>
@@ -31,7 +40,7 @@ const HeadSection = () => {
                     <img className='ceo'
                      src={ceoImg} alt='CEO'/>
                     <div className='about-ceo'>
-                      <h5> CEO & Managing Director</h5>
+                      <h5> {language=== 'en'?'CEO & Managing Director':French.about[0].Ceo}</h5>
                       <h6>Infinity Grocery</h6>
                     </div>
                   </div>
@@ -40,7 +49,8 @@ const HeadSection = () => {
                 <Col xs={12} sm={8}>
                   <div className='ceo-content'>
                     <h3>"</h3>
-                      <p> 
+                      {language === 'en'?(
+                        <p> 
                         <span style={{fontWeight:'bold'}}>Ambe Mary</span> is Founder of Infinity Grocery and sole owner since 2001.<br/>
                         What characterizes every home is quality of life the homes have which is reflected primarily by the quality of food on the table (amongst other internal
                         factors).<br/>
@@ -50,6 +60,11 @@ const HeadSection = () => {
                         Meeting your needs is our Joy. We can't wait to have you ordering.<br/>
                         Cheers..
                       </p>
+                      ):(
+                        <p> 
+                        {French.about[0].aboutCeo}
+                      </p>
+                      )}
                     <h3 className='end-content'>"</h3>
                   </div>
                 </Col>

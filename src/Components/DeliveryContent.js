@@ -5,7 +5,10 @@ import Map from './delivery/Map'
 import Places from './delivery/Places'
 
 const DeliveryContent = () => {
-    const [place,setPlace] = useState()
+    const [place,setPlace] = useState({
+      place:'',
+      src:''
+    })
   return (
     <div>
        <DeliveryBanner/>
