@@ -2,8 +2,6 @@
     width: 100%;
     height: auto;
     overflow-y: scroll;
-
-    
 }
 .place{
     width: 100%;
@@ -39,13 +37,32 @@
   color:#f39317;
   cursor: pointer;
  
-
 }
 .place-active{
     background-color: rgb(247, 245, 245);
     border-right: 2px solid #f39317;
     border-bottom: none;
   
+}
+.horaires{
+    padding: 8px;
+}
+.horaires-period{
+    width: 100%;
+    text-align: center;
+}
+.horaires-period>hr{
+    color: #f39317;
+    border: 1px solid #f39317;
+    width: 50%;
+    margin-left: 25%;
+}
+.horaires-period-body{
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 .place-holder::-webkit-scrollbar{
     width:5px;

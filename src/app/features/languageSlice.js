@@ -3,15 +3,7 @@ import { loadLocalStorage, pullLocalStorage } from "../../Components/utils/Local
 
 const LocallyStoredData = ()=>{
    const lang = pullLocalStorage("language")
-   let langString
-   if(!lang){
-    loadLocalStorage('en','language')
-    langString = pullLocalStorage('language')
-   }
-  else{
-    langString =''
-  }
-  return langString
+  return lang
 }
 
 const languageSlice = createSlice({

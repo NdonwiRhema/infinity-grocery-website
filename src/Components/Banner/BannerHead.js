@@ -69,7 +69,7 @@ const BannerHead = () => {
                                     
                                 </div>
                                 <div className='register'>
-                                    {User?(<h6><span onClick={()=>signOut(Authentic)}>{language === 'en' ?'LogOut':French.header[0].logut}</span></h6>)
+                                    {User?(<h6><span onClick={()=>signOut(Authentic)}>{language === 'en' ?'LogOut':French.header[0].logOut}</span></h6>)
                                         :(<h6> {language === 'en' ?'Dont have an Account?':French.header[0].account} <span>{ language === 'en' ?'SignUp':''} </span></h6>)}
                                 </div>
                            </div>

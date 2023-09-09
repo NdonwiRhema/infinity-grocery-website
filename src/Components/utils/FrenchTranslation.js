@@ -22,7 +22,12 @@ export const  French ={
         home:'Accueil',
         recipes:'Mes Recettes',
         shopping:'Boutique',
-        promotions:'Promo'
+        promotions:'Promo',
+        footerText:`"Débloquez votre aventure d'épicerie ultime ! 🛒
+
+        Découvrez un monde de délicieuses possibilités ! 🌽🍕
+        
+        Des trésors frais de la ferme aux délices prêts à l'emploi, votre pays des merveilles d'épicerie unique vous attend ! 🌟💎"`
         
     }],
     about:[{
@@ -67,8 +72,14 @@ export const  French ={
         Protein:'Protéines'
     },
     delivery:{
-       title: 'Points de Livraison',
-       
+       deliveryPoints: 'Points de Livraison',
+       deliveryTime: 'Horaires de Livraison',
+        dayTime:'Livraison en Journee',
+        Evening:'Livraison en Soiree',
+        days:'Lundi - Vendredi',
+        morningHour:'11h 00 - 14h 00',
+        eveningHour:'17h 00 - 19h 00',
+        locations:'Recevez vos paquets dans les Zones suivantes'
     }
 
 }

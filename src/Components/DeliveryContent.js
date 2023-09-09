@@ -9,6 +9,14 @@ const DeliveryContent = () => {
       place:'',
       src:''
     })
+    const styles ={
+      places:{
+        backgroundColor:'#cac8c8',
+        height:500,
+        scroll:'auto',
+        overflowY:'auto'
+      }
+    }
   return (
     <div>
        <DeliveryBanner/>
@@ -18,7 +26,9 @@ const DeliveryContent = () => {
                 <Map location={place}/>
               </Col>
               <Col xs={12} sm={4}>
-                <Places setPlace={setPlace}/>
+                <div style={styles.places}>
+                  <Places setPlace={setPlace}/>
+                </div>
               </Col>
           </Row>
         </Container>
