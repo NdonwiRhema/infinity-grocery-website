@@ -9,6 +9,7 @@ import './Payment.css'
 import { createLastModified, randomStrings } from '../utils/GeneralOperations'
 import { push } from '../utils/FirebaseOperations'
 import { EmptyCart } from '../../app/features/cartSlice'
+import { French } from '../utils/FrenchTranslation'
 
 
 const Payment = ({check}) => {
@@ -27,6 +28,8 @@ const Payment = ({check}) => {
     const cartInfo  = JSON.parse(location.state)
     const deliveryCharge = useSelector((state)=>state.cart.deliveryCharge)
     const cartTotal = useSelector((state)=>state.cart.cartTotal)
+    const language = useSelector((state)=>state.language.data)
+
   function confirmOrder(){
   const docId=  randomStrings('order_')
     const Order ={
@@ -102,24 +105,24 @@ dispatch(EmptyCart())
         <Heading text={'Check Out Summary'}/>
         <div className='Summary'>
             <div className='form-group'>
-                <label>Person </label>
+                <label>{language==='en'?'Person':French.checkOut.name} </label>
                 <h6>{persona.owner} </h6>
             </div>
             <div className='form-group'>
-                <label>Phone Number </label>
+                <label>{language==='en'?'Phone Number':French.checkOut.phone} </label>
                 <h6>{persona.contact} </h6>
             </div>
             <div className='form-group'>
-                <label>Address </label>
+                <label>{language==='en'?'Address':French.checkOut.address} </label>
                 <h6>{persona.ownerAddress} </h6>
             </div>
             <div className='form-group'>
-                <label>Town of Residence </label>
+                <label>{language==='en'?'Town of Residence':French.checkOut.town }</label>
                 <h6>{persona.ownerTown}</h6>
             </div>
         </div>
         <div className='order-section'>
-            <h5>Order Content</h5>
+            <h5>{language==='en'?'Order Content':French.checkOut.content}</h5>
             {
                 cartInfo&&cartInfo.map((info,index)=>(
                     <div className='order-list' key={index}>
@@ -134,7 +137,7 @@ dispatch(EmptyCart())
                <h6>{cartTotal}</h6>
            </div> 
            <div className='order-list'>
-               <h6>Delivery Charge:</h6>
+               <h6>{language==='en'?'Delivery Charge':French.checkOut.deliveryFee} : </h6>
                <h6>{deliveryCharge}</h6>
            </div> 
            <div className='order-list'>
@@ -179,7 +182,7 @@ dispatch(EmptyCart())
                 </div>
                 <div className='radio-info'>
                     <h5> Mobile Money</h5>
-                    <p>(Coming Soon)This feature is not Available at the moment</p>
+                    <p>{language === 'en'?'(Coming Soon)This feature is not Available at the moment':French.checkOut.momo}</p>
                     <hr/>
                     <div className='momo-images'>
                         <img src='https://i0.wp.com/www.leconomie.info/wp-content/uploads/2023/01/Screenshot-from-2023-01-21-17-31-04-780x416-1.png?fit=780%2C416&ssl=1'
@@ -198,7 +201,7 @@ dispatch(EmptyCart())
                     </div>
                 </div>
                 <div className='radio-info'>
-                    <h5> Payment-On-Delivery</h5>
+                    <h5>{language==='en' ?'Payment-On-Delivery':French.checkOut.pay}</h5>
                    
                     <hr/>
                     <div className='momo-images'>

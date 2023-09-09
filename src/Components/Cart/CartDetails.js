@@ -1,19 +1,25 @@
 import React from 'react'
 import './CartDetails.css'
 import { useSelector } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 
 const CartDetails = () => {
     const deliveryCharge = useSelector((state)=>state.cart.deliveryCharge)
     const cartTotal = useSelector((state)=>state.cart.cartTotal)
+    const language = useSelector((state)=>state.language.data)
+    
+
   return (
     <div className='detail-container'>
         <div className='detail-subtotal'>
-            <h4>Subtotal :<span> {cartTotal} </span> FCFA</h4>
+            <h4>{language === 'en'?'Subtotal':French.cart.subtotal}<span> : {cartTotal} </span> FCFA</h4>
             
         </div>
         <div className='detail-delivery'>
-            <h4>Delivery Fee :<span> {deliveryCharge} </span> FCFA</h4>
-            <p>This is an approximative Delivery method.Please Note we will require your valid telephone Number<br/><span >** Pickup Point Delivery Coming Soon **</span></p>
+            <h4>{language === 'en'?'Delivery Fee':French.cart.deliveryFee} :<span> {deliveryCharge} </span> FCFA</h4>
+            <p>
+                {language === 'en'?'This is an approximative Delivery method.Please Note we will require your valid telephone Number':French.cart.deliveryText}
+                <br/><span >{language === 'en'?'** Pickup Point Delivery Coming Soon **': French.cart.pickupDelivery}</span></p>
         </div>
         <div className='detail-pickup'>
             {/* <h4>Location :</h4>

@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{ useState} from 'react'
 import { FaAngleRight, FaCoins, FaMinus, FaPlus, FaStore, FaWeightHanging} from 'react-icons/fa'
 
 import './CartDetail.css'
@@ -7,12 +7,14 @@ import { addToCart } from '../../app/features/cartSlice'
 import { Badge } from 'react-bootstrap'
 import { selectUnits } from '../utils/GeneralOperations'
 import { pullLocalStorage } from '../utils/LocalStorageOperations'
+import { French } from '../utils/FrenchTranslation'
 
 
 const CartDetail = ({data}) => {
     const[Qty,setQty] = useState(1)
     const dispatch = useDispatch()
     const categories = useSelector((state)=>state.category.data)
+    const language = useSelector((state)=>state.language.data)
     const Category = categories.length>0 ? categories.filter((item)=>item.id===data.category):pullLocalStorage("AllCategory").filter((item)=>item.id===data.category)
     const units = selectUnits(data.stock[0].units)
     const currentCart = [localStorage.getItem('cart')]
@@ -36,15 +38,15 @@ const CartDetail = ({data}) => {
   return (
     <div className='main-wrapper'>
       <div className='product-detail'>
-        <span>Category <FaAngleRight/> {Category[0].name}</span>
+        <span>{language=== 'en'?'Category':French.product.category }<FaAngleRight/> {Category.length>0 &&Category[0].name}</span>
             <h4 >{data.title}</h4>
-            <h6><span>Short description : </span>{data.shortDesc}</h6>
+            <h6><span>{language=== 'en'?'Short description':French.product.shortDesc} : </span>{data.shortDesc}</h6>
       </div>
       <div className='price-detail'>
         <h5>{data.price} FCFA</h5>
         <div className='price-info'>
             <div>
-                <span><FaCoins fontSize={12} color='#f39317'/> 12 Buys</span>
+                <span><FaCoins fontSize={12} color='#f39317'/> {language==='en'?'popular':French.product.popular }</span>
             </div>
             <div>
                 <span><FaStore fontSize={12} color='#f39317'/> <Badge bg={data.stock[0].outStock?'danger':'success'}>{data.stock[0].outStock?'Out of Stock':'In Stock'}</Badge></span>
@@ -62,7 +64,7 @@ const CartDetail = ({data}) => {
 
         </div>
       </div>
-      <button className='btn-bg' onClick={()=>AddtoCart()}> Add To Cart</button>
+      <button className='btn-bg' onClick={()=>AddtoCart()}> {language=== 'en'?'Add To Cart':French.product.addToCart}</button>
     </div>
   )
 }

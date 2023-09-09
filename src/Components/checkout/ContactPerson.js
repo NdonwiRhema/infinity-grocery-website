@@ -5,6 +5,7 @@ import Heading from '../Heading'
 import { setdeliveryCharge } from '../../app/features/cartSlice'
 // import { pull } from '../utils/FirebaseOperations'
 import { useStore } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 
 const ContactPerson = ({setCheck,authUser}) => {
    const dispatch = useDispatch()
@@ -18,6 +19,7 @@ const ContactPerson = ({setCheck,authUser}) => {
   const freshState = useStore()
   console.log(ActiveSubLocations)
   const data = useSelector((state)=>state.locations.data)
+  const language = useSelector((state)=>state.language.data)
 
 
 const handleChange = (e)=>{
@@ -45,11 +47,11 @@ const handleSubmit = (e)=>{
 
   return (
     <div>
-        <Heading text={'Contact Information'}/>
+        <Heading text={language === 'en'?'Contact Information':French.checkOut.title}/>
        
       <form onSubmit={(e)=>handleSubmit(e)}>
         <div className='form-group'>
-            <label>Contact Person</label>
+            <label>{language==='en'?'Contact Person':French.checkOut.name}</label>
             <input ref={contactRef}
              className='form-control'
               placeholder={`${authUser.username ?authUser.username:'e.g. Jane Johnson '}`}
@@ -58,7 +60,7 @@ const handleSubmit = (e)=>{
               required/>
         </div>
         <div className='form-group'>
-            <label>Phone Number</label>
+            <label>{language === 'en'?'Phone Number':French.checkOut.phone}</label>
             <input
             ref={phoneRef}
             type='tel'
@@ -116,7 +118,7 @@ const handleSubmit = (e)=>{
         <div className='form-group'>
            {!authUser.username&&(
             <>
-             <label>SubLocation</label>
+             <label>{language === 'en'?'SubLocation':French.checkOut.sublocation}</label>
               <select required className='form-control' ref={subLocationRef}>
                 <option></option>
                 {
@@ -133,13 +135,13 @@ const handleSubmit = (e)=>{
         <div className='form-group'>
           {!authUser.username&&(
             <>
-              <label>Additional Description</label>
+              <label>{language==='en'?'Additional Description':French.checkOut.desc}</label>
               <textarea required ref={descRef} className='form-control'></textarea>
             </>
           )}
         </div>
         <div className='form-group'>
-          <button className='btn-bg' type='submit'>Proceed To Payment</button>
+          <button className='btn-bg' type='submit'>{language ==='en'?'Proceed To Payment':French.checkOut.payment}</button>
     
         </div>
          </form>

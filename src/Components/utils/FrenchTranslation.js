@@ -80,6 +80,42 @@ export const  French ={
         morningHour:'11h 00 - 14h 00',
         eveningHour:'17h 00 - 19h 00',
         locations:'Recevez vos paquets dans les Zones suivantes'
+    },
+    product:{
+        category:'Catégorie',
+        shortDesc:'Brève description',
+        popular:'populaire',
+        addToCart:'Ajouter au Panier',
+        related:'Produits  Recommandées'
+    },
+    cart:{
+        none:'Votre Panier est vide ....',
+        empty:'Vider le Panier',
+        title:'Mon Panier',
+        checkOut:'Paiement',
+        subtotal:'Total',
+        deliveryFee:'Frais de Livraison',
+        deliveryText:`Il s'agit d'une méthode de livraison approximative. Veuillez noter que nous aurons besoin de votre numéro de téléphone valide.`,
+        pickupDelivery:`** Livraison en point relais bientôt disponible **`
+    },
+    checkOut:{
+        title:'Mes Coordonnées',
+        name:'Nom',
+        address:'Addresse',
+        phone:'Numero de telephone',
+        town:'Ville',
+        sublocation:'Sous Quartier',
+        desc:'Description supplémentaire',
+        payment:'Procéder au paiement',
+        pay:'Paiement à la livraison',
+        deliveryFee:'Frais de Livraison',
+        momo:`(Bientôt disponible)Cette fonctionnalité n'est pas disponible pour le moment`,
+        disclaimer1:`Veuillez noter que cocher cette case signifie
+                     vous acceptez de payer la totalité des frais mentionnés.`,
+        disclaimer2:`LES FRAIS DE LIVRAISON SERONT PAYÉS QUELLE QUE SOIT
+        DU COLIS ÉTANT REFUSÉ À L'ARRIVÉE.`,
+        disclaimer3:`Les frais de livraison sont non remboursables et non négociables.`,
+        content:'Contenu de la commande'
     }
 
 }
