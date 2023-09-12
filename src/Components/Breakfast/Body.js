@@ -5,12 +5,11 @@ import Product from '../products/Product'
 import { FaArrowCircleRight,FaArrowCircleLeft } from 'react-icons/fa'
 
 import './Body.css'
-import { useSelector,useDispatch } from 'react-redux'
 import { pullLocalStorage } from '../utils/LocalStorageOperations'
 
 
 const Body = ({title}) => {
-    const[key,setKey] = useState()
+  
     const categories=pullLocalStorage('AllCategory')
     const products=pullLocalStorage('AllProducts')
     const titleCategory = categories.filter((item)=>item.name === title).pop()
