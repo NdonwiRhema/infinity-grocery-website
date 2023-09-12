@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap'
 import './CarouselSlides.css'
 
 const CarouselSlides  = ({data}) => {
-console.log(data)
+
 const slides = [
   {
   id:1,

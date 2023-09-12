@@ -1,10 +1,14 @@
 import React from 'react'
 import CarouselSlides from './CarouselSlider/CarouselSlides'
+import PromoSlides from './CarouselSlider/PromoSlides'
 
-const Carousels = ({data}) => {
+const Carousels = ({data,promo}) => {
+
   return (
     <div>
-      <CarouselSlides data={data}/>
+      {
+        promo ?( <PromoSlides data={data}/>):(<CarouselSlides data={data} />)
+        }
     </div>
   )
 }

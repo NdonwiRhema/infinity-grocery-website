@@ -32,47 +32,49 @@ const RecipeSection = ({recipeObject}) => {
         const currentCart = pullLocalStorage("cart").length
         let productIngredient=[]
         let cartArray = []
-        ingredients.forEach(element => {
-            console.log(element)
-            const corresponding= products.filter((item)=>item.id === element.id)
-           console.log(corresponding)
-            const fullproduct = {
-                product : corresponding,
-                Quantity: element.Quantity,
-                Comment:element.Comment,
-                units:element.units
-            }
-                corresponding.length>0 ? productIngredient.push(fullproduct):console.log("Empty")
-            });
-                console.log(productIngredient)
-            productIngredient.forEach(item =>{
-            // constitute the temp product for all elements
-            const TempProduct = {
-                            id:item.product[0].id,
-                            description:item.product[0].desc,
-                            title:item.product[0].name,
-                            images:item.product[0].picture[0].img,
-                            category:item.product[0].category,
-                            quantity:item.Quantity,
-                            Comment:item.Comment,
-                            Units:item.units,
-                            price:item.product[0].price,
-                            subtotal:item.product[0].price*item.Quantity,
-                            discount:item.product[0].pricePromotion>0?item.product[0].price-item.product[0].pricePromotion:0,
-                     }
-           let newCartArr =[...cartArray,TempProduct]
-           cartArray = newCartArr
-        })
-        console.log(cartArray)
-            // finally add the products to cart
-          if(currentCart === 0){
-          loadLocalStorage(cartArray,'cart')
-               }
-           cartArray.forEach(element =>{
-             dispatch(addToCart(element))
-             console.log("done :"+ element)
-           })
-             window.scrollTo(0,0) 
+     if(ingredients&&ingredients.length>0){
+            ingredients.forEach(element => {
+              console.log(element)
+              const corresponding= products.filter((item)=>item.id === element.id)
+            console.log(corresponding)
+              const fullproduct = {
+                  product : corresponding,
+                  Quantity: element.Quantity,
+                  Comment:element.Comment,
+                  units:element.units
+              }
+                  corresponding.length>0 ? productIngredient.push(fullproduct):console.log("Empty")
+              });
+                  console.log(productIngredient)
+              productIngredient.forEach(item =>{
+              // constitute the temp product for all elements
+              const TempProduct = {
+                              id:item.product[0].id,
+                              description:item.product[0].desc,
+                              title:item.product[0].name,
+                              images:item.product[0].picture[0].img,
+                              category:item.product[0].category,
+                              quantity:item.Quantity,
+                              Comment:item.Comment,
+                              Units:item.units,
+                              price:item.product[0].price,
+                              subtotal:item.product[0].price*item.Quantity,
+                              discount:item.product[0].pricePromotion>0?item.product[0].price-item.product[0].pricePromotion:0,
+                      }
+            let newCartArr =[...cartArray,TempProduct]
+            cartArray = newCartArr
+          })
+          console.log(cartArray)
+              // finally add the products to cart
+            if(currentCart === 0){
+            loadLocalStorage(cartArray,'cart')
+                }
+            cartArray.forEach(element =>{
+              dispatch(addToCart(element))
+              console.log("done :"+ element)
+            })
+              window.scrollTo(0,0) 
+     }
     }
   return (
     <div >

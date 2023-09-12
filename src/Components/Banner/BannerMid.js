@@ -59,7 +59,7 @@ function findProduct(e){
     e.preventDefault()
     const idAttribute = document.getElementById('SearchField')
     const id = idAttribute.getAttribute('option-data')
-    window.location.href =`/product?id=${id}`
+    window.location.href =id!==''? `/product?id=${id}`:'/'
 }
   return (
     <Container>

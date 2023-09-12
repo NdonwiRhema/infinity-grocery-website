@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import './Filters.css'
 import { useDispatch,useSelector } from 'react-redux'
 import { categoryThunk } from '../../app/features/categorySlice'
-import { pullLocalStorage } from '../utils/LocalStorageOperations'
+// import { pullLocalStorage } from '../utils/LocalStorageOperations'
 import { French } from '../utils/FrenchTranslation'
 
-const Filters = ({filter,setFilter}) => {
+const Filters = ({setFilter}) => {
     const dispatch  = useDispatch()
-    const [clickState,setClickState] =useState(false)
-    const allProducts = pullLocalStorage("ALLProducts")
-   const language = useSelector((state)=>state.language.data)
-    // useEffect(()=>{
-    //     dispatch(categoryThunk(language))
-    // },[dispatch,language])
-    const categories = useSelector((state)=>state.category.data)
+    const language = useSelector((state)=>state.language.data)
+    useEffect(()=>{
+        dispatch(categoryThunk(language))
+    },[dispatch,language])
+   const categories = useSelector((state)=>state.category.data)
     
-    function editFilters(id){
-      !clickState? setFilter((prevState)=>[...prevState,id]):setFilter((prevState)=>prevState.filter((item)=>item!==id))
-    }
+  function editFilters(e){
+      e.target.checked? setFilter((prevState)=>[...prevState,e.target.value]):setFilter((prevState)=>prevState.filter((item)=>item!==e.target.value))
+      }
+
   return (
     <div className='filter-container'>
-        <span className='filter-reset'>{language === 'en'?'Reset Filters':French.shop[0].resetFilters}</span>
+        <span className='filter-reset'
+        onClick={()=>setFilter([])}
+        >
+          {language === 'en'?'Reset Filters':French.shop[0].resetFilters}
+          </span>
         <Container>
             <Row>
                 <Col xs={6} sm={12}>
@@ -30,13 +33,12 @@ const Filters = ({filter,setFilter}) => {
                        
                         {categories.length>0 && categories.map((category,index)=>(
                           <div key={index} className='filter-item'>
-                             <input type='checkbox'
+                             <input
+                              id={category.id}
+                              type='checkbox'
                               name={category.name}
                               value={category.id}
-                              onClick={()=>{
-                                    setClickState(!clickState)
-                                    editFilters(category.id)
-                              }}
+                              onClick={(e)=>{editFilters(e)}}
                               /><span>{category.name}</span>
                          </div>
                         ))}

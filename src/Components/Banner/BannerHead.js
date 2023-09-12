@@ -19,7 +19,7 @@ const BannerHead = () => {
    
     const displayName = User && User.displayName
     username = displayName?displayName:User.email.split('@')
-    console.log(username)
+
   }
   function languageSelect(e){
    dispatch(setlanguage(e.target.value))

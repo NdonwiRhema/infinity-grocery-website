@@ -11,7 +11,7 @@ const ProductDetail = ({data}) => {
       <div >
         <div className='image-spread'>
           {
-            infoImages.map((img,index)=>(
+            infoImages.length>0 && infoImages.map((img,index)=>(
               <img src={img.img} alt={img.img} key={index}/>
             ))
           }

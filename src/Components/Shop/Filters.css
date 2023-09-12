@@ -1,0 +1,7 @@
+.filter-reset{
+    color: #f39319;
+ }
+.filter-reset:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

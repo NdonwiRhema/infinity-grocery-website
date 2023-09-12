@@ -10,7 +10,7 @@ const ShopContent = () => {
     <Container>
         <Row>
             <Col xs={12} sm={2}>
-                <Filters filter={filter} setFilter={setFilter}/>
+                <Filters setFilter={setFilter}/>
             </Col>
             <Col xs={12} sm={1}></Col>
             <Col xs={12} sm={9}>

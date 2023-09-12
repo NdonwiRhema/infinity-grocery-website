@@ -15,7 +15,7 @@ const CartDetail = ({data}) => {
     const dispatch = useDispatch()
     const categories = useSelector((state)=>state.category.data)
     const language = useSelector((state)=>state.language.data)
-    const Category = categories.length>0 ? categories.filter((item)=>item.id===data.category):pullLocalStorage("AllCategory").filter((item)=>item.id===data.category)
+    const Category = categories.length>0 ? categories.filter((item)=>item.id===data.category):pullLocalStorage("AllCategory").filter((item)=>data.id===data.category)
     const units = selectUnits(data.stock[0].units)
     const currentCart = [localStorage.getItem('cart')]
    
@@ -23,12 +23,16 @@ const CartDetail = ({data}) => {
       const TempProduct = {
         id:data.id,
         description:data.description,
-        title:data.title,
-        images:data.images,
+        title:data.name,
+        images:data.picture[0].img,
         category:data.category,
         quantity:Qty+1,
         price:data.price,
-        subtotal:data.price}
+        subtotal:(Qty+1)*data.price,
+        discount:data.pricePromotion>0?data.price-data.pricePromotion:0,
+        Units:units,
+        size:'M'
+      }
       if(currentCart && currentCart.length === 0 && currentCart[0] !== null){
          localStorage.setItem('cart',JSON.stringify(TempProduct))
            }
@@ -39,7 +43,7 @@ const CartDetail = ({data}) => {
     <div className='main-wrapper'>
       <div className='product-detail'>
         <span>{language=== 'en'?'Category':French.product.category }<FaAngleRight/> {Category.length>0 &&Category[0].name}</span>
-            <h4 >{data.title}</h4>
+            {/* <h4 >{data.category}</h4> */}
             <h6><span>{language=== 'en'?'Short description':French.product.shortDesc} : </span>{data.shortDesc}</h6>
       </div>
       <div className='price-detail'>

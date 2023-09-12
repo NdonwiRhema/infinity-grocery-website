@@ -13,7 +13,6 @@ import { French } from '../utils/FrenchTranslation'
 const Shop = ({filter}) => {
     const dispatch = useDispatch()
     const allProducts = pullLocalStorage("ALLProducts")
-    const[prodList,setProdList] =useState()
     const[Next,setNext] = useState(12)
     const[Prev,setPrev] = useState(0)
     const[end,setEnd]=useState()
@@ -38,8 +37,7 @@ const Shop = ({filter}) => {
                 FilteredProducts.push(element)
             }
         }
-     console.log(Fullproducts)
-     console.log(filter)
+     
     const styles = {
         paginationcont:{
             marginTop:18,

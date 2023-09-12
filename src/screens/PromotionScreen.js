@@ -3,7 +3,6 @@ import Carousels from '../Components/Carousels'
 import StyleHeading from '../Components/StyleHeading'
 import Heading from '../Components/Heading'
 import PromoRow from '../Components/promotion/PromoRow'
-// import SeasonalPromo from '../Components/promotion/SeasonalPromo'
 
 const PromotionScreen = () => {
     const slides = [
@@ -28,7 +27,7 @@ const PromotionScreen = () => {
       ]
   return (
     <div>
-          <Carousels data={slides}/>
+          <Carousels data={slides} promo={true}/>
           <StyleHeading text1={'Promo'} text2={'Deals'}/>
           <Heading text={'Weekly Deals'}/>
           
