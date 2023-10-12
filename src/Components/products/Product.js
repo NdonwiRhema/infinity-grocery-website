@@ -40,7 +40,7 @@ const Product = ({detail}) => {
    {
     Object.keys(detail).length>0 ?(
     <Card>
-      <Card.Img variant="top" src={detail.picture[0].img}  onClick={()=> navigate('/product',{state:JSON.stringify(detail),replace:false})}/>
+      <Card.Img variant="top" src={detail.picture.length>0?detail.picture[0].img:''}  onClick={()=> navigate('/product',{state:JSON.stringify(detail),replace:false})}/>
       <Card.Body>
         <Card.Title><span className='product-title'>{detail.name}</span></Card.Title>
         <Card.Text >

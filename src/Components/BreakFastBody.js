@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container,Row } from 'react-bootstrap'
-import Filters from './Shop/Filters'
+// import Filters from './Shop/Filters'
 import Body from './Breakfast/Body'
 
 const BreakFastBody = ({title}) => {

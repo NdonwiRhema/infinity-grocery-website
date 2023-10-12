@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux'
 import {productThunk} from '../../app/features/productSlice'
 import { Col,Row } from 'react-bootstrap'
 import Product from '../products/Product'
-import { pullLocalStorage } from '../utils/LocalStorageOperations'
+// import { pullLocalStorage } from '../utils/LocalStorageOperations'
 import FilteredRows from '../products/FilteredRows'
 import Heading from '../Heading'
 import'./Shop.css'
@@ -12,18 +12,18 @@ import { French } from '../utils/FrenchTranslation'
 
 const Shop = ({filter}) => {
     const dispatch = useDispatch()
-    const allProducts = pullLocalStorage("ALLProducts")
+    // const allProducts = pullLocalStorage("ALLProducts")
     const[Next,setNext] = useState(12)
     const[Prev,setPrev] = useState(0)
     const[end,setEnd]=useState()
     const[start,setStart]=useState(true)
-
-   useEffect(()=>{
-       allProducts.length ===0 && dispatch(productThunk())
-   },[dispatch])
-
-   const products= useSelector((state)=>state.product.data)
+  const products= useSelector((state)=>state.product.data)
    const language= useSelector((state)=>state.language.data)
+ useEffect(()=>{
+    const productLang = language==='en'?'English (en)':'French (fr)'
+      dispatch(productThunk(productLang))
+  },[dispatch,language])
+
    let filterArray=[]
     filter.forEach(element => {
         let tempArr = products.filter((item)=> item.category === element)

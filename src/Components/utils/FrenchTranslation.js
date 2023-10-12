@@ -110,12 +110,20 @@ export const  French ={
         pay:'Paiement à la livraison',
         deliveryFee:'Frais de Livraison',
         momo:`(Bientôt disponible)Cette fonctionnalité n'est pas disponible pour le moment`,
-        disclaimer1:`Veuillez noter que cocher cette case signifie
+        disclaimer1:`Veuillez noter que, cocher cette case signifie que
                      vous acceptez de payer la totalité des frais mentionnés.`,
         disclaimer2:`LES FRAIS DE LIVRAISON SERONT PAYÉS QUELLE QUE SOIT
         DU COLIS ÉTANT REFUSÉ À L'ARRIVÉE.`,
         disclaimer3:`Les frais de livraison sont non remboursables et non négociables.`,
-        content:'Contenu de la commande'
+        content:'Contenu de la commande',
+        transactionFailed:`Echec de la transaction`,
+        transactionMsgError:`Nous n'avions pas pu envoyer un message au`,
+        transactionMsgSuccess:`Transaction effectuer avec sucess.`,
+        transactionMsgConfirmation:`Pour confirmer ceci, un sms a été envoyer au`,
+        transactionMsgConfirmation1:`Dans le cas où vous ne pouvez pas recevoir le sms, votre numéro de commande est`,
+        orderCreated:`Votre commande a été creer avec sucess`,
+        orderCreatedMsg:`Votre commande a été creer mais nous n'avions pas pu envoyer un sms au `,
+        orderId:`Numero de la Commande : `
     }
 
 }

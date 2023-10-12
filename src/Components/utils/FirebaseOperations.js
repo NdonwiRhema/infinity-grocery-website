@@ -23,6 +23,11 @@ export const pullWhere = async (collections,field,value,operation)=>{
         const querySnapshot = await getDocs(q)
         return querySnapshot
     }
+export const pullDoubleConditions = async(collections,field1,value1,operation1,field2,value2,operation2)=>{
+    const q = query(collection(db,collections),where(field1,operation1,value1),where(field2,operation2,value2))
+    const querySnapshot = await getDocs(q)
+    return querySnapshot
+}
 export const  FirebaseUpload = (images)=>{
         const storageRef = ref(storage,`profiles/${images.ID}`)
                 const metadata= {

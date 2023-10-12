@@ -32,8 +32,8 @@ const handleChange = (e)=>{
   }
 const handleSubmit = (e)=>{
     e.preventDefault()
-    const addrs = !authUser&&locationRef.current.value.split('+')
-    const fullAddress = authUser?authUser.Address:addrs[0]+'-'+subLocationRef.current.value+'-'+descRef.current.value
+    const addrs = locationRef.current.value.split('+')   
+    const fullAddress = authUser.Address?authUser.Address:addrs[0]+'-'+subLocationRef.current.value+'-'+descRef.current.value
     const contactData ={
            owner:contactRef.current.value,
            contact:phoneRef.current.value,
@@ -43,6 +43,7 @@ const handleSubmit = (e)=>{
     setCheck({complete:true,
                 contactData:contactData
             })
+  console.log(contactData)
 }
 
   return (
@@ -72,11 +73,11 @@ const handleSubmit = (e)=>{
             required/>
         </div>
         <div className='form-group'>
-            <label>{authUser.Address?'My Address':'Town'}</label>
-            {authUser?(
+            <label>{authUser.Address?language ==='en'?'My Address':'Mon Addresse':language ==='en'?'Town':'Ville'}</label>
+            {authUser.Address?(
               <input
               className='form-control'
-              placeholder={`${ authUser.Address ?authUser.Address:'valid Cameroonian Number e.g 650186979'}`}
+              placeholder={`${ authUser.Address ?authUser.Address:language==='en'?'Enter the Town you live In .':'Votre Ville'}`}
               value={authUser.Address && authUser.Address} 
               disabled={authUser.Address&&true}
               required
@@ -87,7 +88,7 @@ const handleSubmit = (e)=>{
               className='form-control'
               ref={townRef}>
                  <option></option>
-                 <option>Yaounde</option>
+                 <option value={'Yaounde'}>Yaounde</option>
                
              </select>
             )}

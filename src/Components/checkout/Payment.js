@@ -21,7 +21,8 @@ const Payment = ({check}) => {
         initiated : true,
         success:false,
         failed:false,
-        warning:false
+        warning:false,
+        order:''
     })
     const[error,setError] = useState('')
     const location = useLocation()
@@ -39,7 +40,7 @@ const Payment = ({check}) => {
         ownerContact:persona.contact,
         ownerAddress:persona.ownerAddress,
         reject:false,
-        total: deliveryCharge+cartTotal,
+        total: parseInt(deliveryCharge)+parseInt(cartTotal),
         type:'payment-on-delivery',
         currency:'FCFA',
         deliveryFee:deliveryCharge,
@@ -49,12 +50,12 @@ const Payment = ({check}) => {
 
     }
     console.log(Order)
-    // Loading Firestore..
+    // Loading order to Firestore..
 push("Orders",Order,docId).then((res)=>{
-        console.log(res)
+        setAgreed(agreed&&false)
         // send the sms with ClickSend
         const to = '237'+persona.contact
-        const msg = persona.owner+'Thanks for placing an order on Infinity Grocery.Your order ID is '+docId
+        const msg = persona.owner+'. Thanks for placing an order on Infinity Grocery.Your order ID is '+docId
 
 const options = {
     method: 'POST',
@@ -77,16 +78,16 @@ try {
     axios.request(options).then((response)=>{
        console.log(response.data)
       if(response.data.http_code === 200 ){
-        setStatus({initiated:false,success:true,failed:false,warning:false})
+        setStatus({initiated:false,success:true,failed:false,warning:false,order:docId})
       } 
       else{
-        setStatus({initiated:false,success:false,failed:false,warning:true})
+        setStatus({initiated:false,success:false,failed:false,warning:true,order:docId})
         setError(`${docId}`)
     }
-    })
+    }).catch(e=>alert(e.message))
     
 } catch (error) {
-    setStatus({initiated:false,success:false,failed:true,warning:false})
+    setStatus({initiated:false,success:false,failed:true,warning:false,order:docId})
     setError(error.message)
 }
 dispatch(EmptyCart())
@@ -117,7 +118,7 @@ dispatch(EmptyCart())
                 <h6>{persona.ownerAddress} </h6>
             </div>
             <div className='form-group'>
-                <label>{language==='en'?'Town of Residence':French.checkOut.town }</label>
+                <label>{language==='en'?'Town of Residence':French.checkOut.town}</label>
                 <h6>{persona.ownerTown}</h6>
             </div>
         </div>
@@ -142,7 +143,7 @@ dispatch(EmptyCart())
            </div> 
            <div className='order-list'>
                 <h6>Grand Total</h6>
-                <h5>{cartTotal+deliveryCharge}</h5>
+                <h5>{parseInt(cartTotal)+parseInt(deliveryCharge)}</h5>
            </div> 
            
         </div>
@@ -154,15 +155,15 @@ dispatch(EmptyCart())
             onClick={(e)=>Agree(e)}
               />
             <p>
-                Please Note that checking this box means
-                 you agree to pay the full charge mentioned.
+                {language === 'en'?`Please Note that checking this box means
+                 you agree to pay the full charge mentioned.`:French.checkOut.disclaimer1}
                  <br/>
                  <span>
-                  THE DELIVERY CHARGE WILL BE PAID REGARDLESS 
-                 OF THE PACKAGE BEING REJECTED UPON ARRIVAL.
+                {language ==='en'?`THE DELIVERY CHARGE WILL BE PAID REGARDLESS 
+                 OF THE PACKAGE BEING REJECTED UPON ARRIVAL.`:French.checkOut.disclaimer2}
                  </span>
                  <br/>
-                 Delivery charge is non-refundable and non-negotiable
+                {language === 'en'?` Delivery charge is non-refundable and non-negotiable`:French.checkOut.disclaimer3}
             </p>
         </div>
         <div className='form-group'>
@@ -197,11 +198,11 @@ dispatch(EmptyCart())
             <div className='pay-option'>
                 <div className='radio'>
                     <div className='form-group'>
-                        <input type='radio' />
+                        <input type='radio'/>
                     </div>
                 </div>
                 <div className='radio-info'>
-                    <h5>{language==='en' ?'Payment-On-Delivery':French.checkOut.pay}</h5>
+                    <h5>{language==='en'?'Payment-On-Delivery':French.checkOut.pay}</h5>
                    
                     <hr/>
                     <div className='momo-images'>
@@ -213,18 +214,18 @@ dispatch(EmptyCart())
             )}
             {status.failed && (
                 <>
-                 <div className='failed-option'>
+            <div className='failed-option'>
                 <div className='radio'>
                     <div className='form-group'>
                         <FaWindowClose onClick={()=>Navigate('/shop')}/>
                     </div>
                 </div>
                 <div className='radio-info'>
-                    <h5> Transaction Could not be Completed</h5>
+                    <h5>{language === 'en'?'Transaction failed':French.checkOut.transactionFailed}</h5>
                    
                     <hr/>
                     <div className='momo-images'>
-                    <p>There was an error : <br/>{error} </p>
+                    <p>{language === 'en'?'There was an error :':'Une Erreur: '} <br/>{error} </p>
                     </div>
                </div>
             </div>
@@ -239,11 +240,15 @@ dispatch(EmptyCart())
                     </div>
                 </div>
                 <div className='radio-info'>
-                    <h5> Transaction Completed Successfully</h5>
+                    <h5>{language === 'en'?'Transaction Completed Successfully':French.checkOut.transactionMsgSuccess}</h5>
                    
                     <hr/>
                     <div className='momo-images'>
-                    <p>To confirm this, an sms containing your order ID has been sent to {persona.contact} </p>
+                    <p>
+                        {language==='en'?'To confirm this, an sms containing your order ID has been sent to':French.checkOut.transactionMsgConfirmation} {persona.contact}. 
+                        {language==='en'?'In case you cannot receive the sms,your order ID is':French.checkOut.transactionMsgConfirmation1} {status.order} 
+                    </p>
+
                     </div>
                </div>
             </div>
@@ -258,12 +263,12 @@ dispatch(EmptyCart())
                     </div>
                 </div>
                 <div className='radio-info'>
-                    <h5> Order Created </h5>
+                    <h5> {language === 'en'?'Order Created':French.checkOut.orderCreated} </h5>
                    
                     <hr/>
                     <div className='momo-images'>
-                    <p>Your Order has been created successfully but we were unfortunately not able to send a message to {persona.contact}<br/>
-                        <span>Your Order Id :</span> {error}
+                    <p>{language=== 'en'?'Your Order has been created successfully but we were unfortunately not able to send a message to ':French.checkOut.orderCreatedMsg} {persona.contact}<br/>
+                        <span>{language === 'en'?'Your Order Id :':French.checkOut.orderId}</span> {error}
                     </p>
                     </div>
                </div>

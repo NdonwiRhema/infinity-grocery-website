@@ -25,7 +25,7 @@ const CheckOutScreen = () => {
        })
     }
       dispatch(locationThunk())
-  },[])
+  },[dispatch])
   console.log(check)
   console.log(authUser)
 

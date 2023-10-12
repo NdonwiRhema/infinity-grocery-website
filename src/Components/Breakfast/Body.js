@@ -12,8 +12,8 @@ const Body = ({title}) => {
   
     const categories=pullLocalStorage('AllCategory')
     const products=pullLocalStorage('AllProducts')
-    const titleCategory = categories.filter((item)=>item.name === title).pop()
-    let productArrays =products.filter((item)=>item.category === titleCategory.id)
+    const titleCategory = categories.length>0&&categories.filter((item)=>item.name === title).pop()
+    let productArrays =products.length>0&&products.filter((item)=>item.category === titleCategory.id)
     const[Next,setNext] = useState(10)
     const[Prev,setPrev] = useState(0)
     const[end,setEnd]=useState()
@@ -58,7 +58,7 @@ const Body = ({title}) => {
     <div className=''>
         <Heading text={title}/>
         <Row>
-                          {productArrays.map((product,index)=>(
+                          {productArrays.length>0&&productArrays.map((product,index)=>(
                               <Col key={index} xs={6} sm={4}>
                                   <Product detail={product}/>
                               </Col>
