@@ -20,7 +20,7 @@ const Shop = ({filter}) => {
   const products= useSelector((state)=>state.product.data)
    const language= useSelector((state)=>state.language.data)
  useEffect(()=>{
-    const productLang = language==='en'?'English (en)':'French (fr)'
+    const productLang = language==='en'?'English (en)':'Francais(fr)'
       dispatch(productThunk(productLang))
   },[dispatch,language])
 

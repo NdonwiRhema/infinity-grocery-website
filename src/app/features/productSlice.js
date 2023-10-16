@@ -16,8 +16,8 @@ const productSlice = createSlice({
     name:'product',
     initialState:{
         data:[],
-        en:[],
-        fr:[],
+        // en:[],
+        // fr:[],
         active:{},
         isLoading:false,
         error:'' // for locale storage reasons 
@@ -26,10 +26,10 @@ const productSlice = createSlice({
     reducers:{
         setProduct: (state,action)=>{
             state.data = action.payload
-            const en = action.payload.filter((item)=>item.language === 'English(en)')
-            const fr = action.payload.filter((item)=>item.language === 'French(fr)')
-            state.en = en
-            state.fr = fr
+            // const en = action.payload.filter((item)=>item.language === 'English(en)')
+            // const fr = action.payload.filter((item)=>item.language === 'French(fr)')
+            // state.en = en
+            // state.fr = fr
         },
         setActive:(state,action)=>{
             state.active = action.payload
@@ -49,10 +49,10 @@ const productSlice = createSlice({
                 tempArr.push(productData)
                               })
            state.data = tempArr
-           const en = tempArr.filter((item)=>item.language === 'English(en)')
-           const fr = tempArr.filter((item)=>item.language === 'French(fr)')
-            state.en= en
-            state.fr = fr
+        //    const en = tempArr.filter((item)=>item.language === 'English (en)')
+        //    const fr = tempArr.filter((item)=>item.language === 'French (fr)')
+        //     state.en= en
+        //     state.fr = fr
 
            loadLocalStorage(tempArr,"AllProducts")
            loadLocalStorage(Date.now(),"lastmodified")

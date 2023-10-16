@@ -9,11 +9,10 @@ import { French } from './utils/FrenchTranslation'
 
 const Featured = () => {
   const dispatch=useDispatch()
-//    const AllProducts = useSelector((state)=>state.product.data)
-   const enProducts = useSelector((state)=>state.product.data)
-   const frProducts = useSelector((state)=>state.product.data)
+   const AllProducts = useSelector((state)=>state.product.data)
+   
    const language = useSelector((state)=>state.language.data)
-   const MainProducts = language==='en'?enProducts:frProducts
+   const MainProducts = AllProducts
 
    let Featured =[]
     if(MainProducts.length >10){
@@ -32,7 +31,7 @@ const Featured = () => {
        }
     }
    useEffect(()=>{
-      const productLang = language==='en'?'English (en)':'French (fr)'
+      const productLang = language==='en'?'English (en)':'Francais(fr)'
     dispatch(productThunk(productLang))
    },[dispatch,language])
 
