@@ -67,8 +67,8 @@ export const  French ={
         begin: 'Commencons'
     },
     breakfast:{
-        Breakfast:'Petit-déjeuner',
-        Fruits:'Fruits',
+        Breakfast:'Petit Déjeuner',
+        Fruits:'Fruit',
         Protein:'Protéines'
     },
     delivery:{
