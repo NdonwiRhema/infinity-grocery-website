@@ -16,7 +16,7 @@ import SingleProductScreen from './screens/SingleProductScreen';
 import PromotionScreen from './screens/PromotionScreen';
 import PromoDescriptionScreen from './screens/PromoDescriptionScreen';
 import AuthScreen from './screens/AuthScreen';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import { onAuthStateChanged } from 'firebase/auth';
 import Authentic from './firebase';
 import { Login, logOut } from './app/features/userSlice';
@@ -30,7 +30,8 @@ function App() {
   const dispatch = useDispatch()
   const USER = useSelector((state)=>state.user.data)
   const language = useSelector((state)=>state.language.data)
-useEffect(()=>{
+ 
+  useEffect(()=>{
     const unsubscribe = onAuthStateChanged(Authentic,(userAuth)=>{
       if(userAuth){
         const currentUser =  userAuth.auth.currentUser

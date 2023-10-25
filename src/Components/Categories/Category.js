@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 import'./Category.css'
 import Item from './Item'
-import { pullLocalStorage } from '../utils/LocalStorageOperations'
 import { useDispatch, useSelector } from 'react-redux'
 import { categoryThunk } from '../../app/features/categorySlice'
 import { French } from '../utils/FrenchTranslation'
 
 const Categories = () => {
   const bgImg='https://img.freepik.com/free-vector/realistic-supermarket-social-media-cover-template_23-2149364804.jpg'
-  const allCategory = pullLocalStorage("AllCategory")
+
   const Categories= useSelector((state)=>state.category.data)
   const language = useSelector((state)=>state.language.data)
+  
   const dispatch = useDispatch()
    useEffect(()=>{
         dispatch(categoryThunk(language))

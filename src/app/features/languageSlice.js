@@ -2,8 +2,16 @@ import { createSlice }from "@reduxjs/toolkit";
 import { loadLocalStorage, pullLocalStorage } from "../../Components/utils/LocalStorageOperations";
 
 const LocallyStoredData = ()=>{
-   const lang = pullLocalStorage("language")
-  return lang
+   const lang = pullLocalStorage("language").length
+   let languageSelected
+   if(lang === 0 ){
+    loadLocalStorage("fr","language")
+    languageSelected = pullLocalStorage("language")
+   }
+   else{
+    languageSelected = pullLocalStorage("language")
+   }
+  return languageSelected
 }
 
 const languageSlice = createSlice({

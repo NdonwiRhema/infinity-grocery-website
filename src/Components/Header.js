@@ -3,13 +3,15 @@ import BannerHead from './Banner/BannerHead'
 import BannerMid from './Banner/BannerMid'
 import BannerNav from './Banner/BannerNav'
 import { pullLocalStorage } from './utils/LocalStorageOperations'
-import { useDispatch } from 'react-redux'
-import { categoryThunk, loadStateFromLocal } from '../app/features/categorySlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { categoryThunk } from '../app/features/categorySlice'
 import { productThunk } from '../app/features/productSlice'
 
 const Header = () => {
  const allCategories = pullLocalStorage('AllCategory').length
  const allProducts = pullLocalStorage('AllProducts').length
+ const langSelected  =   useSelector(state=> state.language.data)
+ const language = langSelected.length===0? pullLocalStorage('language'):langSelected
 
  const location = window.location.pathname
  let activeTab
@@ -46,12 +48,12 @@ const Header = () => {
   }
   useEffect(()=>{
     if(allCategories === 0){
-      dispatch(categoryThunk())
+      dispatch(categoryThunk(language))
     }
    if(allProducts ===0){
-    dispatch(productThunk())
+    dispatch(productThunk(language))
    }
-  },[dispatch])
+  },[])
   return (
     <div>
       <BannerHead/>
