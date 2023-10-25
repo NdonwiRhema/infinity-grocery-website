@@ -11,12 +11,9 @@ import { pullLocalStorage } from '../utils/LocalStorageOperations'
 const Body = ({title}) => {
   
     const categories=pullLocalStorage('AllCategory')
-
     const products=pullLocalStorage('AllProducts')
     const titleCategory = categories.length>0&&categories.filter((item)=>item.name === title).pop()
-    console.log(categories)
-    console.log(titleCategory)
-   
+ 
     let productArrays =products.length>0&&products.filter((item)=>item.category === titleCategory.id)
     const[Next,setNext] = useState(10)
     const[Prev,setPrev] = useState(0)

@@ -125,5 +125,4 @@ export const  French ={
         orderCreatedMsg:`Votre commande a été creer mais nous n'avions pas pu envoyer un sms au `,
         orderId:`Numero de la Commande : `
     }
-
 }
