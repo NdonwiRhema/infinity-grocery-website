@@ -68,7 +68,7 @@ const CartDetail = ({data}) => {
 
         </div>
       </div>
-      <button className='btn-bg' onClick={()=>AddtoCart()}> {language=== 'en'?'Add To Cart':French.product.addToCart}</button>
+      <button className={` ${data.stock[0].outStock?'btn-Inactivate':'btn-bg'}`} onClick={()=>data.stock[0].outStock?'':AddtoCart()}> {language=== 'en'?'Add To Cart':French.product.addToCart}</button>
     </div>
   )
 }

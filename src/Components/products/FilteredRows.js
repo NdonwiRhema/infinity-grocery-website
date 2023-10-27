@@ -48,8 +48,8 @@ const FilteredRows = ({array}) => {
             <div className='product-btn-section'>
               <div className='product-offer-btn'>
                 <button
-                      className='btn-bg'
-                      onClick={()=>AddtoCart(detail)}
+                      className={detail.stock[0].outStock?'btn-Inactivate':'btn-bg'}
+                      onClick={()=>detail.stock[0].outStock?'':AddtoCart(detail)}
                         > Add Cart
                 </button>
               </div>

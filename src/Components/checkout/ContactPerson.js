@@ -32,7 +32,14 @@ const handleChange = (e)=>{
   }
 const handleSubmit = (e)=>{
     e.preventDefault()
-    const addrs = locationRef.current.value.split('+')   
+    const addrs = !authUser.Address&&locationRef.current.value.split('+')   
+    //extract the address and dispatch the delivery fee 
+
+    if(authUser.Address){
+      const pickedUpAddress = authUser.Address.split('*')
+      const quarterData = data.filter((item)=> item.quarter === pickedUpAddress[0])
+     dispatch(setdeliveryCharge(quarterData))
+    }
     const fullAddress = authUser.Address?authUser.Address:addrs[0]+'-'+subLocationRef.current.value+'-'+descRef.current.value
     const contactData ={
            owner:contactRef.current.value,
@@ -40,6 +47,8 @@ const handleSubmit = (e)=>{
            ownerAddress:fullAddress,
            ownerTown:!authUser?townRef.current.value:'Yaounde',
     }
+    console.log(contactData)
+    
     setCheck({complete:true,
                 contactData:contactData
             })

@@ -69,7 +69,7 @@ const[drop,setDrop]=useState(false)
                 username:username,
                 telephone:telephone,
                 location:address,
-                Address:address+' - '+preferredLocation+' - '+addedLocation,
+                Address:address+'*'+preferredLocation+'*'+addedLocation,
                 country:countryCode,
                 lastModified:Date.now().toLocaleString()
                })
@@ -77,7 +77,7 @@ const[drop,setDrop]=useState(false)
            setRefresh(true)
            window.location.reload()
         } catch (error) {
-            console.log(error)
+            console.warn(error)
         }
                                                                             
 }

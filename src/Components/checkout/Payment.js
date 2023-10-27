@@ -7,7 +7,7 @@ import{FaWindowClose} from 'react-icons/fa'
 import Heading from '../Heading'
 import './Payment.css'
 import { createLastModified, randomStrings } from '../utils/GeneralOperations'
-import { push } from '../utils/FirebaseOperations'
+import { pull, push, updateFirebase } from '../utils/FirebaseOperations'
 import { EmptyCart } from '../../app/features/cartSlice'
 import { French } from '../utils/FrenchTranslation'
 
@@ -32,8 +32,9 @@ const Payment = ({check}) => {
     const language = useSelector((state)=>state.language.data)
 
   function confirmOrder(){
+    
   const docId=  randomStrings('order_')
-    const Order ={
+  const Order ={
         id:docId,
         owner:persona.owner,
         status:'awaiting',
@@ -49,7 +50,32 @@ const Payment = ({check}) => {
         content:cartInfo
 
     }
-    console.log(Order)
+   
+ const UpdateProductQuantities =()=>{
+    cartInfo?.forEach(element => {
+        const p_id = element.id
+        const ordered_qty = element.quantity
+        pull("Products",p_id).then((res)=>{
+         
+        const stck = res.stock[0]
+           const actual = res.stock[0].actualStock
+           let newQty = actual>0?parseInt(actual)-parseInt(ordered_qty):parseInt(res.stock[0].inStock)-parseInt(ordered_qty)
+           const newStock =[{outStock:newQty<5?true:false,
+            inStock:stck.inStock,
+            actualStock:newQty,
+            units:stck.units}]
+            const updateData = {
+                stock:newStock,
+                lastModified:createLastModified(),
+                } 
+          updateFirebase("Products",p_id,updateData).then(res=>{
+              
+          })
+        })
+    });
+ }   
+ 
+
     // Loading order to Firestore..
 push("Orders",Order,docId).then((res)=>{
         setAgreed(agreed&&false)
@@ -79,7 +105,8 @@ try {
        console.log(response.data)
       if(response.data.http_code === 200 ){
         setStatus({initiated:false,success:true,failed:false,warning:false,order:docId})
-      } 
+        
+    } 
       else{
         setStatus({initiated:false,success:false,failed:false,warning:true,order:docId})
         setError(`${docId}`)
@@ -90,6 +117,7 @@ try {
     setStatus({initiated:false,success:false,failed:true,warning:false,order:docId})
     setError(error.message)
 }
+UpdateProductQuantities()
 dispatch(EmptyCart())
     }).catch((e)=>{
        setStatus({initiated:false,success:false,failed:true,warning:false})
