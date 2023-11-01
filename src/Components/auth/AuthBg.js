@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import './AuthBg.css'
 import Carousels from '../Carousels'
@@ -7,10 +7,12 @@ import { Col, Container,Row } from 'react-bootstrap'
 import { pullLocalStorage,loadLocalStorage } from '../utils/LocalStorageOperations'
 import { useDispatch } from 'react-redux'
 import { pullWhere } from '../utils/FirebaseOperations'
+import ResetPassword from './ResetPassword'
 
 
 const AuthBg = () => {
   const dispatch = useDispatch()
+  const[resetPassword,setResetPassword] = useState(false)
   const uiData = pullLocalStorage("AllUi").length>0?pullLocalStorage("AllUi"):0
   function LoadCarousels () {
     pullWhere("Ui",'status','active','==').then(response=>{
@@ -37,7 +39,7 @@ const AuthBg = () => {
              <Container fluid>
                     <Row>
                         <Col xs={12} sm={4}>
-                            <Auth/>
+                            {resetPassword?(<ResetPassword/>):(<Auth setResetPassword={setResetPassword}/>)}
                         </Col>
                         <Col  sm={8} >
                            <div className='content-carousel'>

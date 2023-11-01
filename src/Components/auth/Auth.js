@@ -10,7 +10,7 @@ import Authentic from '../../firebase'
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 
-const Auth = () => {
+const Auth = ({setResetPassword}) => {
 const [signUp,setSignUp] = useState(false)
 
 
@@ -78,7 +78,7 @@ const LoginForm = ()=>{
                         style={{border:errors.password? "1px solid red":'none'}} 
                         type='password' required/>
                         <span className='error-message'>{errors.password}</span>
-
+                        <span className='text-main-dark-right' onClick={()=>setResetPassword(true)}>Forgot Password </span>
                     </div>
                  </div>
               <div className='submit-grp'>
