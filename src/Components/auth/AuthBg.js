@@ -10,7 +10,7 @@ import { pullWhere } from '../utils/FirebaseOperations'
 import ResetPassword from './ResetPassword'
 
 
-const AuthBg = () => {
+const AuthBg = ({register}) => {
   const dispatch = useDispatch()
   const[resetPassword,setResetPassword] = useState(false)
   const uiData = pullLocalStorage("AllUi").length>0?pullLocalStorage("AllUi"):0
@@ -39,7 +39,7 @@ const AuthBg = () => {
              <Container fluid>
                     <Row>
                         <Col xs={12} sm={4}>
-                            {resetPassword?(<ResetPassword/>):(<Auth setResetPassword={setResetPassword}/>)}
+                            {resetPassword?(<ResetPassword/>):(<Auth register={register} setResetPassword={setResetPassword}/>)}
                         </Col>
                         <Col  sm={8} >
                            <div className='content-carousel'>

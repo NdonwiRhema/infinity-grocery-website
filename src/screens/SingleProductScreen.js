@@ -16,7 +16,7 @@ const SingleProductScreen = () => {
     const prodData  =  pullLocalStorage("AllProducts")
     const queryString = window.location.search ?window.location.search :''
     let query_id
-    if(queryString !== ''){
+    if(queryString !== ''){ // get the product id passed through the URL
       const params = new URLSearchParams(queryString)
       query_id = params.get('id')
       
@@ -26,7 +26,7 @@ const SingleProductScreen = () => {
                                                  :
                                                  query_id !=='' ?
                                                  prodData.filter((item)=>item.id === query_id).pop():{}
- 
+
   return (
     <div>
 
@@ -42,7 +42,7 @@ const SingleProductScreen = () => {
         </Row>
         <Row>
           <Heading text={language === 'en'?'Related Products':French.product.related}/>
-          <RelatedProducts related={productInfo.category}/>
+          <RelatedProducts related={productInfo.category} start={productInfo.id}/>
         </Row>
       </Container>
     </div>

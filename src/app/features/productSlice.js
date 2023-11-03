@@ -10,11 +10,15 @@ export const latestProductThunk = createAsyncThunk('product/recentProduct',(lang
    return pullDoubleConditions("Products",'language',language,'==','lastModified',frame,'>=').then((response)=>response)
 })
 
-
+const LocallyStoredData = ()=>{
+    const lang = pullLocalStorage("AllProducts").length
+   return lang===0? []:pullLocalStorage("AllProducts")
+ }
+ 
 const productSlice = createSlice({
     name:'product',
     initialState:{
-        data:[],
+        data:LocallyStoredData(),
         active:{},
         isLoading:false,
         error:'' 

@@ -5,6 +5,7 @@ import FooterLogo from '../assets/logotxt.png'
 import { useSelector } from 'react-redux'
 import { French } from './utils/FrenchTranslation'
 
+
 const Footer = () => {
     const language = useSelector((state)=>state.language.data)
   return (
@@ -35,6 +36,20 @@ From Fresh Farm Treasures to Ready-Made Delights - Your One-Stop Grocery Wonderl
                 </Col>
             </Row>
         </Container>
+        {/* <div className='footer-contact'>
+            <div style={{width:'20%'}} className='contact-1'></div>
+            <div className='contact-2'>
+                <div className='footer-contact-details'>
+                            <FaEnvelopeOpenText fontSize={12}/>
+                            <h6>contact@infinity-grocery.com</h6>
+                </div>
+                <div  className='footer-contact-details'>
+                    <FaPhoneAlt fontSize={12}/>
+                    <h6> (+237) 650 186 979 | 678 739 238 </h6>
+                </div>
+            </div>
+            <div style={{width:'20%'}} className='contact-3'></div>
+        </div> */}
     </div>
   )
 }

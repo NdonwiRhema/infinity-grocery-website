@@ -124,5 +124,18 @@ export const  French ={
         orderCreated:`Votre commande a été creer avec sucess`,
         orderCreatedMsg:`Votre commande a été creer mais nous n'avions pas pu envoyer un sms au `,
         orderId:`Numero de la Commande : `
+    },
+    auth:{
+        signUp:'Creer Un Compte',
+        signIn:'Se connecter',
+        connectU:'Content de vous avoir .Nous allons vous connecter',
+        noAccount:'Pas de Compte?',
+        hasAccount:`J'ai un Compte`,
+        password:'Mot de Pass',
+        reenterPassword:`Entrez à nouveau le mot de passe`,
+        forgotPassword:'Mot de Passe Oublier',
+        username:`Nom d'Utilisateur`,
+        phone:`numéro de téléphone`,
+
     }
 }

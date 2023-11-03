@@ -4,11 +4,14 @@ import { Formik } from 'formik'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import Authentic, { db } from '../../firebase'
 import { doc, setDoc } from 'firebase/firestore'
+import { useSelector } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 
 
 const SignUpForm = () => {
     // regisyter function 
  const [regUser,setRegUser] = useState()
+ const language = useSelector(state=>state.language.data)
 function Register (values){
     const email = values.email
     const password = values.password
@@ -85,7 +88,7 @@ function Register (values){
                                 value={values.username}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                placeholder='Username'
+                                placeholder={language==='en'?'Username':French.auth.username}
                                 className= 'form-control'  
                                 type='text'
                                 required/>
@@ -111,7 +114,7 @@ function Register (values){
                                 value={values.telephone}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                placeholder='Telephone Number'
+                                placeholder={language==='en'?'Telephone':French.auth.phone}
                                 className='form-control' 
                                 type='tel' required/>
                            
@@ -122,7 +125,7 @@ function Register (values){
                                 <input
                                 style={{border:errors.message?'1px solid solid':'none'}} 
                                 name='password'
-                                placeholder='Password' 
+                                placeholder={language==='en'?'Password':French.auth.password} 
                                 className='form-control' 
                                 value={values.password}
                                 onChange={handleChange}
@@ -136,7 +139,7 @@ function Register (values){
                                 <input
                                 style={{border:errors.message?'1px solid solid':'none'}} 
                                 name='confirmPassword'
-                                placeholder='Reenter Password'
+                                placeholder={language==='en'?'Reenter Password':French.auth.reenterPassword}
                                 value={values.confirmPassword}
                                 onChange={handleChange}
                                 className={`form-control`} 

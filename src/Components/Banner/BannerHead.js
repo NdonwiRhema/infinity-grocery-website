@@ -8,10 +8,12 @@ import Authentic from '../../firebase'
 import { setlanguage } from '../../app/features/languageSlice'
 import { French } from '../utils/FrenchTranslation'
 
+
 const BannerHead = () => {
     const UserSelect= useSelector((state)=>state.user.data)
     const language= useSelector((state)=>state.language.data)
     const dispatch = useDispatch()
+    
     let User
     let username
     if(UserSelect){
@@ -23,6 +25,9 @@ const BannerHead = () => {
   }
   function languageSelect(e){
    dispatch(setlanguage(e.target.value))
+  }
+  function navigateTo(location){
+    window.location.href = location
   }
   return (
     <div className='banner_container'>
@@ -70,7 +75,7 @@ const BannerHead = () => {
                                 </div>
                                 <div className='register'>
                                     {User?(<h6><span onClick={()=>signOut(Authentic)}>{language === 'en' ?'LogOut':French.header[0].logOut}</span></h6>)
-                                        :(<h6> {language === 'en' ?'Dont have an Account?':French.header[0].account} <span>{ language === 'en' ?'SignUp':''} </span></h6>)}
+                                        :(<h6 onClick={()=>navigateTo('/auth?register=1')}> {language === 'en' ?'Dont have an Account?':French.header[0].account} <span>{ language === 'en' ?'SignUp':''} </span></h6>)}
                                 </div>
                            </div>
                         </div>

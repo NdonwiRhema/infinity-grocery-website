@@ -9,10 +9,12 @@ import Authentic from '../../firebase'
 
 import {signInWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { French } from '../utils/FrenchTranslation'
 
-const Auth = ({setResetPassword}) => {
-const [signUp,setSignUp] = useState(false)
-
+const Auth = ({setResetPassword,register}) => {
+const [signUp,setSignUp] = useState(register?true:false)
+const language = useSelector(state=>state.language.data)
 
 const navigate = useNavigate()
 // must contain a capital letter a number and a lowercsase letter and a special charaacter and must be atleadt be 8 chars long.
@@ -73,18 +75,18 @@ const LoginForm = ()=>{
                         name='password'
                         value={values.password}
                         onChange={handleChange}
-                        placeholder='Password' 
+                        placeholder={language==='en'?'Password':French.auth.password} 
                         className='form-control'
                         style={{border:errors.password? "1px solid red":'none'}} 
                         type='password' required/>
                         <span className='error-message'>{errors.password}</span>
-                        <span className='text-main-dark-right' onClick={()=>setResetPassword(true)}>Forgot Password </span>
+                        <span className='text-main-dark-right' onClick={()=>setResetPassword(true)}>{language==='en'?'Forgot Password':French.auth.forgotPassword} </span>
                     </div>
                  </div>
               <div className='submit-grp'>
                 <button
                   type='submit' 
-                  className={'btn-bg'}>Sign In</button>
+                  className={'btn-bg'}>{language==='en'?'Sign In':French.auth.signIn}</button>
               </div>
               
             </form>
@@ -98,16 +100,18 @@ const LoginForm = ()=>{
     <div>
         <div className='form'>
           <div className='form-title'>
-                      <h4> {signUp ? 'Sign Up':'Sign In'} </h4>
-                      <h6>Glad to have you . Let's get you {signUp ? 'an Account':'signed In'} </h6>
+                      <h4> {language==='en'? `${signUp ? 'Sign Up':'Sign In'}`:`${signUp ? French.auth.signUp:French.auth.signIn}`} </h4>
+                      <h6>{
+                      language==='en'?`Glad to have you . Let's get you ${signUp ? 'an Account':'signed In'}`
+                      :French.auth.connectU}</h6>
           </div>
           {!signUp?(
             <LoginForm/>
           ):(
             <SignUpForm/>
             )}
-          <p>{!signUp?"Don't Have an Account ? ":'Already have an Account ?'}
-                <span onClick={()=>setSignUp(!signUp)}>{!signUp?'Sign Up Now':'Sign In Now'}</span>
+          <p>{!signUp?language==='en'?"Don't Have an Account ? ":French.auth.noAccount:language==='en'?'Already have an Account ?':French.auth.hasAccount}
+                <span onClick={()=>setSignUp(!signUp)}>{!signUp?language==='en'?'Sign Up Now':French.auth.signUp:language ==='en'?'Sign In Now':French.auth.signIn}</span>
                 <br/>
           </p>
         </div>

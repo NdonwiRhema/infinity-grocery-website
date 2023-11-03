@@ -16,8 +16,7 @@ useEffect(()=>{
 },[])
     
   return (
-   <div>
-     
+    <div>
         {/*  Carousel Section .. */}
             <Carousels data={ui}/>
         {/*  Promotions Section.. */}
